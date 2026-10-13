@@ -18,7 +18,7 @@ todos os testes usam uma **nightly** instalada **ao lado** da estável.
 
 | # | Plugin | Origem | Linux | macOS |
 |---|--------|--------|-------|-------|
-| 1 | Support Fins (fins de suporte destacáveis do printfins.com) | [gittrahan/support-fins](https://github.com/gittrahan/support-fins/tree/main/plugins/orca) | [Capítulo 1](docs/support-fins/01-Linux.md) | [Capítulo 2](docs/support-fins/02-macOS.md) |
+| 1 | Support Fins (fins de suporte destacáveis do printfins.com) | [gittrahan/support-fins](https://github.com/gittrahan/support-fins/tree/main/plugins/orca) | [Capítulo 1](docs/support-fins/01-Linux.md) ✅ | [Capítulo 2](docs/support-fins/02-macOS.md) ✅ fins idênticas às do Linux |
 
 Comece por [Support Fins: visão geral](docs/support-fins/00-Visao_Geral.md).
 

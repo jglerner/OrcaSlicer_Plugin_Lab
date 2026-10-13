@@ -2,7 +2,7 @@
 
 > Leia antes a [visão geral](00-Visao_Geral.md) e, se possível, o [capítulo de Linux](01-Linux.md).
 > Os passos são os mesmos. Este capítulo só registra o que muda no Mac.
-> Status: **aguardando o teste no Linux**.
+> Status: **concluído em 13/10/2026: resultado igual ao Linux** ✅.
 
 ## Ambiente de teste (preencher)
 
@@ -128,12 +128,12 @@ tail -f ~/Library/Application\ Support/OrcaSlicer/log/python_*.log
 | 5 | Pedidos de permissão aparecem e são aceitos | ➖ nenhum apareceu | igual ao Linux |
 | 6 | Fins visíveis no Preview | ✅ | sim |
 | 7 | Log `.jsonl` registra `N fin(s), M tine(s) on X layer(s)` (**mesmos números do Linux** para a mesma peça e o mesmo perfil?) | ✅ `4 walls, 24 tines`, 141 camadas | **idêntico**, camada por camada |
-| 8 | Peça com **Enable support ON** é ignorada | | |
+| 8 | Peça com **Enable support ON** é ignorada | ➖ não testado | não testado no Linux também |
 | 9 | Girar a peça + refatiar → fins acompanham | | |
-| 10 | G-code enviado à K2 Pro e impresso | | |
-| 11 | 1ª camada da base (pad) ok | | |
-| 12 | Fins destacam limpas | | |
-| 13 | 2.4.2 estável continua abrindo normalmente | | |
+| 10 | G-code enviado à K2 Pro e impresso | ✅ 50 min 31 s, 7,28 m | sim (purga menor) |
+| 11 | 1ª camada da base (pad) ok | ✅ | sim |
+| 12 | Fins destacam limpas | ⚠️ | sim: mesma cicatriz na face apoiada |
+| 13 | 2.4.2 estável continua abrindo normalmente | ➖ | não há estável neste Mac |
 
 O item 7 é o melhor teste de "não deve haver diferença": a mesma peça, o mesmo perfil e a
 mesma versão do plugin devem dar exatamente a mesma contagem de fins, tines e camadas.
@@ -303,7 +303,29 @@ diferença real até aqui é a de ambiente: o congelamento em tela cheia no macO
   A diferença de filamento bate com a **purga do CFS**: `flush_len` de 223,75 mm no Linux contra
   101,25 mm no Mac, ou seja 0,12 m a menos de purga, o que explica os 0,11 m. Não é diferença do plugin.
   Os ~2 min a mais no total provavelmente vêm do início (aquecimento/troca de filamento), não da peça.
-- Resultado: _(pendente: fotos e remoção)_
+- **Peça pronta (fotos):**
+  - Mesma geometria do Linux: **3 fins** paralelas sob a face inclinada, a cunha triangular na aresta
+    de baixo e a base oval. Faces **X, Y e Z** limpas, com as letras nítidas e as linhas de camada regulares.
+  - Fins e base saíram juntas numa peça só, como no Linux.
+  - **Face apoiada:** o mesmo padrão de cicatriz do Linux, com camadas onduladas/caídas entre as fins e
+    uma fileira de **pontinhos** (as marcas das pontas dos tines) ao longo das linhas onde as fins tocavam.
+    Do lado do suporte removido aparecem as camadas finas que ficaram presas entre as fins.
+- Resultado: **igual ao Linux** ✅: mesma geometria, mesma remoção, mesmo tipo de cicatriz. A diferença de PA
+  (0,04 contra 0,038) não produziu diferença visível nas fotos.
+
+## Conclusão do comparativo Linux × macOS
+
+| Aspecto | Resultado |
+|---|---|
+| Instalação e ativação do plugin | ✅ funciona nos dois (Mac: `numpy` e `mini-racer` arm64 instalados pelo `uv`) |
+| Fins geradas (o mesmo `.3mf`, o mesmo plugin `65df17fa`) | ✅ **idênticas nas 141 camadas** |
+| Estimativa do Orca | ✅ idêntica (49 min 19 s, 7,17 m) |
+| Peça impressa | ✅ igual: geometria, remoção à mão, cicatriz na face apoiada |
+| Diferenças encontradas | só de ambiente: congelamento em tela cheia no macOS 27; modo simples por padrão; PA e purga do CFS vindos dos perfis de filamento; menu Plugins na barra do sistema |
+
+**"Não devem ocorrer diferenças": confirmado para o plugin.** As diferenças vieram do Orca, dos perfis
+e do macOS, nunca do Support Fins.
+
 - **Pressure Advance, plano de J. Lerner:** o 0,038 do `printer.cfg` vale só para este teste. O 0,04 veio de
   um valor calibrado antes, herdado pelo perfil/projeto. Próximo passo: **recalibrar o PA**
   (Orca ▸ Calibration ▸ Pressure Advance) e gravar o valor encontrado no `printer.cfg`. Para não haver
