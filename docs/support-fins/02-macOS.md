@@ -125,7 +125,7 @@ tail -f ~/Library/Application\ Support/OrcaSlicer/log/python_*.log
 | 2 | Plugin aparece na lista com versão 0.1.0 | ✅ | sim (menu na barra do sistema) |
 | 3 | Ativação instala `numpy` + `mini-racer` sem erro | ✅ (arm64) | sim |
 | 4 | "Slicing Pipeline Plugin" aparece no perfil (Advanced ▸ Others) | ✅ | sim (só no modo avançado) |
-| 5 | Pedidos de permissão aparecem e são aceitos | | |
+| 5 | Pedidos de permissão aparecem e são aceitos | ➖ nenhum apareceu | igual ao Linux |
 | 6 | Fins visíveis no Preview | ✅ | sim |
 | 7 | Log `.jsonl` registra `N fin(s), M tine(s) on X layer(s)` (**mesmos números do Linux** para a mesma peça e o mesmo perfil?) | ✅ `4 walls, 24 tines`, 141 camadas | **idêntico**, camada por camada |
 | 8 | Peça com **Enable support ON** é ignorada | | |
@@ -265,3 +265,8 @@ Logs completos e script de comparação em `logs/compare-20261013/`.
 **Conclusão: o plugin gera exatamente as mesmas fins no Linux e no macOS** ("banana com banana"),
 apesar de os builds da nightly serem diferentes (o `.dmg` foi republicado no mesmo dia). A única
 diferença real até aqui é a de ambiente: o congelamento em tela cheia no macOS 27.
+- Ao fatiar no Mac, **nenhum pedido de permissão** do Orca apareceu, só o aviso não crítico
+  *"floating regions"* do próprio Orca, exatamente como no Linux. O README do plugin previa pedidos
+  (leitura de arquivos do Python, `socket.__new__`). Possível explicação: o motor V8 é iniciado no
+  carregamento do plugin, quando o controle de permissões ainda está desligado (comentário em
+  `_engine_ctx()`), então as operações que gerariam pedido acontecem antes. Não verificado.

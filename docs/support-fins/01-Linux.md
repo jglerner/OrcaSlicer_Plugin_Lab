@@ -118,7 +118,7 @@ tail -f ~/.config/OrcaSlicer/log/python_*.log
 | 2 | Plugin aparece na lista com versão 0.1.0 | ✅ | aba Config mostra o JSON padrão |
 | 3 | Ativação instala `numpy` + `mini-racer` sem erro | | |
 | 4 | "Slicing Pipeline Plugin" aparece no perfil (Advanced ▸ Others) | ✅ | Support Fins adicionado ao `0.20mm Standard @Creality K2 Pro 0.4 nozzle` |
-| 5 | Pedidos de permissão aparecem e são aceitos | | |
+| 5 | Pedidos de permissão aparecem e são aceitos | ➖ nenhum apareceu | o README do plugin previa alguns (`socket.__new__` etc.) |
 | 6 | Fins visíveis no Preview | ✅ | xyzCalibration_cube inclinado |
 | 7 | Log `.jsonl` registra `N fin(s), M tine(s) on X layer(s)` | ✅ | `4 walls, 24 tines`, 141 camadas, 0,76 s |
 | 8 | Peça com **Enable support ON** é ignorada (`skipped ...`) | | |
