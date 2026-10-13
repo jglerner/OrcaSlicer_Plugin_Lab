@@ -202,12 +202,12 @@ tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/.config
 
 ### 2026-10-13: primeiras descobertas (antes de ver o log do plugin)
 
-**1. As camadas só vão até 0,14 mm.** Isso não é limitação da nightly nem do plugin. Nos perfis
-de sistema da K2 Pro desta nightly (`resources/profiles/Creality/process`), o perfil
-**0,14 mm Optimal** existe apenas para o **bico 0,2**. Para o bico 0,4 os perfis vão de 0,08 a 0,28 mm
-(0,20 Standard, 0,24 Draft, 0,28 SuperDraft). Quase certamente a nightly ficou com a impressora
-**"Creality K2 Pro 0.2 nozzle"** selecionada. Correção: escolher **Creality K2 Pro 0.4 nozzle**
-na impressora, e daí o perfil 0,20 mm Standard volta a aparecer. *(a confirmar)*
+**1. As camadas só vão até 0,14 mm.** A primeira hipótese (impressora com bico 0,2) foi
+**descartada**: a impressora já é *Creality K2 Pro 0.4 nozzle*, com limites de camada de
+0,08 a 0,32 mm (print da aba Extruder). Nos perfis de sistema da nightly, o padrão dessa
+impressora é `0.20mm Standard @Creality K2 Pro 0.4 nozzle`, então 0,20 mm deveria estar
+disponível. *Falta saber onde o 0,14 aparece* (lista de perfis de processo, campo Layer height
+ou régua do Preview).
 
 **2. Cubo com faces a 45° → "pouca superfície de contato" + "first layer empty".**
 Reproduzido fora do Orca com o mesmo motor (CLI do support-fins, cubo de 20 mm):
