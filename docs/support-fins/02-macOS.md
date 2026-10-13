@@ -121,13 +121,13 @@ tail -f ~/Library/Application\ Support/OrcaSlicer/log/python_*.log
 
 | # | Verificação | Resultado | Igual ao Linux? |
 |---|---|---|---|
-| 1 | Nightly abre e mostra o menu **Plugins** | | |
-| 2 | Plugin aparece na lista com versão 0.1.0 | | |
-| 3 | Ativação instala `numpy` + `mini-racer` sem erro | | |
-| 4 | "Slicing Pipeline Plugin" aparece no perfil (Advanced ▸ Others) | | |
+| 1 | Nightly abre e mostra o menu **Plugins** | ✅ 2.5.0-dev | ⚠️ não: 1ª abertura congelou o Mac em tela cheia (reboot) |
+| 2 | Plugin aparece na lista com versão 0.1.0 | ✅ | sim (menu na barra do sistema) |
+| 3 | Ativação instala `numpy` + `mini-racer` sem erro | ✅ (arm64) | sim |
+| 4 | "Slicing Pipeline Plugin" aparece no perfil (Advanced ▸ Others) | ✅ | sim (só no modo avançado) |
 | 5 | Pedidos de permissão aparecem e são aceitos | | |
-| 6 | Fins visíveis no Preview | | |
-| 7 | Log `.jsonl` registra `N fin(s), M tine(s) on X layer(s)` (**mesmos números do Linux** para a mesma peça e o mesmo perfil?) | | |
+| 6 | Fins visíveis no Preview | ✅ | sim |
+| 7 | Log `.jsonl` registra `N fin(s), M tine(s) on X layer(s)` (**mesmos números do Linux** para a mesma peça e o mesmo perfil?) | ✅ `4 walls, 24 tines`, 141 camadas | **idêntico**, camada por camada |
 | 8 | Peça com **Enable support ON** é ignorada | | |
 | 9 | Girar a peça + refatiar → fins acompanham | | |
 | 10 | G-code enviado à K2 Pro e impresso | | |
@@ -246,3 +246,21 @@ tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/Library/App
   pelo Terminal: `screencapture -T 5 ~/Desktop/orca.png`.
 - Projeto do Linux salvo como `.3mf` e passado ao Mac (por WhatsApp), depois aberto na nightly do Mac. Assim
   peça, pose e configurações vêm do mesmo arquivo. (A cópia deve ir também para `projects/` no repositório.)
+
+### 2026-10-13: ✅ comparativo do fatiamento Linux × macOS (o mesmo `.3mf`, o mesmo plugin `65df17fa`)
+
+Logs completos e script de comparação em `logs/compare-20261013/`.
+
+| Campo | Linux (Debian 13, x86_64) | macOS (27.0.1, arm64) | |
+|---|---|---|---|
+| `result` | 4 walls, 24 tines; 3 overhangs too shallow | idem | ✅ igual |
+| `part_size_mm` | [40.0, 53.626, 53.626] | idem | ✅ mesma peça, mesma pose |
+| `engine` (regiões, triângulos, tines, pad…) | 5 / 2768 / 24 / 35904 | idem | ✅ igual |
+| `layers` (141 pares z, área) | — | — | ✅ **idênticos nas 141 camadas** (4 casas decimais) |
+| `elephant_foot` | [0.15, 1] | idem | ✅ |
+| `frame_scale` Y | 0,9999999951 | 0,9999999937 | diferença relativa de 1,4 × 10⁻⁹, menos de 0,1 nanômetro em 53 mm: arredondamento de ponto flutuante (CPU/compilação diferentes), irrelevante |
+| `seconds` | 0,762 | 1,405 | Mac ~1,8× mais lento nesta medida (1ª execução do V8 na sessão; medir de novo) |
+
+**Conclusão: o plugin gera exatamente as mesmas fins no Linux e no macOS** ("banana com banana"),
+apesar de os builds da nightly serem diferentes (o `.dmg` foi republicado no mesmo dia). A única
+diferença real até aqui é a de ambiente: o congelamento em tela cheia no macOS 27.
