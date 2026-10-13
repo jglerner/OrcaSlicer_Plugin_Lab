@@ -199,3 +199,35 @@ tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/.config
   o arquivo e leu o `get_default_config()`.
 - Confusão comum: as fins **não** aparecem em Support ▸ Type (que só tem Normal e Tree). O caminho
   certo é o menu **Plugins** mais **Others ▸ Slicing Pipeline Plugin** no perfil de processo.
+
+### 2026-10-13: primeiras descobertas (antes de ver o log do plugin)
+
+**1. As camadas só vão até 0,14 mm.** Isso não é limitação da nightly nem do plugin. Nos perfis
+de sistema da K2 Pro desta nightly (`resources/profiles/Creality/process`), o perfil
+**0,14 mm Optimal** existe apenas para o **bico 0,2**. Para o bico 0,4 os perfis vão de 0,08 a 0,28 mm
+(0,20 Standard, 0,24 Draft, 0,28 SuperDraft). Quase certamente a nightly ficou com a impressora
+**"Creality K2 Pro 0.2 nozzle"** selecionada. Correção: escolher **Creality K2 Pro 0.4 nozzle**
+na impressora, e daí o perfil 0,20 mm Standard volta a aparecer. *(a confirmar)*
+
+**2. Cubo com faces a 45° → "pouca superfície de contato" + "first layer empty".**
+Reproduzido fora do Orca com o mesmo motor (CLI do support-fins, cubo de 20 mm):
+
+| Pose do cubo | Resultado do motor |
+|---|---|
+| 0° (em pé) | 0 fins, 0 tines (nada a suportar) |
+| **45° em X (apoiado numa aresta)** | **0 fins, 0 tines**, `overhangRegions: 0`, só a base (pad) |
+| 45° em X + 35,26° em Y (apoiado num vértice) | 0 fins, 0 tines |
+| 30° ou 60° em X | **2 fins, 8 tines** |
+| 45° em X com limiar de overhang em 50° | 4 fins, 16 tines |
+
+- Com o cubo a 45°, as faces de baixo estão **exatamente no limiar de 45°** do motor, que por isso
+  não as considera overhang e não gera fins. O motor ainda devolve a base (pad), que o plugin
+  deveria colocar na 1ª camada.
+- O erro "One object has an empty first layer and can't be printed" é do **próprio Orca**
+  (`GCode.cpp`). Ele aparece quando a 1ª camada não tem extrusão, que é o caso de um cubo
+  apoiado numa aresta ou num vértice (o contato com a mesa é uma linha ou um ponto).
+- Se a base tivesse sido adicionada, a 1ª camada não estaria vazia. Então o mais provável é que
+  **o plugin não rodou nesse fatiamento**: ou ainda não estava em *Others ▸ Slicing Pipeline Plugin*
+  do perfil, ou *Enable support* estava ligado, ou houve erro/permissão negada. O
+  `support_fins_log.jsonl` e o `python_*.log` dizem qual foi.
+- Peça de teste melhor: cubo girado **30° ou 60°** em X, que dá fins com certeza.
