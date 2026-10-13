@@ -225,3 +225,12 @@ tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/Library/App
     - `3DconnexionClient` ausente e `Unsupported printer type: Moonraker Printer`: inofensivos.
 - Lições: **não usar tela cheia** com a nightly neste Mac; abrir pelo Terminal
   (`…/OrcaSlicer-Nightly.app/Contents/MacOS/OrcaSlicer`) para ver as mensagens ao vivo.
+
+### 2026-10-13 17:41: plugin instalado, depois trocado pela cópia do Linux
+
+- Configuração salva em `~/Projects/Orcaslicer/backups/OrcaSlicer-20261013-174129.tar.gz`.
+- O `plugins-latest` baixado veio com **sha256 `d4e90d31…c515`**, diferente do Linux (`65df17fa…`),
+  com a mesma versão 0.1.0. Comparação: o código Python é idêntico; mudou só o motor JS embutido
+  (commits do support-fins de 13/10 à tarde: campo "Nozzle size" e altura de camada máxima de 0,6 mm).
+- Para manter "banana com banana", a cópia exata do Linux foi publicada em
+  `plugins/support-fins/support_fins_orca-65df17fa.py` e reinstalada com `PLUGIN_FILE=…`.
