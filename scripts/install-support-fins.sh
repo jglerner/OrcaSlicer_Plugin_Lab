@@ -4,6 +4,8 @@
 #   scripts/install-support-fins.sh            # backup + download + instalação
 #   ORCA_DATA_DIR=/outra/pasta scripts/install-support-fins.sh
 #   SKIP_BACKUP=1 scripts/install-support-fins.sh
+#   PLUGIN_FILE=plugins/support-fins/support_fins_orca-<sha8>.py scripts/install-support-fins.sh
+#                                 # usa um arquivo local em vez de baixar (mesmo build do outro SO)
 #
 # Feche o OrcaSlicer antes de rodar.
 set -euo pipefail
@@ -44,10 +46,15 @@ if [ "${SKIP_BACKUP:-0}" != "1" ]; then
   tar -czf "$BK" -C "$(dirname "$DATA")" "$(basename "$DATA")"
 fi
 
-# 2. Download com registro do hash
+# 2. Download (ou arquivo local) com registro do hash
 DL="$WORK/downloads/support_fins_orca-$STAMP.py"
-echo "Baixando $PLUGIN_URL"
-curl -fL --retry 3 -o "$DL" "$PLUGIN_URL"
+if [ -n "${PLUGIN_FILE:-}" ]; then
+  echo "Usando arquivo local: $PLUGIN_FILE"
+  cp "$PLUGIN_FILE" "$DL"
+else
+  echo "Baixando $PLUGIN_URL"
+  curl -fL --retry 3 -o "$DL" "$PLUGIN_URL"
+fi
 head -c 20 "$DL" | grep -q '^# /// script' || { echo "Arquivo baixado não parece o plugin." >&2; exit 1; }
 VERSION="$(sed -n 's/^# version = "\(.*\)"/\1/p' "$DL" | head -1)"
 HASH="$(sha256 "$DL")"

@@ -28,6 +28,9 @@ Comece por [Support Fins: visão geral](docs/support-fins/00-Visao_Geral.md).
 docs/support-fins/     visão geral + um capítulo por sistema operacional
 scripts/               instalação, coleta de logs (Linux e macOS) e lançador da nightly (Linux)
 logs/linux/, logs/macos/   logs e resultados copiados dos testes reais
+plugins/support-fins/  cópia exata do plugin testado (mesmo sha256 nos dois sistemas)
+projects/              projetos .3mf do Orca usados nos testes (mesma peça e mesmas configurações)
+docs/support-fins/img/ fotos das impressões (linux/, macos/)
 ```
 
 ## Layout local sugerido (igual nos dois sistemas)

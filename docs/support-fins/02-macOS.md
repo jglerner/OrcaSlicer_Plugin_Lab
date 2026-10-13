@@ -48,6 +48,24 @@ git clone https://github.com/jglerner/OrcaSlicer_Plugin_Lab.git
 
 > **Não abra a nightly ainda.** Primeiro o backup (passo 2).
 
+## Referência do Linux (o que comparar)
+
+O Capítulo 1 terminou com o plugin aprovado. Para o comparativo valer, o Mac usa **o mesmo
+arquivo do plugin** e **o mesmo projeto**:
+
+| Item | Linux (referência) |
+|---|---|
+| Nightly | 2.5.0, build de 13/10/2026 |
+| Plugin | 0.1.0, sha256 `65df17faabfbd870918b3f0fdc95e460229241afb996e2fb8ab830871706963f` (cópia em `plugins/support-fins/`) |
+| Projeto | `projects/xyzCalibration_cube-fins.3mf` (peça inclinada + perfil 0.20mm Standard + Support Fins + brim de 5 linhas + infill mínimo) |
+| Log do motor | `4 walls, 24 tines; 3 overhangs are too shallow…`, `overhangRegions: 5`, `padTriangles: 35904`, `layers_touched: 141` |
+| Fatiamento | 267 camadas de 0,20 mm, estimativa de 49 min 19 s, 21,56 g |
+| Impressão | 49 min 49 s reais, 7,39 m; fins saem com a mão; cicatriz na face apoiada |
+
+**Critério de "sem diferença":** com o mesmo `.3mf` e o mesmo sha256, o `support_fins_log.jsonl`
+do Mac deve repetir `4 walls, 24 tines`, `layers_touched: 141` e as mesmas áreas por camada, e o
+Orca deve estimar o mesmo tempo e o mesmo peso.
+
 ## Passo 2: backup + instalação do plugin (um comando)
 
 Com **todos** os Orca fechados (⌘Q):
@@ -55,8 +73,10 @@ Com **todos** os Orca fechados (⌘Q):
 ```bash
 cd ~/Projects/Orcaslicer/OrcaSlicer_Plugin_Lab
 git pull
-scripts/install-support-fins.sh
+PLUGIN_FILE="$(ls plugins/support-fins/support_fins_orca-*.py | head -1)" scripts/install-support-fins.sh
 ```
+
+Isso instala **a mesma cópia** usada no Linux, em vez de baixar o `plugins-latest`, que pode ter mudado.
 
 O resultado é o mesmo do Linux, só que em `~/Library/Application Support/OrcaSlicer`.
 Compare o **sha256** com o registrado no teste de Linux: deve ser igual se a release
