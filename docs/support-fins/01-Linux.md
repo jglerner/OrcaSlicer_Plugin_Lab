@@ -8,7 +8,7 @@
 |---|---|
 | Distribuição / versão | |
 | Desktop (X11/Wayland) | |
-| OrcaSlicer estável instalado | 2.4.2 (formato: AppImage / Flatpak / pacote) |
+| OrcaSlicer estável instalado | 2.4.2, AppImage (instalada pelas Releases do GitHub) |
 | OrcaSlicer nightly testado | (data e hash do build, em Help ▸ About) |
 | Plugin: versão / sha256 | (o script de instalação imprime os dois) |
 | Perfil de impressora | Creality K2 Pro |
@@ -22,6 +22,11 @@ git clone https://github.com/jglerner/OrcaSlicer_Plugin_Lab.git
 ```
 
 ## Passo 1: baixar a nightly (ao lado da 2.4.2)
+
+> **Não desinstale a 2.4.2.** Um AppImage é um arquivo só, sem instalação no sistema: a
+> estável e a nightly convivem lado a lado, e a 2.4.2 continua sendo a versão para imprimir
+> no dia a dia. O que as duas compartilham é a pasta `~/.config/OrcaSlicer`, e é por isso
+> que o passo 2 faz backup dela.
 
 1. Abra <https://github.com/OrcaSlicer/OrcaSlicer/releases/tag/nightly-builds>.
 2. Baixe o **AppImage de Linux** (se houver opção por versão do Ubuntu, pegue a mais próxima da sua distro) para `~/Projects/Orcaslicer/apps/`.
