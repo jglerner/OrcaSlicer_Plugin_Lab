@@ -117,10 +117,10 @@ tail -f ~/.config/OrcaSlicer/log/python_*.log
 | 1 | Nightly abre e mostra o menu **Plugins** | ✅ abre (2.5.0) | só com `scripts/orca-nightly.sh` (Wayland) |
 | 2 | Plugin aparece na lista com versão 0.1.0 | ✅ | aba Config mostra o JSON padrão |
 | 3 | Ativação instala `numpy` + `mini-racer` sem erro | | |
-| 4 | "Slicing Pipeline Plugin" aparece no perfil (Advanced ▸ Others) | | |
+| 4 | "Slicing Pipeline Plugin" aparece no perfil (Advanced ▸ Others) | ✅ | Support Fins adicionado ao `0.20mm Standard @Creality K2 Pro 0.4 nozzle` |
 | 5 | Pedidos de permissão aparecem e são aceitos | | |
-| 6 | Fins visíveis no Preview | | |
-| 7 | Log `.jsonl` registra `N fin(s), M tine(s) on X layer(s)` | | |
+| 6 | Fins visíveis no Preview | ✅ | xyzCalibration_cube inclinado |
+| 7 | Log `.jsonl` registra `N fin(s), M tine(s) on X layer(s)` | ✅ | `4 walls, 24 tines`, 141 camadas, 0,76 s |
 | 8 | Peça com **Enable support ON** é ignorada (`skipped ...`) | | |
 | 9 | Girar a peça + refatiar → fins acompanham | | |
 | 10 | G-code enviado à K2 Pro e impresso | | |
@@ -231,3 +231,32 @@ Reproduzido fora do Orca com o mesmo motor (CLI do support-fins, cubo de 20 mm):
   do perfil, ou *Enable support* estava ligado, ou houve erro/permissão negada. O
   `support_fins_log.jsonl` e o `python_*.log` dizem qual foi.
 - Peça de teste melhor: cubo girado **30° ou 60°** em X, que dá fins com certeza.
+
+### 2026-10-13 15:05: ✅ primeiro fatiamento com fins
+
+Peça: `xyzCalibration_cube.STL` inclinado (bounding box 40 × 53,6 × 53,6 mm). Perfil
+`0.20mm Standard @Creality K2 Pro 0.4 nozzle` com Support Fins em *Others ▸ Slicing Pipeline Plugin*,
+Generic PLA. Fatiou com **267 camadas de 0,20 mm** (topo em 53,40), então o "limite de 0,14 mm"
+não apareceu nesse fatiamento.
+
+Log do plugin (`support_fins_log.jsonl`), resumido:
+
+| Campo | Valor | Leitura |
+|---|---|---|
+| `result` | `4 walls, 24 tines; 3 overhangs are too shallow for a fin this way up (tilt the part steeper)` | 4 fins com 24 tines; 3 regiões no limiar de 45° ficaram sem fin |
+| `engine.overhangRegions` | 5 | |
+| `engine.padTriangles` | 35 904 | a base (pad) foi gerada |
+| `layers_touched` | 141 | fins de z = 0,1 a 17,5 mm e de 24,3 a 34,7 mm |
+| `frame_scale_vs_nominal` | [1.0, 0.99999999] | o plugin alinhou as fins com a peça sem erro de escala |
+| `elephant_foot` | [0.15, 1] | compensação de 0,15 mm aplicada à 1ª camada das fins |
+| `seconds` | 0,762 | tempo do plugin por objeto |
+
+Observações:
+- O aviso do Orca *"It seems object … has floating regions. Please re-orient the object or enable
+  support generation"* é **não crítico** e vem do verificador de suporte do próprio Orca
+  (`PrintObject::generate_support_material`), que roda porque o suporte está desligado. É esperado
+  com fins, e coincide com as 3 regiões que o plugin informou como rasas demais.
+- **Brim:** a lista de tipos de linha mostra *Brim* (1 min 12 s, 0,44 g). É o Auto brim em volta
+  da base das fins. Para a próxima, testar com *Brim type = No brim*.
+- O erro "empty first layer" do cubo a 45° visto antes provavelmente aconteceu antes do plugin
+  ser adicionado ao perfil. Com o plugin ativo, a base preenche a 1ª camada.
