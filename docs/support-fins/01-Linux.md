@@ -287,4 +287,7 @@ Observações:
 - 54% (camada 120/268, Z 24,02 mm), 25 min 10 s decorridos. Restante: 21 min 16 s pelo Fluidd e
   24 min 8 s pelo fatiador, então a impressora está uns **3 min à frente** da estimativa do Orca, com
   aceleração de 12 000 mm/s² e SCV de 4 mm/s. A essa altura começa a 4ª fin (24,3 a 34,7 mm).
+- Camada 185 (cerca de 37 mm, já acima de todas as fins), em foto: a face com o "X" saiu limpa; a base
+  oval com o brim continua colada na mesa; por dentro aparece o infill mínimo, com alguns fios finos
+  (stringing), normal com infill baixo. As fins ficam do outro lado da peça e não aparecem neste ângulo.
 - Resultado: _(pendente)_
