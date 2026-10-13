@@ -259,6 +259,7 @@ Logs completos e script de comparação em `logs/compare-20261013/`.
 | `layers` (141 pares z, área) | — | — | ✅ **idênticos nas 141 camadas** (4 casas decimais) |
 | `elephant_foot` | [0.15, 1] | idem | ✅ |
 | `frame_scale` Y | 0,9999999951 | 0,9999999937 | diferença relativa de 1,4 × 10⁻⁹, menos de 0,1 nanômetro em 53 mm: arredondamento de ponto flutuante (CPU/compilação diferentes), irrelevante |
+| Estimativa do Orca | 49 min 19 s, 7,17 m | **49 min 19 s, 7,17 m** | ✅ igual |
 | `seconds` | 0,762 | 1,405 | Mac ~1,8× mais lento nesta medida (1ª execução do V8 na sessão; medir de novo) |
 
 **Conclusão: o plugin gera exatamente as mesmas fins no Linux e no macOS** ("banana com banana"),
