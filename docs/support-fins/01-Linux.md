@@ -123,8 +123,8 @@ tail -f ~/.config/OrcaSlicer/log/python_*.log
 | 7 | Log `.jsonl` registra `N fin(s), M tine(s) on X layer(s)` | ✅ | `4 walls, 24 tines`, 141 camadas, 0,76 s |
 | 8 | Peça com **Enable support ON** é ignorada (`skipped ...`) | | |
 | 9 | Girar a peça + refatiar → fins acompanham | | |
-| 10 | G-code enviado à K2 Pro e impresso | | |
-| 11 | 1ª camada da base (pad) ok | | |
+| 10 | G-code enviado à K2 Pro e impresso | ✅ | 49 min 49 s, 7,39 m |
+| 11 | 1ª camada da base (pad) ok | ✅ | com brim de 5 linhas; topo da base irregular |
 | 12 | Fins destacam limpas | | |
 | 13 | 2.4.2 estável continua abrindo normalmente | | |
 
@@ -295,4 +295,12 @@ Observações:
   meio da impressão não se manteve: o fim (topo, camadas pequenas, tempo mínimo por camada) compensou.
   **A estimativa do Orca é confiável para a K2 Pro.**
 - Câmera: cubo completo com as faces X, Y e Z visíveis, sobre a base com o brim, sem descolamento.
-- Resultado: _(pendente: remoção das fins e acabamento)_
+- **Peça pronta (fotos, ainda com as fins):**
+  - **3 fins** finas e paralelas sustentam a face inclinada até a mesa, todas inteiras, retas e sem
+    falha nem descolamento. Uma estrutura em cunha (triangular) liga a aresta de baixo do cubo à base oval.
+  - Faces **X, Y e Z** limpas, com as letras nítidas. Linhas de camada regulares na face Z. Um fio
+    (stringing) dentro do "X".
+  - **Base oval + brim:** aderiu bem e não descolou. O topo da base ficou irregular, com pequenas
+    bolhas e marcas de passagem, sem importância porque a base é descartável.
+  - Face apoiada nas fins (vista de baixo): plana e lisa, com uma linha diagonal na junção com a cunha.
+- Resultado: **sucesso de impressão** ✅ _(pendente: remoção das fins e marcas dos tines)_
