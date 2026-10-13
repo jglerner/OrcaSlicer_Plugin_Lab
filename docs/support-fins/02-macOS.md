@@ -10,7 +10,7 @@
 |---|---|
 | macOS / versão | |
 | Chip | Apple Silicon (arm64) / Intel (x86_64): `uname -m` |
-| OrcaSlicer estável instalado | 2.4.2 |
+| OrcaSlicer estável instalado | 2.4.2 (sem login na Orca Cloud) |
 | OrcaSlicer nightly testado | (data e hash do build, em OrcaSlicer ▸ About) |
 | Plugin: versão / sha256 | (o script de instalação imprime os dois) |
 | Perfil de impressora | Creality K2 Pro |
@@ -74,9 +74,10 @@ open ~/Projects/Orcaslicer/apps/OrcaSlicer-Nightly.app
 
 No Mac, o menu **Plugins** pode ficar na barra de menus do sistema em vez de dentro da janela.
 
-Se a 2.4.2 do Mac estiver logada na **Orca Cloud**, **não** faça login na nightly, ou crie
-perfis com o plugin só com a sincronização desligada. Um perfil sincronizado que referencia o
-Support Fins bloqueia o fatiamento na 2.4.2 ("missing plugin").
+**Orca Cloud:** a 2.4.2 do Mac **não** está logada (confirmado em 13/10/2026). Se aparecer o
+aviso de migração Bambu Cloud → Orca Cloud, é só ignorar. Também não faça login na nightly:
+um perfil sincronizado que referencia o Support Fins bloquearia o fatiamento numa instalação
+sem o plugin ("missing plugin").
 
 Itens a observar com mais atenção no Mac:
 - **Ativação:** o `uv` precisa achar a wheel do `mini-racer==0.14.1` para o seu chip. Se falhar, a aba **Diagnostics** e o `python_*.log` mostram o motivo.
