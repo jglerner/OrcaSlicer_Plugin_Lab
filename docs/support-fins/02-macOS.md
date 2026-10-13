@@ -270,3 +270,22 @@ diferença real até aqui é a de ambiente: o congelamento em tela cheia no macO
   (leitura de arquivos do Python, `socket.__new__`). Possível explicação: o motor V8 é iniciado no
   carregamento do plugin, quando o controle de permissões ainda está desligado (comentário em
   `_engine_ctx()`), então as operações que gerariam pedido acontecem antes. Não verificado.
+
+### 2026-10-13 18:36: impressão do G-code fatiado no Mac (em andamento)
+
+- Mesmo nome de arquivo (`xyzCalibration_cube_PLA_49m19s.gcode`), enviado às 18:36. Às 18:45: 17%,
+  camada 29/268 (Z 5,80 mm), bico 220,5/220 °C, mesa 50 °C, câmara 35 °C, término previsto às 19:23.
+  O Gcode Preview do Fluidd mostra as fins saindo da base, como no Linux.
+- **Diferenças vistas no Fluidd em relação à impressão do Linux** (não vêm do plugin, e sim dos perfis
+  de filamento ou de troca de filamento):
+
+  | | Linux (15:26) | Mac (18:37) |
+  |---|---|---|
+  | Pressure Advance / Smooth time | 0,038 s / 0,038 s | **0,04 s / 0,04 s** |
+  | Purga do CFS: `flush_volume` / `flush_len` | 354 / 223,75 mm | **60 / 101,25 mm** |
+
+  O PA de 0,038 no Linux provavelmente veio de um perfil de filamento personalizado herdado da 2.3.0;
+  no Mac, com instalação nova, ficou o valor do Generic PLA do sistema. A purga menor deve vir dos
+  "Flushing volumes" do projeto ou da cor do filamento anterior. **A geometria (fins) é idêntica; o
+  PA ligeiramente diferente pode mudar um pouco o acabamento.**
+- Resultado: _(pendente)_
