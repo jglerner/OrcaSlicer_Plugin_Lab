@@ -284,8 +284,11 @@ diferença real até aqui é a de ambiente: o congelamento em tela cheia no macO
   | Pressure Advance / Smooth time | 0,038 s / 0,038 s | **0,04 s / 0,04 s** |
   | Purga do CFS: `flush_volume` / `flush_len` | 354 / 223,75 mm | **60 / 101,25 mm** |
 
-  O PA de 0,038 no Linux provavelmente veio de um perfil de filamento personalizado herdado da 2.3.0;
-  no Mac, com instalação nova, ficou o valor do Generic PLA do sistema. A purga menor deve vir dos
-  "Flushing volumes" do projeto ou da cor do filamento anterior. **A geometria (fins) é idêntica; o
-  PA ligeiramente diferente pode mudar um pouco o acabamento.**
+  **Origem do PA (esclarecido):** o `printer.cfg` do Klipper na K2 Pro define `pressure_advance: 0.038` e
+  `pressure_advance_smooth_time: 0.038`. No Linux o G-code não mexeu no PA, e valeu o 0,038 do
+  `printer.cfg`. No Mac o PA mudou para 0,04 durante a impressão, então **o G-code do Mac enviou um comando
+  de PA**: provavelmente o perfil *Generic PLA* da instalação nova tem *Enable pressure advance* ligado com
+  0,04 (Filament ▸ Advanced). Para o próximo teste igual: desligar essa opção no filamento do Mac, ou
+  pôr 0,038. A purga menor deve vir dos "Flushing volumes" do projeto ou da cor do filamento anterior.
+  **A geometria (fins) é idêntica; o PA ligeiramente diferente pode mudar um pouco o acabamento.**
 - Resultado: _(pendente)_
