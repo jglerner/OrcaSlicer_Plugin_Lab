@@ -1,6 +1,6 @@
 # Upstream issue for gittrahan/support-fins
 
-**Status: posted** by J. Lerner on 13 Oct 2026 in <https://github.com/gittrahan/support-fins/issues>
+**Status: posted** by J. Lerner on 13 Oct 2026 as [gittrahan/support-fins#24](https://github.com/gittrahan/support-fins/issues/24)
 (no existing issue covered it). The text below is what was posted.
 
 ---

@@ -348,5 +348,5 @@ Notes:
 > `bed_pad` to the engine. **Overhang threshold, material (PLA/PETG), pad style and cutouts** exist in
 > the engine (`plugins/shared/engine/options.json`) but the Orca plugin does not read them, and **the
 > gap is fixed at 0.2 mm** in the engine (`web/prop/config.js`). Whatever the calibrations show for
-> those parameters cannot be set in Orca today. Reported upstream: see
-> [issue-orca-plugin-options.md](issue-orca-plugin-options.md).
+> those parameters cannot be set in Orca today. Reported upstream as
+> [gittrahan/support-fins#24](https://github.com/gittrahan/support-fins/issues/24) ([our copy](issue-orca-plugin-options.md)).

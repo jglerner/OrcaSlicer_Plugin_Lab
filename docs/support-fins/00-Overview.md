@@ -56,7 +56,7 @@ Defaults, same as the website:
 - `bed_pad`: bed pad that ties the fins together.
 
 > These are the **only** options the Orca plugin reads. Threshold, material, pad style, cutouts and
-> gap are not reachable from Orca yet. See the [upstream issue](issue-orca-plugin-options.md).
+> gap are not reachable from Orca yet. Reported upstream as [gittrahan/support-fins#24](https://github.com/gittrahan/support-fins/issues/24) ([our copy](issue-orca-plugin-options.md)).
 
 ## Where things live (`data_dir` = Orca configuration folder)
 
@@ -90,7 +90,7 @@ scripts in this repository do that). Each chapter includes the step.
 
 - [Chapter 1: Linux](01-Linux.md)
 - [Chapter 2: macOS](02-macOS.md)
-- [Upstream issue: expose more engine options in the Orca plugin](issue-orca-plugin-options.md)
+- Upstream issue [gittrahan/support-fins#24](https://github.com/gittrahan/support-fins/issues/24): expose more engine options in the Orca plugin ([our copy](issue-orca-plugin-options.md))
 
 The expectation was **no behavioral difference** between the two systems. Both chapters use the
 same steps and the same results checklist so they can be compared side by side. **Result:
