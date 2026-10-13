@@ -176,3 +176,14 @@ tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/Library/App
   pelo menos um build novo no mesmo dia. Para o comparativo isso significa: Orca de builds
   diferentes nos dois sistemas. O que precisa ser idêntico é o **plugin** (sha256) e o **projeto**;
   se os resultados divergirem, a diferença de build do Orca é a primeira suspeita.
+
+### 2026-10-13: app copiado como `OrcaSlicer-Nightly.app`
+
+- O `.dmg` contém `OrcaSlicer.app` e um atalho `Applications`. Os checksums internos do `.dmg` foram verificados.
+- Copiado para `~/Projects/Orcaslicer/apps/OrcaSlicer-Nightly.app` e quarentena removida (`xattr -dr`).
+- **macOS 27:** `hdiutil attach/detach` funciona, mas avisa que está *deprecated*. O substituto
+  indicado pelo próprio sistema é:
+  ```bash
+  diskutil image attach --mountOptions nobrowse --mountPoint /tmp/orca-dmg OrcaSlicer_Mac_universal_nightly-AAAAMMDD.dmg
+  diskutil eject /tmp/orca-dmg
+  ```
