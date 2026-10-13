@@ -165,3 +165,14 @@ tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/Library/App
 - **Decisão:** sem nenhum Orca neste Mac, a **nightly é a única instalação**. Ela fica mesmo assim em
   `~/Projects/Orcaslicer/apps/OrcaSlicer-Nightly.app`, para manter o mesmo layout do Linux e não ocupar
   o nome `OrcaSlicer.app` em `/Applications`, reservado para uma estável futura.
+
+### 2026-10-13: download da nightly
+
+- `~/Projects/Orcaslicer/apps/OrcaSlicer_Mac_universal_nightly-20261013.dmg`, 379 451 701 bytes.
+- sha256 `7fcc77764331d08f4f3638205bf094522ab741f2ca26b8ddce07118b504c09ba`, conferido com um
+  segundo download independente (mesmo hash).
+- ⚠️ **Não é o mesmo build da nightly usada no Linux.** O `.dmg` foi republicado às 17:52 UTC,
+  depois da lista de assets copiada de manhã (que mostrava `43ff09ad…` e 363 MB), então houve
+  pelo menos um build novo no mesmo dia. Para o comparativo isso significa: Orca de builds
+  diferentes nos dois sistemas. O que precisa ser idêntico é o **plugin** (sha256) e o **projeto**;
+  se os resultados divergirem, a diferença de build do Orca é a primeira suspeita.
