@@ -6,11 +6,11 @@
 
 | Item | Valor |
 |---|---|
-| Distribuição / versão | Debian GNU/Linux 13 (trixie) |
+| Distribuição / versão | Debian GNU/Linux 13 (trixie), kernel 6.12.111+deb13-amd64, x86_64 |
 | Desktop (X11/Wayland) | |
 | OrcaSlicer estável instalado | **2.3.0**, AppImage em `~/Applications/orca/` (sem atalho no menu; a 2.4.2 não está neste Linux) |
 | OrcaSlicer nightly testado | (data e hash do build, em Help ▸ About) |
-| Plugin: versão / sha256 | (o script de instalação imprime os dois) |
+| Plugin: versão / sha256 | 0.1.0 / `65df17faabfbd870918b3f0fdc95e460229241afb996e2fb8ab830871706963f` (build de `plugins-latest` após o commit `a517023` do support-fins, 13/10/2026) |
 | Perfil de impressora | Creality K2 Pro |
 
 ## Passo 0: preparar a pasta de trabalho
@@ -153,3 +153,15 @@ tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/.config
   (usa outra pasta de configuração) e os utilitários `profile_validator` e `generate_system_cache`.
 - O nome do arquivo é igual todo dia. Ele é salvo **com a data no nome**
   (`..._nightly-AAAAMMDD.AppImage`) para sabermos qual build foi testado.
+
+### 2026-10-13 09:50: download, backup e instalação
+
+- Nightly: `~/Applications/orca/OrcaSlicer_Linux_AppImage_Ubuntu2404_nightly-20261013.AppImage`, sha256 **OK**.
+- Backup: `~/Projects/Orcaslicer/backups/OrcaSlicer-20261013-095038.tar.gz`.
+- Plugin instalado em `~/.config/OrcaSlicer/orca_plugins/SupportFins/`, versão 0.1.0, sha256 `65df17fa…963f`.
+- **Observação:** o sha256 do plugin mudou em relação ao download de teste feito horas antes
+  (`e4c283f6…6e66`), mas a versão continua 0.1.0. A release `plugins-latest` é refeita a cada
+  push no support-fins, e às 07:38 entrou o commit `a517023` ("Allow optional Sway depth…").
+  O número de versão não identifica o build; **o sha256 identifica**. Para o macOS dar o mesmo
+  resultado, ele precisa usar este mesmo arquivo. Se `plugins-latest` mudar antes, copiar o `.py`
+  de `~/Projects/Orcaslicer/downloads/` do Linux para o Mac.
