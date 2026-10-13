@@ -290,4 +290,9 @@ Observações:
 - Camada 185 (cerca de 37 mm, já acima de todas as fins), em foto: a face com o "X" saiu limpa; a base
   oval com o brim continua colada na mesa; por dentro aparece o infill mínimo, com alguns fios finos
   (stringing), normal com infill baixo. As fins ficam do outro lado da peça e não aparecem neste ângulo.
-- Resultado: _(pendente)_
+- 16:15: 99%, camada 265/268, Z 53,01 mm. **Tempo total de 49 min 49 s** contra 49 min 19 s estimados
+  pelo Orca (só +30 s), e 7,39 m de filamento contra 7,17 m estimados. A vantagem de ~3 min vista no
+  meio da impressão não se manteve: o fim (topo, camadas pequenas, tempo mínimo por camada) compensou.
+  **A estimativa do Orca é confiável para a K2 Pro.**
+- Câmera: cubo completo com as faces X, Y e Z visíveis, sobre a base com o brim, sem descolamento.
+- Resultado: _(pendente: remoção das fins e acabamento)_
