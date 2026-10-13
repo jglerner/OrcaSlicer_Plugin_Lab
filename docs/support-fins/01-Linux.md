@@ -268,4 +268,8 @@ Observações:
   brim, para garantir que não descole da mesa. Fora isso, nada mudou.
 - Avaliar: aderência da base (pad) na 1ª camada, fins inteiras até o topo, se as fins se soltam
   da peça e o acabamento das faces que ficaram apoiadas.
+- Preview na camada 40 (8,00 mm): **3 fins** saem da base (pad) e sobem até a face inclinada; a
+  base está cercada pelo brim. A 4ª fin do log é o conjunto de 24,3 a 34,7 mm, que nasce na própria
+  peça e não na mesa. Enable support desligado; infill esparso caiu para 4,26 g.
+- Estimativa do Orca: 49 min 19 s, 21,56 g (7,17 m).
 - Resultado: _(pendente)_
