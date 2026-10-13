@@ -147,6 +147,17 @@ mv ~/Library/Application\ Support/OrcaSlicer ~/Library/Application\ Support/Orca
 tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/Library/Application\ Support
 ```
 
+## Como abrir a nightly no dia a dia (macOS)
+
+- **Pelo Finder ou Dock:** abra `~/Projects/Orcaslicer/apps/` e dê dois cliques em `OrcaSlicer-Nightly.app`.
+  Para fixar no Dock, arraste o app para lá. O Spotlight (lupa) também acha "OrcaSlicer-Nightly".
+- **Pelo Terminal**, para ver mensagens ao vivo ao investigar algum problema:
+  ```bash
+  ~/Projects/Orcaslicer/apps/OrcaSlicer-Nightly.app/Contents/MacOS/OrcaSlicer 2>&1 | tee ~/Projects/Orcaslicer/nightly-mac-run.log
+  ```
+- ⚠️ **Nunca usar o botão verde (tela cheia)** neste Mac com a nightly: foi o que congelou o sistema.
+- Fechar sempre com **⌘Q**. Se o macOS reabrir o Orca sozinho depois de um reinício, tudo bem: é a restauração de janelas.
+
 ## Diário
 
 ### 2026-10-13 16:44–16:56: levantamento do Mac

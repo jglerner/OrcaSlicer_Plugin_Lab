@@ -138,6 +138,31 @@ mv ~/.config/OrcaSlicer ~/.config/OrcaSlicer.nightly-teste
 tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/.config
 ```
 
+## Como abrir a nightly no dia a dia (Linux)
+
+Sempre pelo lançador, que aplica a correção do Wayland e grava o log:
+
+```bash
+~/Projects/Orcaslicer/OrcaSlicer_Plugin_Lab/scripts/orca-nightly.sh
+```
+
+Para ter um ícone no menu de aplicativos, crie o atalho uma vez:
+
+```bash
+cat > ~/.local/share/applications/orcaslicer-nightly.desktop <<EOT
+[Desktop Entry]
+Type=Application
+Name=OrcaSlicer Nightly (plugins)
+Comment=OrcaSlicer 2.5 nightly com correção para Wayland
+Exec=$HOME/Projects/Orcaslicer/OrcaSlicer_Plugin_Lab/scripts/orca-nightly.sh
+Terminal=false
+Categories=Graphics;3DGraphics;
+EOT
+update-desktop-database ~/.local/share/applications 2>/dev/null || true
+```
+
+A 2.3.0 continua abrindo pelo próprio AppImage em `~/Applications/orca/`. As duas usam a mesma pasta de configuração.
+
 ## Diário
 
 ### 2026-10-13: levantamento da máquina Linux
