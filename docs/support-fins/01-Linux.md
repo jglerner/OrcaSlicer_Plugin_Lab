@@ -271,5 +271,5 @@ Observações:
 - Preview na camada 40 (8,00 mm): **3 fins** saem da base (pad) e sobem até a face inclinada; a
   base está cercada pelo brim. A 4ª fin do log é o conjunto de 24,3 a 34,7 mm, que nasce na própria
   peça e não na mesa. Enable support desligado; infill esparso caiu para 4,26 g.
-- Estimativa do Orca: 49 min 19 s, 21,56 g (7,17 m).
+- Estimativa do Orca: 49 min 19 s, 21,56 g (7,17 m). **Velocidades padrão do perfil**, de propósito; aumentar só num teste seguinte, mudando uma variável por vez.
 - Resultado: _(pendente)_
