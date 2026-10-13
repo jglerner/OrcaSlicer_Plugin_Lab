@@ -1,31 +1,32 @@
-# Capítulo 2: Support Fins no macOS
+# Chapter 2: Support Fins on macOS
 
-> Leia antes a [visão geral](00-Visao_Geral.md) e, se possível, o [capítulo de Linux](01-Linux.md).
-> Os passos são os mesmos. Este capítulo só registra o que muda no Mac.
-> Status: **concluído em 13/10/2026: resultado igual ao Linux** ✅.
+> Read the [overview](00-Overview.md) and the [Linux chapter](01-Linux.md) first.
+> The steps are the same; this chapter records what differs on the Mac.
+> Status: **completed on 13 Oct 2026: same result as Linux** ✅.
 
-## Ambiente de teste (preencher)
+## Test environment
 
-| Item | Valor |
+| Item | Value |
 |---|---|
-| macOS / versão | macOS 27.0.1 (build 26A434), Mac mini |
+| macOS / version | macOS 27.0.1 (build 26A434), Mac mini |
 | Chip | Apple Silicon (`arm64`) |
-| OrcaSlicer estável instalado | **nenhum neste Mac mini** (nada em `/Applications/Orca*` e sem `~/Library/Application Support/OrcaSlicer`) |
-| OrcaSlicer nightly testado | **2.5.0-dev** (`CFBundleShortVersionString`), `.dmg` de 13/10/2026 17:52 UTC, sha256 `7fcc7776…09ba` |
-| Plugin: versão / sha256 | (o script de instalação imprime os dois) |
-| Perfil de impressora | Creality K2 Pro |
+| Stable OrcaSlicer installed | **none on this Mac mini** (nothing in `/Applications/Orca*`, no `~/Library/Application Support/OrcaSlicer`) |
+| Nightly tested | **2.5.0-dev** (`CFBundleShortVersionString`), `.dmg` of 13 Oct 2026 17:52 UTC, sha256 `7fcc7776…09ba` |
+| Plugin version / sha256 | 0.1.0 / `65df17fa…963f`, the same file as on Linux |
+| Printer profile | Creality K2 Pro 0.4 nozzle |
 
-## O que muda em relação ao Linux
+## What differs from Linux
 
 | | Linux | macOS |
 |---|---|---|
-| Pasta de configuração | `~/.config/OrcaSlicer` | `~/Library/Application Support/OrcaSlicer` |
-| Nightly | AppImage em `apps/` | `.dmg`; o app precisa ser **renomeado** (veja o passo 1) |
-| Gatekeeper | n/a | a nightly não é assinada; pode exigir liberar a quarentena |
-| `mini-racer` | wheel linux-x64 | wheel macOS arm64 ou x64, escolhida automaticamente pelo `uv` |
-| Scripts | os mesmos | os mesmos (detectam o sistema sozinhos) |
+| Configuration folder | `~/.config/OrcaSlicer` | `~/Library/Application Support/OrcaSlicer` |
+| Nightly | AppImage | `.dmg`; the app has to be **renamed** (see step 1) |
+| Gatekeeper | n/a | the nightly is unsigned; the quarantine flag may need clearing |
+| `mini-racer` | linux-x64 wheel | macOS arm64 or x64 wheel, picked automatically by `uv` |
+| **Plugins** menu | inside the window | in the system menu bar |
+| Scripts | same | same (they detect the OS) |
 
-## Passo 0: preparar a pasta de trabalho
+## Step 0: prepare the working folder
 
 ```bash
 mkdir -p ~/Projects/Orcaslicer/{apps,backups,downloads}
@@ -33,313 +34,298 @@ cd ~/Projects/Orcaslicer
 git clone https://github.com/jglerner/OrcaSlicer_Plugin_Lab.git
 ```
 
-## Passo 1: instalar a nightly SEM substituir a 2.4.2
+## Step 1: install the nightly WITHOUT replacing a stable install
 
-1. Em <https://github.com/OrcaSlicer/OrcaSlicer/releases/tag/nightly-builds>, baixe **`OrcaSlicer_Mac_universal_nightly.dmg`** (universal: serve para Apple Silicon e Intel) para `~/Projects/Orcaslicer/apps/`. **Não** use o `OrcaSlicer_profile_validator_Mac_universal_nightly.dmg`, que é um utilitário. Confira o sha256 com `shasum -a 256` contra o valor da página.
-2. Abra o `.dmg`. **Não arraste direto para Aplicativos**: o app tem o mesmo nome `OrcaSlicer.app` e substituiria a 2.4.2. Arraste para `~/Projects/Orcaslicer/apps/` e renomeie:
+1. From <https://github.com/OrcaSlicer/OrcaSlicer/releases/tag/nightly-builds>, download **`OrcaSlicer_Mac_universal_nightly.dmg`** (universal: Apple Silicon and Intel) into `~/Projects/Orcaslicer/apps/`. **Not** `OrcaSlicer_profile_validator_Mac_universal_nightly.dmg`, which is a utility. Check the sha256 with `shasum -a 256` against the page.
+2. Copy the app out of the `.dmg` under a **different name**, so it never replaces an `OrcaSlicer.app` in `/Applications`:
    ```bash
-   mv ~/Projects/Orcaslicer/apps/OrcaSlicer.app ~/Projects/Orcaslicer/apps/OrcaSlicer-Nightly.app
+   cd ~/Projects/Orcaslicer/apps
+   hdiutil attach OrcaSlicer_Mac_universal_nightly-YYYYMMDD.dmg -nobrowse -mountpoint /tmp/orca-dmg
+   cp -R /tmp/orca-dmg/OrcaSlicer.app ~/Projects/Orcaslicer/apps/OrcaSlicer-Nightly.app
+   hdiutil detach /tmp/orca-dmg
    ```
-3. Se o macOS disser que o app "está danificado" ou que "não pode ser aberto":
+   (On macOS 27 `hdiutil` warns it is deprecated; the suggested replacement is
+   `diskutil image attach --mountOptions nobrowse --mountPoint /tmp/orca-dmg <file>.dmg` and `diskutil eject /tmp/orca-dmg`.)
+3. Clear the quarantine flag:
    ```bash
    xattr -dr com.apple.quarantine ~/Projects/Orcaslicer/apps/OrcaSlicer-Nightly.app
    ```
-   (ou Ajustes do Sistema ▸ Privacidade e Segurança ▸ **Abrir Mesmo Assim**).
+   (or System Settings ▸ Privacy & Security ▸ **Open Anyway**).
 
-> **Não abra a nightly ainda.** Primeiro o backup (passo 2).
+## Step 2: open once, then close
 
-## Referência do Linux (o que comparar)
+**On a Mac that has never run Orca**, the configuration folder does not exist yet and the install
+script needs it. Open the nightly once, go through the setup wizard (K2 Pro 0.4 nozzle, Generic
+PLA), and quit with **⌘Q**.
 
-O Capítulo 1 terminou com o plugin aprovado. Para o comparativo valer, o Mac usa **o mesmo
-arquivo do plugin** e **o mesmo projeto**:
+⚠️ **Do not use the green button (full screen).** On this Mac it froze the whole system (see the log).
 
-| Item | Linux (referência) |
+## Linux reference (what to compare against)
+
+| Item | Linux (reference) |
 |---|---|
-| Nightly | 2.5.0, build de 13/10/2026 |
-| Plugin | 0.1.0, sha256 `65df17faabfbd870918b3f0fdc95e460229241afb996e2fb8ab830871706963f` (cópia em `plugins/support-fins/`) |
-| Projeto | `projects/xyzCalibration_cube-fins.3mf` (peça inclinada + perfil 0.20mm Standard + Support Fins + brim de 5 linhas + infill mínimo) |
-| Log do motor | `4 walls, 24 tines; 3 overhangs are too shallow…`, `overhangRegions: 5`, `padTriangles: 35904`, `layers_touched: 141` |
-| Fatiamento | 267 camadas de 0,20 mm, estimativa de 49 min 19 s, 21,56 g |
-| Impressão | 49 min 49 s reais, 7,39 m; fins saem com a mão; cicatriz na face apoiada |
+| Nightly | 2.5.0, build of 13 Oct 2026 |
+| Plugin | 0.1.0, sha256 `65df17faabfbd870918b3f0fdc95e460229241afb996e2fb8ab830871706963f` (copy in `plugins/support-fins/`) |
+| Project | tilted `xyzCalibration_cube` + 0.20mm Standard profile + Support Fins + 5 mm brim + 6 % infill (`.3mf` from Linux) |
+| Engine log | `4 walls, 24 tines; 3 overhangs are too shallow…`, `overhangRegions: 5`, `padTriangles: 35904`, `layers_touched: 141` |
+| Slice | 267 layers of 0.20 mm, estimate 49 min 19 s, 21.56 g |
+| Print | 49 min 49 s, 7.39 m; fins come off by hand; scar on the supported face |
 
-**Critério de "sem diferença":** com o mesmo `.3mf` e o mesmo sha256, o `support_fins_log.jsonl`
-do Mac deve repetir `4 walls, 24 tines`, `layers_touched: 141` e as mesmas áreas por camada, e o
-Orca deve estimar o mesmo tempo e o mesmo peso.
+**"No difference" criterion:** with the same `.3mf` and the same sha256, the Mac's
+`support_fins_log.jsonl` must repeat `4 walls, 24 tines`, `layers_touched: 141` and the same area
+per layer, and Orca must estimate the same time and weight.
 
-## Passo 2: backup + instalação do plugin (um comando)
+## Step 3: backup + plugin install (one command)
 
-Com **todos** os Orca fechados (⌘Q):
+With Orca closed (⌘Q):
 
 ```bash
 cd ~/Projects/Orcaslicer/OrcaSlicer_Plugin_Lab
 git pull
-PLUGIN_FILE="$(ls plugins/support-fins/support_fins_orca-*.py | head -1)" scripts/install-support-fins.sh
+PLUGIN_FILE=plugins/support-fins/support_fins_orca-65df17fa.py scripts/install-support-fins.sh
 ```
 
-Isso instala **a mesma cópia** usada no Linux, em vez de baixar o `plugins-latest`, que pode ter mudado.
+This installs **the same copy** used on Linux instead of downloading `plugins-latest`, which may
+have changed. The sha256 printed at the end must be `65df17fa…963f`.
 
-O resultado é o mesmo do Linux, só que em `~/Library/Application Support/OrcaSlicer`.
-Compare o **sha256** com o registrado no teste de Linux: deve ser igual se a release
-`plugins-latest` não tiver mudado nesse meio-tempo. Se mudou, anote; a release é
-substituída a cada push no repositório do support-fins.
+## Steps 4 to 6: same as Linux
 
-## Passos 3 a 5: idênticos ao Linux
+Follow steps 3 to 5 of [Chapter 1](01-Linux.md#step-3-activate-the-plugin), with these Mac specifics:
 
-Siga os passos 3, 4 e 5 do [capítulo 1](01-Linux.md#passo-3-ativar-o-plugin). A única
-diferença é como abrir a nightly:
+- **Plugins** is in the **system menu bar** at the top of the screen.
+- The process panel opens in **simple mode** after a fresh install (no Speed tab; Others shows only
+  Skirt, Brim, Special mode and Fuzzy skin). Turn on the **Advanced** toggle next to *Global / Objects*;
+  only then does *Others ▸ Slicing Pipeline Plugin* appear.
+- **Orca Cloud:** don't log in in the nightly. A synced profile that references Support Fins would
+  refuse to slice on an install without the plugin ("missing plugin").
+- **Pressure Advance:** check that *Enable pressure advance* is **off** in the filament profile
+  (pencil icon ▸ Advanced). PA comes from the printer's `printer.cfg` (see the overview).
 
-```bash
-open ~/Projects/Orcaslicer/apps/OrcaSlicer-Nightly.app
-```
-
-No Mac, o menu **Plugins** pode ficar na barra de menus do sistema em vez de dentro da janela.
-
-**Orca Cloud:** a 2.4.2 do Mac **não** está logada (confirmado em 13/10/2026). Se aparecer o
-aviso de migração Bambu Cloud → Orca Cloud, é só ignorar. Também não faça login na nightly:
-um perfil sincronizado que referencia o Support Fins bloquearia o fatiamento numa instalação
-sem o plugin ("missing plugin").
-
-Itens a observar com mais atenção no Mac:
-- **Ativação:** o `uv` precisa achar a wheel do `mini-racer==0.14.1` para o seu chip. Se falhar, a aba **Diagnostics** e o `python_*.log` mostram o motivo.
-- **Pedidos de permissão:** podem aparecer em número diferente do Linux. Anote quantos e quais foram.
-
-## Passo 6: registrar resultados
+## Step 7: record results
 
 ```bash
 cd ~/Projects/Orcaslicer/OrcaSlicer_Plugin_Lab
-scripts/collect-logs.sh "angle-coupon, 0.20mm, PLA"
-git add logs/macos && git commit -m "macOS: primeiro teste Support Fins" && git push
+scripts/collect-logs.sh "part, 0.20mm, PLA"
+git add logs/macos && git commit -m "macOS: Support Fins test" && git push
 ```
 
-Ao vivo:
+Live:
 
 ```bash
 tail -f ~/Library/Application\ Support/OrcaSlicer/log/python_*.log
 ```
 
-### Checklist (preencher; mesma numeração do Linux)
+### Checklist (same numbering as Linux)
 
-| # | Verificação | Resultado | Igual ao Linux? |
+| # | Check | Result | Same as Linux? |
 |---|---|---|---|
-| 1 | Nightly abre e mostra o menu **Plugins** | ✅ 2.5.0-dev | ⚠️ não: 1ª abertura congelou o Mac em tela cheia (reboot) |
-| 2 | Plugin aparece na lista com versão 0.1.0 | ✅ | sim (menu na barra do sistema) |
-| 3 | Ativação instala `numpy` + `mini-racer` sem erro | ✅ (arm64) | sim |
-| 4 | "Slicing Pipeline Plugin" aparece no perfil (Advanced ▸ Others) | ✅ | sim (só no modo avançado) |
-| 5 | Pedidos de permissão aparecem e são aceitos | ➖ nenhum apareceu | igual ao Linux |
-| 6 | Fins visíveis no Preview | ✅ | sim |
-| 7 | Log `.jsonl` registra `N fin(s), M tine(s) on X layer(s)` (**mesmos números do Linux** para a mesma peça e o mesmo perfil?) | ✅ `4 walls, 24 tines`, 141 camadas | **idêntico**, camada por camada |
-| 8 | Peça com **Enable support ON** é ignorada | ➖ não testado | não testado no Linux também |
-| 9 | Girar a peça + refatiar → fins acompanham | | |
-| 10 | G-code enviado à K2 Pro e impresso | ✅ 50 min 31 s, 7,28 m | sim (purga menor) |
-| 11 | 1ª camada da base (pad) ok | ✅ | sim |
-| 12 | Fins destacam limpas | ⚠️ | sim: mesma cicatriz na face apoiada |
-| 13 | 2.4.2 estável continua abrindo normalmente | ➖ | não há estável neste Mac |
+| 1 | Nightly opens and shows the **Plugins** menu | ✅ 2.5.0-dev | ⚠️ no: first launch froze the Mac in full screen (reboot) |
+| 2 | Plugin listed with version 0.1.0 | ✅ | yes (menu in the system menu bar) |
+| 3 | Activation installs `numpy` + `mini-racer` without errors | ✅ (arm64) | yes |
+| 4 | "Slicing Pipeline Plugin" shows in the profile (Advanced ▸ Others) | ✅ | yes (Advanced mode only) |
+| 5 | Permission prompts appear and are accepted | ➖ none appeared | same as Linux |
+| 6 | Fins visible in Preview | ✅ | yes |
+| 7 | `.jsonl` log matches Linux for the same part and profile | ✅ `4 walls, 24 tines`, 141 layers | **identical**, layer by layer |
+| 8 | Part with **Enable support ON** is skipped | ➖ not tested | not tested on Linux either |
+| 9 | Rotate the part + re-slice → fins follow | ➖ not tested | |
+| 10 | G-code sent to the K2 Pro and printed | ✅ 50 min 31 s, 7.28 m | yes (smaller purge) |
+| 11 | First layer of the pad OK | ✅ | yes |
+| 12 | Fins break away cleanly | ⚠️ | yes: same scar on the supported face |
+| 13 | Stable release still opens normally | ➖ | no stable release on this Mac |
 
-O item 7 é o melhor teste de "não deve haver diferença": a mesma peça, o mesmo perfil e a
-mesma versão do plugin devem dar exatamente a mesma contagem de fins, tines e camadas.
-
-## Como voltar atrás
+## Rolling back
 
 ```bash
 rm -rf ~/Library/Application\ Support/OrcaSlicer/orca_plugins/SupportFins
-# restaurar toda a configuração (com o Orca fechado)
-mv ~/Library/Application\ Support/OrcaSlicer ~/Library/Application\ Support/OrcaSlicer.nightly-teste
-tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/Library/Application\ Support
+# restore the whole configuration (with Orca closed)
+mv ~/Library/Application\ Support/OrcaSlicer ~/Library/Application\ Support/OrcaSlicer.nightly-test
+tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<date>.tar.gz -C ~/Library/Application\ Support
 ```
 
-## Como abrir a nightly no dia a dia (macOS)
+## Opening the nightly day to day (macOS)
 
-- **Pelo Finder ou Dock:** abra `~/Projects/Orcaslicer/apps/` e dê dois cliques em `OrcaSlicer-Nightly.app`.
-  Para fixar no Dock, arraste o app para lá. O Spotlight (lupa) também acha "OrcaSlicer-Nightly".
-- **Pelo Terminal**, para ver mensagens ao vivo ao investigar algum problema:
+- **From Finder or the Dock:** open `~/Projects/Orcaslicer/apps/` and double-click `OrcaSlicer-Nightly.app`.
+  Drag it to the Dock to keep it handy. Spotlight also finds "OrcaSlicer-Nightly".
+- **From Terminal**, to see live messages while investigating a problem:
   ```bash
   ~/Projects/Orcaslicer/apps/OrcaSlicer-Nightly.app/Contents/MacOS/OrcaSlicer 2>&1 | tee ~/Projects/Orcaslicer/nightly-mac-run.log
   ```
-- ⚠️ **Nunca usar o botão verde (tela cheia)** neste Mac com a nightly: foi o que congelou o sistema.
-- Fechar sempre com **⌘Q**. Se o macOS reabrir o Orca sozinho depois de um reinício, tudo bem: é a restauração de janelas.
+- ⚠️ **Never use the green button (full screen)** with the nightly on this Mac: that is what froze the system.
+- Always quit with **⌘Q**. If macOS reopens Orca by itself after a restart, that is just window restoration.
+- Screenshots: if ⇧⌘3 / ⇧⌘4 don't work (e.g. a Bluetooth keyboard in Windows mode), use
+  `screencapture -T 5 ~/Desktop/orca.png` from Terminal.
 
-## Diário
+## Log
 
-### 2026-10-13 16:44–16:56: levantamento do Mac
+### 2026-10-13 16:44–16:56: surveying the Mac
 
 - Mac mini, macOS 27.0.1, Apple Silicon (`arm64`).
-- `~/Projects/Orcaslicer/{apps,backups,downloads}` criados e o repositório clonado em
+- `~/Projects/Orcaslicer/{apps,backups,downloads}` created and the repository cloned into
   `~/Projects/Orcaslicer/OrcaSlicer_Plugin_Lab` (branch `claude/sweet-ritchie-ogkhg8`).
-- **Nenhum OrcaSlicer instalado** e **nenhuma pasta de configuração**: o Orca nunca rodou neste
-  Mac. Consequências:
-  - não há perfis a proteger, então o backup é só formalidade;
-  - a ordem dos passos muda: **abrir a nightly uma vez** (para criar a configuração e escolher a
-    K2 Pro 0.4 no assistente), **fechar**, e só então rodar `install-support-fins.sh`, que exige
-    que a pasta de configuração exista.
-- Observação: no zsh (padrão do macOS), um `ls` com padrão sem correspondência aborta a linha
-  inteira (`zsh: no matches found`). Nos comandos deste capítulo, evitar curingas soltos.
-- **Decisão:** sem nenhum Orca neste Mac, a **nightly é a única instalação**. Ela fica mesmo assim em
-  `~/Projects/Orcaslicer/apps/OrcaSlicer-Nightly.app`, para manter o mesmo layout do Linux e não ocupar
-  o nome `OrcaSlicer.app` em `/Applications`, reservado para uma estável futura.
+- **No OrcaSlicer installed** and **no configuration folder**: Orca had never run on this Mac. Consequences:
+  - no profiles to protect, so the backup is a formality;
+  - the order of steps changes: **open the nightly once** (to create the configuration and pick
+    the K2 Pro 0.4 in the wizard), **quit**, and only then run `install-support-fins.sh`, which
+    requires the configuration folder to exist.
+- Note: in zsh (the macOS default shell) a glob with no match aborts the whole line
+  (`zsh: no matches found`), and `[o]rca` must be quoted (`grep -i '[o]rca'`).
+- **Decision:** with no other Orca on this Mac, the **nightly is the only install**. It still lives in
+  `~/Projects/Orcaslicer/apps/OrcaSlicer-Nightly.app`, to keep the same layout as Linux and leave the
+  `OrcaSlicer.app` name in `/Applications` free for a future stable release.
 
-### 2026-10-13: download da nightly
+### 2026-10-13: downloading the nightly
 
-- `~/Projects/Orcaslicer/apps/OrcaSlicer_Mac_universal_nightly-20261013.dmg`, 379 451 701 bytes.
-- sha256 `7fcc77764331d08f4f3638205bf094522ab741f2ca26b8ddce07118b504c09ba`, conferido com um
-  segundo download independente (mesmo hash).
-- ⚠️ **Não é o mesmo build da nightly usada no Linux.** O `.dmg` foi republicado às 17:52 UTC,
-  depois da lista de assets copiada de manhã (que mostrava `43ff09ad…` e 363 MB), então houve
-  pelo menos um build novo no mesmo dia. Para o comparativo isso significa: Orca de builds
-  diferentes nos dois sistemas. O que precisa ser idêntico é o **plugin** (sha256) e o **projeto**;
-  se os resultados divergirem, a diferença de build do Orca é a primeira suspeita.
+- `~/Projects/Orcaslicer/apps/OrcaSlicer_Mac_universal_nightly-20261013.dmg`, 379,451,701 bytes.
+- sha256 `7fcc77764331d08f4f3638205bf094522ab741f2ca26b8ddce07118b504c09ba`, confirmed by a second,
+  independent download (same hash).
+- ⚠️ **Not the same nightly build as on Linux.** The `.dmg` was republished at 17:52 UTC, after the
+  asset list copied that morning (which showed `43ff09ad…` and 363 MB), so there was at least one new
+  build that day. For the comparison this means two different Orca builds. What must be identical is
+  the **plugin** (sha256) and the **project**; if results diverge, the Orca build is the first suspect.
 
-### 2026-10-13: app copiado como `OrcaSlicer-Nightly.app`
+### 2026-10-13: app copied as `OrcaSlicer-Nightly.app`
 
-- O `.dmg` contém `OrcaSlicer.app` e um atalho `Applications`. Os checksums internos do `.dmg` foram verificados.
-- Copiado para `~/Projects/Orcaslicer/apps/OrcaSlicer-Nightly.app` e quarentena removida (`xattr -dr`).
-- **macOS 27:** `hdiutil attach/detach` funciona, mas avisa que está *deprecated*. O substituto
-  indicado pelo próprio sistema é:
-  ```bash
-  diskutil image attach --mountOptions nobrowse --mountPoint /tmp/orca-dmg OrcaSlicer_Mac_universal_nightly-AAAAMMDD.dmg
-  diskutil eject /tmp/orca-dmg
-  ```
-- Versão do app: **2.5.0-dev**, a mesma série do Linux (2.5.0).
+- The `.dmg` contains `OrcaSlicer.app` and an `Applications` shortcut. The `.dmg`'s internal checksums verified.
+- Copied to `~/Projects/Orcaslicer/apps/OrcaSlicer-Nightly.app`, quarantine cleared (`xattr -dr`).
+- `hdiutil attach/detach` works on macOS 27 but warns it is *deprecated* (replacement noted in step 1).
+- App version: **2.5.0-dev**, the same 2.5.0 series as on Linux.
 
-### 2026-10-13: assistente inicial e condições do comparativo
+### 2026-10-13: setup wizard and comparison conditions
 
-- Assistente: **Stealth Mode ligado** (desliga só os recursos de nuvem; plugins locais e o `uv`
-  não são afetados), **Bambu Network Plugin não instalado** (não serve para a K2 Pro), **sem login**
-  na Orca Cloud.
-- **Condições iguais às do Linux ("banana com banana"):** mesma peça e mesma pose, perfil
-  `0.20mm Standard @Creality K2 Pro 0.4 nozzle`, Generic PLA a **220 °C**, **infill de 6 %**, **brim Auto de 5 mm** (no Linux também foi 220 °C;
-  os 240 °C vistos no início são da purga do CFS), mesa 50 °C, infill mínimo, brim de 5 linhas,
-  Support Fins com a config padrão. A única variável é o sistema operacional (e, sem querer, o build
-  da nightly).
-- Teste de temperatura (torre) fica **depois** do comparativo.
+- Wizard: **Stealth Mode on** (it only disables cloud features; local plugins and `uv` are
+  unaffected, checked in the Orca source), **Bambu Network Plugin not installed** (useless for the K2
+  Pro), **no Orca Cloud login**.
+- **Same conditions as Linux ("apples to apples"):** same part and pose, profile
+  `0.20mm Standard @Creality K2 Pro 0.4 nozzle`, Generic PLA at **220 °C** (Linux was also 220 °C;
+  the 240 °C seen at the start is the CFS purge), bed 50 °C, **6 % infill**, **Auto brim 5 mm**,
+  Support Fins with the default config. The only variable is the OS (and, unintentionally, the
+  nightly build).
+- Temperature tower comes **after** the comparison.
 
-### 2026-10-13 17:10–17:26: ⚠️ primeira abertura travou o Mac (reboot forçado)
+### 2026-10-13 17:10–17:26: ⚠️ first launch froze the Mac (forced reboot)
 
-- A nightly foi aberta pelo `open`. O assistente foi concluído (K2 Pro 0.4; a configuração em
-  `~/Library/Application Support/OrcaSlicer` foi criada às 17:10–17:13). Por volta das 17:18 a
-  janela foi posta em **tela cheia** (botão verde) e a tela congelou, cobrindo até a barra de
-  tarefas. ⌘Tab e ⌥⌘Esc não resolveram: **reboot forçado**.
-- Depois do reboot, o macOS **reabriu o Orca sozinho** ("Restored"). Cuidado com isso.
-- **Análise do log** (`debug_Tue_Oct_13_17_10_45_90742.log.0`, 13 MB):
-  - O log termina às **17:25:36** com a tarefa periódica `process_ui_task{type:Backup}` a cada 10 s,
-    rodando na thread principal (a da interface). Ou seja, **o laço de eventos do Orca continuava
-    vivo até o reboot**: o app não estava travado. O congelamento foi na **tela/janela em tela cheia**
-    (servidor de janelas do macOS 27 ou a parte gráfica), não no processamento do Orca.
-  - As linhas mais repetidas (`set_printer_hold_alias`, `select_preset`) são o carregamento normal
-    dos perfis de todos os fabricantes: centenas de linhas, não um laço infinito.
-  - Erros que valem nota:
+- The nightly was opened with `open`. The wizard completed (K2 Pro 0.4; configuration in
+  `~/Library/Application Support/OrcaSlicer` created at 17:10–17:13). Around 17:18 the window was put in
+  **full screen** (green button) and the screen froze, covering even the menu bar and Dock. ⌘Tab and
+  ⌥⌘Esc did not help: **forced reboot**.
+- After the reboot macOS **reopened Orca by itself** ("Restored"). Watch out for that.
+- **Log analysis** (`debug_Tue_Oct_13_17_10_45_90742.log.0`, 13 MB):
+  - The log ends at **17:25:36** with the periodic `process_ui_task{type:Backup}` task every 10 s on the
+    main (UI) thread. So **Orca's event loop was alive until the reboot**: the app was not hung. The
+    freeze was in the **full-screen window / display** (macOS 27 window server or graphics), not in
+    Orca's processing.
+  - The most repeated lines (`set_printer_hold_alias`, `select_preset`) are the normal loading of all
+    vendors' profiles: hundreds of lines, not an infinite loop.
+  - Errors worth noting:
     - `get_version_from_json: parse …/OrcaSlicer-Nightly.app/Contents/Resources/profiles/OrcaFilamentLibrary.json`
-      e `…/Creality.json`: *"unexpected end of input"* na linha 1. **Investigado: inofensivo.** Esses
-      `.json` não existem no app (o app tem 779 MB e está completo). A nightly 2.5 distribui os perfis
-      dos fabricantes como **cache `.opc`** (`Resources/profiles/<Fabricante>.opc`), e a função
-      `installable_cache_version` (`src/libslic3r/utils.cpp`) chama `get_version_from_json` no `.json`
-      ausente, que registra esse erro e segue em frente. É ruído de log.
-    - `3DconnexionClient` ausente e `Unsupported printer type: Moonraker Printer`: inofensivos.
-- Lições: **não usar tela cheia** com a nightly neste Mac; abrir pelo Terminal
-  (`…/OrcaSlicer-Nightly.app/Contents/MacOS/OrcaSlicer`) para ver as mensagens ao vivo.
+      and `…/Creality.json`: *"unexpected end of input"* at line 1. **Investigated: harmless.** Those
+      `.json` files don't exist in the app (the app is 779 MB and complete). Nightly 2.5 ships vendor
+      profiles as an **`.opc` cache** (`Resources/profiles/<Vendor>.opc`), and `installable_cache_version`
+      (`src/libslic3r/utils.cpp`) calls `get_version_from_json` on the missing `.json`, which logs the
+      error and carries on. Log noise.
+    - Missing `3DconnexionClient` and `Unsupported printer type: Moonraker Printer`: harmless.
+- Lessons: **never use full screen** with the nightly on this Mac; open from Terminal
+  (`…/OrcaSlicer-Nightly.app/Contents/MacOS/OrcaSlicer`) to see live messages.
 
-### 2026-10-13 17:41: plugin instalado, depois trocado pela cópia do Linux
+### 2026-10-13 17:41: plugin installed, then replaced with the Linux copy
 
-- Configuração salva em `~/Projects/Orcaslicer/backups/OrcaSlicer-20261013-174129.tar.gz`.
-- O `plugins-latest` baixado veio com **sha256 `d4e90d31…c515`**, diferente do Linux (`65df17fa…`),
-  com a mesma versão 0.1.0. Comparação: o código Python é idêntico; mudou só o motor JS embutido
-  (commits do support-fins de 13/10 à tarde: campo "Nozzle size" e altura de camada máxima de 0,6 mm).
-- Para manter "banana com banana", a cópia exata do Linux foi publicada em
-  `plugins/support-fins/support_fins_orca-65df17fa.py` e reinstalada com `PLUGIN_FILE=…`.
-- Menu **Plugins** encontrado; Support Fins **Activated** (numpy + mini-racer instalados pelo `uv`).
-  No Mac, o menu fica na barra de menus do sistema, não dentro da janela como no Linux. O painel de processo
-  abriu no modo simples: a seção *Slicing Pipeline Plugin* só aparece no modo **Advanced**.
-- 18:02: plugin reinstalado a partir da cópia do repositório: **sha256 `65df17fa…963f`** ✅, o mesmo
-  arquivo usado no Linux.
-- 18:09: painel de processo estava no **modo simples** (sem a aba Speed; Others só com Skirt, Brim, Special
-  mode e Fuzzy skin). A seção *Slicing Pipeline Plugin* só aparece com a chave do modo avançado ligada.
-  Brim já estava Auto/5 mm, igual ao Linux. Infill a ajustar para 6 %.
-- Print de tela no Mac com teclado Bluetooth UGreen: os atalhos ⇧⌘3/⇧⌘4 não funcionaram. Alternativa
-  pelo Terminal: `screencapture -T 5 ~/Desktop/orca.png`.
-- Projeto do Linux salvo como `.3mf` e passado ao Mac (por WhatsApp), depois aberto na nightly do Mac. Assim
-  peça, pose e configurações vêm do mesmo arquivo. (A cópia deve ir também para `projects/` no repositório.)
+- Configuration saved to `~/Projects/Orcaslicer/backups/OrcaSlicer-20261013-174129.tar.gz`.
+- The downloaded `plugins-latest` had **sha256 `d4e90d31…c515`**, different from Linux (`65df17fa…`),
+  with the same version 0.1.0. Comparison: the Python code is identical; only the bundled JS engine
+  changed (support-fins commits of 13 Oct afternoon: "Nozzle size" field and a 0.6 mm max layer height).
+- To keep it apples to apples, the exact Linux copy was published to
+  `plugins/support-fins/support_fins_orca-65df17fa.py` and reinstalled with `PLUGIN_FILE=…`.
+- **Plugins** menu found; Support Fins **Activated** (numpy + mini-racer installed by `uv`).
+- 18:02: plugin reinstalled from the repository copy: **sha256 `65df17fa…963f`** ✅, the same file as on Linux.
+- 18:09: the process panel was in **simple mode**; *Slicing Pipeline Plugin* only appears with the
+  Advanced toggle on. Brim was already Auto/5 mm, as on Linux. Infill set to 6 %.
+- Screenshots with the UGreen Bluetooth keyboard: ⇧⌘3/⇧⌘4 did not work. Workaround from Terminal:
+  `screencapture -T 5 ~/Desktop/orca.png`.
+- The Linux project was saved as `.3mf`, transferred to the Mac and opened in the Mac nightly, so
+  part, pose and settings come from the same file.
 
-### 2026-10-13: ✅ comparativo do fatiamento Linux × macOS (o mesmo `.3mf`, o mesmo plugin `65df17fa`)
+### 2026-10-13: ✅ slicing comparison Linux × macOS (same `.3mf`, same plugin `65df17fa`)
 
-Logs completos e script de comparação em `logs/compare-20261013/`.
+Full logs and the comparison script in `logs/compare-20261013/`.
 
-| Campo | Linux (Debian 13, x86_64) | macOS (27.0.1, arm64) | |
+| Field | Linux (Debian 13, x86_64) | macOS (27.0.1, arm64) | |
 |---|---|---|---|
-| `result` | 4 walls, 24 tines; 3 overhangs too shallow | idem | ✅ igual |
-| `part_size_mm` | [40.0, 53.626, 53.626] | idem | ✅ mesma peça, mesma pose |
-| `engine` (regiões, triângulos, tines, pad…) | 5 / 2768 / 24 / 35904 | idem | ✅ igual |
-| `layers` (141 pares z, área) | — | — | ✅ **idênticos nas 141 camadas** (4 casas decimais) |
-| `elephant_foot` | [0.15, 1] | idem | ✅ |
-| `frame_scale` Y | 0,9999999951 | 0,9999999937 | diferença relativa de 1,4 × 10⁻⁹, menos de 0,1 nanômetro em 53 mm: arredondamento de ponto flutuante (CPU/compilação diferentes), irrelevante |
-| Estimativa do Orca | 49 min 19 s, 7,17 m | **49 min 19 s, 7,17 m** | ✅ igual |
-| `seconds` | 0,762 | 1,405 | Mac ~1,8× mais lento nesta medida (1ª execução do V8 na sessão; medir de novo) |
+| `result` | 4 walls, 24 tines; 3 overhangs too shallow | same | ✅ equal |
+| `part_size_mm` | [40.0, 53.626, 53.626] | same | ✅ same part, same pose |
+| `engine` (regions, triangles, tines, pad…) | 5 / 2768 / 24 / 35904 | same | ✅ equal |
+| `layers` (141 pairs of z, area) | — | — | ✅ **identical on all 141 layers** (4 decimal places) |
+| `elephant_foot` | [0.15, 1] | same | ✅ |
+| `frame_scale` Y | 0.9999999951 | 0.9999999937 | relative difference 1.4 × 10⁻⁹, under 0.1 nm over 53 mm: floating-point rounding (different CPU/build), irrelevant |
+| Orca estimate | 49 min 19 s, 7.17 m | **49 min 19 s, 7.17 m** | ✅ equal |
+| `seconds` | 0.762 | 1.405 | Mac ~1.8× slower on this run (first V8 run of the session; measure again) |
 
-**Conclusão: o plugin gera exatamente as mesmas fins no Linux e no macOS** ("banana com banana"),
-apesar de os builds da nightly serem diferentes (o `.dmg` foi republicado no mesmo dia). A única
-diferença real até aqui é a de ambiente: o congelamento em tela cheia no macOS 27.
-- Ao fatiar no Mac, **nenhum pedido de permissão** do Orca apareceu, só o aviso não crítico
-  *"floating regions"* do próprio Orca, exatamente como no Linux. O README do plugin previa pedidos
-  (leitura de arquivos do Python, `socket.__new__`). Possível explicação: o motor V8 é iniciado no
-  carregamento do plugin, quando o controle de permissões ainda está desligado (comentário em
-  `_engine_ctx()`), então as operações que gerariam pedido acontecem antes. Não verificado.
+**Conclusion: the plugin generates exactly the same fins on Linux and macOS**, even though the
+nightly builds differ (the `.dmg` was republished the same day).
 
-### 2026-10-13 18:36: impressão do G-code fatiado no Mac (em andamento)
+- No Orca **permission prompts** appeared when slicing on the Mac, only Orca's non-critical
+  *"floating regions"* warning, exactly as on Linux. The plugin README expected prompts (Python file
+  reads, `socket.__new__`). Possible explanation: the V8 engine starts while the plugin is loaded,
+  when Orca's audit hook is still off (comment in `_engine_ctx()`), so the operations that would
+  trigger prompts happen before. Not verified.
 
-- Mesmo nome de arquivo (`xyzCalibration_cube_PLA_49m19s.gcode`), enviado às 18:36. Às 18:45: 17%,
-  camada 29/268 (Z 5,80 mm), bico 220,5/220 °C, mesa 50 °C, câmara 35 °C, término previsto às 19:23.
-  O Gcode Preview do Fluidd mostra as fins saindo da base, como no Linux.
-- **Diferenças vistas no Fluidd em relação à impressão do Linux** (não vêm do plugin, e sim dos perfis
-  de filamento ou de troca de filamento):
+### 2026-10-13 18:36: printing the Mac-sliced G-code
+
+- Same file name (`xyzCalibration_cube_PLA_49m19s.gcode`), uploaded at 18:36. At 18:45: 17 %, layer
+  29/268 (Z 5.80 mm), nozzle 220.5/220 °C, bed 50 °C, chamber 35 °C, ETA 19:23. Fluidd's G-code
+  preview shows the fins rising from the pad, as on Linux.
+- **Differences seen in Fluidd compared with the Linux print** (not from the plugin, but from the
+  filament or filament-change settings):
 
   | | Linux (15:26) | Mac (18:37) |
   |---|---|---|
-  | Pressure Advance / Smooth time | 0,038 s / 0,038 s | **0,04 s / 0,04 s** |
-  | Purga do CFS: `flush_volume` / `flush_len` | 354 / 223,75 mm | **60 / 101,25 mm** |
+  | Pressure Advance / smooth time | 0.038 s / 0.038 s | **0.04 s / 0.04 s** |
+  | CFS purge: `flush_volume` / `flush_len` | 354 / 223.75 mm | **60 / 101.25 mm** |
 
-  **Origem do PA (esclarecido):** o `printer.cfg` do Klipper na K2 Pro define `pressure_advance: 0.038` e
-  `pressure_advance_smooth_time: 0.038`. No Linux o G-code não mexeu no PA, e valeu o 0,038 do
-  `printer.cfg`. No Mac o PA mudou para 0,04 durante a impressão, então **o G-code do Mac enviou um comando
-  de PA**: provavelmente o perfil *Generic PLA* da instalação nova tem *Enable pressure advance* ligado com
-  0,04 (Filament ▸ Advanced). Para o próximo teste igual: desligar essa opção no filamento do Mac, ou
-  pôr 0,038. A purga menor deve vir dos "Flushing volumes" do projeto ou da cor do filamento anterior.
-  **A geometria (fins) é idêntica; o PA ligeiramente diferente pode mudar um pouco o acabamento.**
-- **Fim da impressão (Fluidd, 19:2x):** 100%, 267 camadas, Z 53,4 mm.
+  **PA origin (clarified):** the K2 Pro's Klipper `printer.cfg` sets `pressure_advance: 0.038` and
+  `pressure_advance_smooth_time: 0.038`. On Linux the G-code did not touch PA, so `printer.cfg`'s
+  0.038 applied. On the Mac PA became 0.04 during the print, so **the Mac G-code sent a PA command**:
+  the filament profile carried a previously calibrated 0.04 with *Enable pressure advance* on. The
+  smaller purge likely comes from the project's "Flushing volumes" or the previous filament colour.
+  **The geometry (fins) is identical; the slightly different PA may affect the finish a little.**
+- **End of print (Fluidd, 19:2x):** 100 %, 267 layers, Z 53.4 mm.
 
-  | | Linux | Mac | Leitura |
+  | | Linux | Mac | Reading |
   |---|---|---|---|
-  | Estimativa do Orca | 49 min 19 s | 49 min 19 s | igual |
-  | Fluidd "Total" (inclui aquecimento e purga) | ~49 min 50 s (49 min 49 s a 99%) | **51 min 47 s** | Mac ~2 min a mais |
-  | Fluidd "Actual" (só impressão) | não anotado | 50 min 31 s | +1 min 12 s sobre a estimativa |
-  | Filamento usado | 7,39 m | **7,28 m** | −0,11 m no Mac |
+  | Orca estimate | 49 min 19 s | 49 min 19 s | equal |
+  | Fluidd "Total" (incl. heating and purge) | ~49 min 50 s (49 min 49 s at 99 %) | **51 min 47 s** | Mac ~2 min longer |
+  | Fluidd "Actual" (printing only) | not recorded | 50 min 31 s | +1 min 12 s over the estimate |
+  | Filament used | 7.39 m | **7.28 m** | −0.11 m on the Mac |
 
-  A diferença de filamento bate com a **purga do CFS**: `flush_len` de 223,75 mm no Linux contra
-  101,25 mm no Mac, ou seja 0,12 m a menos de purga, o que explica os 0,11 m. Não é diferença do plugin.
-  Os ~2 min a mais no total provavelmente vêm do início (aquecimento/troca de filamento), não da peça.
-- **Peça pronta (fotos):**
-  - Mesma geometria do Linux: **3 fins** paralelas sob a face inclinada, a cunha triangular na aresta
-    de baixo e a base oval. Faces **X, Y e Z** limpas, com as letras nítidas e as linhas de camada regulares.
-  - Fins e base saíram juntas numa peça só, como no Linux.
-  - **Face apoiada:** o mesmo padrão de cicatriz do Linux, com camadas onduladas/caídas entre as fins e
-    uma fileira de **pontinhos** (as marcas das pontas dos tines) ao longo das linhas onde as fins tocavam.
-    Do lado do suporte removido aparecem as camadas finas que ficaram presas entre as fins.
-- Resultado: **igual ao Linux** ✅: mesma geometria, mesma remoção, mesmo tipo de cicatriz. A diferença de PA
-  (0,04 contra 0,038) não produziu diferença visível nas fotos.
+  The filament difference matches the **CFS purge**: `flush_len` 223.75 mm on Linux vs 101.25 mm on
+  the Mac, i.e. 0.12 m less purge, which accounts for the 0.11 m. Not a plugin difference. The ~2 min
+  extra total most likely comes from the start (heating / filament change), not the part.
+- **Finished part (photos):**
+  - Same geometry as Linux: **3 parallel fins** under the tilted face, the triangular wedge on the
+    bottom edge and the oval pad. **X, Y and Z** faces clean, sharp letters, regular layer lines.
+  - Fins and pad came off together in one piece, as on Linux.
+  - **Supported face:** the same scar pattern as on Linux: wavy/drooping layers between the fins and
+    a row of **small dots** (the tine tips' marks) along the lines where the fins touched. On the
+    removed support, the thin layers that were trapped between the fins are visible.
+- Result: **same as Linux** ✅: same geometry, same removal, same kind of scar. The PA difference
+  (0.04 vs 0.038) produced no visible difference in the photos.
 
-## Conclusão do comparativo Linux × macOS
+## Conclusion of the Linux × macOS comparison
 
-| Aspecto | Resultado |
+| Aspect | Result |
 |---|---|
-| Instalação e ativação do plugin | ✅ funciona nos dois (Mac: `numpy` e `mini-racer` arm64 instalados pelo `uv`) |
-| Fins geradas (o mesmo `.3mf`, o mesmo plugin `65df17fa`) | ✅ **idênticas nas 141 camadas** |
-| Estimativa do Orca | ✅ idêntica (49 min 19 s, 7,17 m) |
-| Peça impressa | ✅ igual: geometria, remoção à mão, cicatriz na face apoiada |
-| Diferenças encontradas | só de ambiente: congelamento em tela cheia no macOS 27; modo simples por padrão; PA e purga do CFS vindos dos perfis de filamento; menu Plugins na barra do sistema |
+| Plugin install and activation | ✅ works on both (Mac: `numpy` and `mini-racer` arm64 installed by `uv`) |
+| Generated fins (same `.3mf`, same plugin `65df17fa`) | ✅ **identical on all 141 layers** |
+| Orca estimate | ✅ identical (49 min 19 s, 7.17 m) |
+| Printed part | ✅ same: geometry, removal by hand, scar on the supported face |
+| Differences found | environment only: full-screen freeze on macOS 27; simple mode by default; PA and CFS purge from filament profiles; Plugins menu in the system menu bar |
 
-**"Não devem ocorrer diferenças": confirmado para o plugin.** As diferenças vieram do Orca, dos perfis
-e do macOS, nunca do Support Fins.
+**"There should be no differences": confirmed for the plugin.** The differences came from Orca, the
+profiles and macOS, never from Support Fins.
 
-- **Pressure Advance, plano de J. Lerner:** o 0,038 do `printer.cfg` vale só para este teste. O 0,04 veio de
-  um valor calibrado antes, herdado pelo perfil/projeto. Próximo passo: **recalibrar o PA**
-  (Orca ▸ Calibration ▸ Pressure Advance) e gravar o valor encontrado no `printer.cfg`. Para não haver
-  divergência entre máquinas, manter **uma única fonte**: o `printer.cfg`, com *Enable pressure advance*
-  desligado nos perfis de filamento, ou o perfil de filamento, mas não os dois.
-- **Decisão:** opção A, PA só no `printer.cfg`; *Enable pressure advance* desligado em todos os perfis de filamento (Linux e Mac).
+- **Pressure Advance, J. Lerner's plan:** the 0.038 in `printer.cfg` is only for this test; the 0.04
+  was an earlier calibrated value carried by the profile. Next: **recalibrate PA**
+  (Orca ▸ Calibration ▸ Pressure Advance) and store the value in `printer.cfg`.
+- **Decision (option A):** PA only in `printer.cfg`; *Enable pressure advance* off in every filament
+  profile (Linux and Mac).
+- **Upstream:** the limitation that the Orca plugin only exposes four engine options was reported to
+  gittrahan/support-fins (see [issue-orca-plugin-options.md](issue-orca-plugin-options.md)).

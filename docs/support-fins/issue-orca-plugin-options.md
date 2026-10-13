@@ -1,7 +1,7 @@
-# Rascunho de issue para gittrahan/support-fins
+# Upstream issue for gittrahan/support-fins
 
-Onde postar: <https://github.com/gittrahan/support-fins/issues/new> (Blank issue).
-Idioma: inglês, como o repositório.
+**Status: posted** by J. Lerner on 13 Oct 2026 in <https://github.com/gittrahan/support-fins/issues>
+(no existing issue covered it). The text below is what was posted.
 
 ---
 

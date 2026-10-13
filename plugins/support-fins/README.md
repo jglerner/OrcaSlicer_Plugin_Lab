@@ -1,18 +1,19 @@
-# Support Fins: cópias exatas do plugin testado
+# Support Fins: exact copies of the tested plugin
 
-| Arquivo | sha256 | Origem | Usado em |
+| File | sha256 | Source | Used in |
 |---|---|---|---|
-| `support_fins_orca-65df17fa.py` | `65df17faabfbd870918b3f0fdc95e460229241afb996e2fb8ab830871706963f` | release `plugins-latest` de [gittrahan/support-fins](https://github.com/gittrahan/support-fins), baixada em 13/10/2026 de manhã (depois do commit `a517023`) | Linux (Capítulo 1) e macOS (Capítulo 2) |
+| `support_fins_orca-65df17fa.py` | `65df17faabfbd870918b3f0fdc95e460229241afb996e2fb8ab830871706963f` | `plugins-latest` release of [gittrahan/support-fins](https://github.com/gittrahan/support-fins), downloaded on the morning of 13 Oct 2026 (after commit `a517023`) | Linux (Chapter 1) and macOS (Chapter 2) |
 
-A release `plugins-latest` é refeita a cada push no support-fins, e a versão (`0.1.0`) **não** muda.
-Às 17:41 do mesmo dia ela já tinha outro sha256 (`d4e90d31…`): o código Python de integração com
-o Orca era idêntico, só o motor JavaScript embutido mudou (commits de "Nozzle size" e do limite
-de altura de camada). Por isso o arquivo testado fica guardado aqui.
+The `plugins-latest` release is rebuilt on every push to support-fins, and the plugin version
+(`0.1.0`) does **not** change. By 17:41 the same day it already had a different sha256
+(`d4e90d31…`): the Python glue code for Orca was identical, only the bundled JavaScript engine had
+changed (the "Nozzle size" commits and the new layer-height cap). That is why the tested file is
+kept here.
 
-Instalar esta cópia:
+Install this copy:
 
 ```bash
 PLUGIN_FILE=plugins/support-fins/support_fins_orca-65df17fa.py scripts/install-support-fins.sh
 ```
 
-Licença: MIT, © 2026 gittrahan (ver `LICENSE-support-fins`).
+License: MIT, © 2026 gittrahan (see `LICENSE-support-fins`).

@@ -1,48 +1,49 @@
 # OrcaSlicer Plugin Lab
 
-Diário de experiências pessoais com o **sistema de plugins em Python do OrcaSlicer**:
-o que foi instalado, como foi feito e o que aconteceu de fato em cada sistema.
+A personal lab notebook for the **OrcaSlicer Python plugin system**: what was installed, how it
+was done, and what actually happened on each operating system.
 
-- **Autor / testes:** J. Lerner
-- **Impressora de referência:** Creality K2 Pro (Klipper), ver [k2-pro-klipper](https://github.com/jglerner/k2-pro-klipper)
-- **Pasta de trabalho local:** `~/Projects/Orcaslicer/` (o mesmo caminho no Linux e no macOS)
+- **Author / tester:** J. Lerner
+- **Reference printer:** Creality K2 Pro (Klipper), see [k2-pro-klipper](https://github.com/jglerner/k2-pro-klipper)
+- **Local working folder:** `~/Projects/Orcaslicer/` (same path on Linux and macOS)
+- **Language:** English (all documents in this repository)
 
-## Ponto de partida importante
+## Important starting point
 
-O sistema de plugins **não existe na versão estável 2.4.2**. Segundo o wiki oficial, ele está
-disponível em "[Nightly builds](https://github.com/OrcaSlicer/OrcaSlicer/releases/tag/nightly-builds)
-ou releases maiores que **2.4.2**". Em 13/10/2026 a última estável ainda é a 2.4.2, então
-todos os testes usam uma **nightly** instalada **ao lado** da estável.
+The plugin system **does not exist in the 2.4.2 stable release**. According to the official wiki
+it is available in "[Nightly builds](https://github.com/OrcaSlicer/OrcaSlicer/releases/tag/nightly-builds)
+or releases greater than **2.4.2**". As of 13 Oct 2026 the latest stable release is still 2.4.2, so
+every test uses a **nightly** build installed **alongside** any stable install.
 
-## Experimentos
+## Experiments
 
-| # | Plugin | Origem | Linux | macOS |
+| # | Plugin | Source | Linux | macOS |
 |---|--------|--------|-------|-------|
-| 1 | Support Fins (fins de suporte destacáveis do printfins.com) | [gittrahan/support-fins](https://github.com/gittrahan/support-fins/tree/main/plugins/orca) | [Capítulo 1](docs/support-fins/01-Linux.md) ✅ | [Capítulo 2](docs/support-fins/02-macOS.md) ✅ fins idênticas às do Linux |
+| 1 | Support Fins (printfins.com breakaway support fins) | [gittrahan/support-fins](https://github.com/gittrahan/support-fins/tree/main/plugins/orca) | [Chapter 1](docs/support-fins/01-Linux.md) ✅ | [Chapter 2](docs/support-fins/02-macOS.md) ✅ fins identical to Linux |
 
-Comece por [Support Fins: visão geral](docs/support-fins/00-Visao_Geral.md).
+Start with the [Support Fins overview](docs/support-fins/00-Overview.md).
 
-## Estrutura
+## Repository layout
 
 ```
-docs/support-fins/     visão geral + um capítulo por sistema operacional
-scripts/               instalação, coleta de logs (Linux e macOS) e lançador da nightly (Linux)
-logs/linux/, logs/macos/   logs e resultados copiados dos testes reais
-plugins/support-fins/  cópia exata do plugin testado (mesmo sha256 nos dois sistemas)
-projects/              projetos .3mf do Orca usados nos testes (mesma peça e mesmas configurações)
-docs/support-fins/img/ fotos das impressões (linux/, macos/)
+docs/support-fins/       overview + one chapter per operating system + upstream issue
+docs/support-fins/img/   print photos (linux/, macos/)
+scripts/                 install, log collection (Linux and macOS) and nightly launcher (Linux)
+logs/                    logs from real runs (linux/, macos/, compare-YYYYMMDD/)
+plugins/support-fins/    exact copy of the plugin build that was tested (same sha256 on both OSes)
+projects/                Orca .3mf projects used in the tests (same part, same settings)
 ```
 
-## Layout local sugerido (igual nos dois sistemas)
+## Suggested local layout (same on both systems)
 
 ```
 ~/Projects/Orcaslicer/
-├── OrcaSlicer_Plugin_Lab/      ← este repositório (git clone)
-├── apps/                       ← nightly AppImage (Linux) / .dmg baixado (macOS)
-├── backups/                    ← cópia da pasta de configuração do Orca antes de testar
-└── downloads/                  ← arquivos de plugin baixados (com SHA-256 registrado)
+├── OrcaSlicer_Plugin_Lab/      ← this repository (git clone)
+├── apps/                       ← nightly AppImage (Linux) / downloaded .dmg and app (macOS)
+├── backups/                    ← copy of the Orca configuration folder taken before testing
+└── downloads/                  ← downloaded plugin files (SHA-256 recorded in SHA256SUMS.txt)
 ```
 
-## Licença
+## License
 
-Documentação: MIT. Os plugins testados têm as licenças próprias deles (Support Fins: MIT).
+Documentation: MIT. The tested plugins keep their own licenses (Support Fins: MIT).
