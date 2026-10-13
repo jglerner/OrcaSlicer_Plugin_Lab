@@ -275,4 +275,6 @@ Observações:
 - 15:26: impressão iniciada pelo Fluidd (`xyzCalibration_cube_PLA_49m19s.gcode`, 1,7 MB, 268 camadas
   na contagem do Fluidd). Bico 220 °C, mesa 50 °C, PA 0,038. O Gcode Preview do Fluidd mostra as 3 fins
   saindo da base, com o brim em volta, então o G-code carrega a geometria injetada pelo plugin.
+- 15:32: 14%, camada 22/268 (Z 4,42 mm), sem problemas. Bico 220 °C, mesa 50 °C, câmara 32 °C,
+  velocidade 129,7 mm/s, aceleração 12 000 mm/s² (do perfil). Previsão de término às 16:12.
 - Resultado: _(pendente)_
