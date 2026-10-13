@@ -162,3 +162,6 @@ tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/Library/App
     que a pasta de configuração exista.
 - Observação: no zsh (padrão do macOS), um `ls` com padrão sem correspondência aborta a linha
   inteira (`zsh: no matches found`). Nos comandos deste capítulo, evitar curingas soltos.
+- **Decisão:** sem nenhum Orca neste Mac, a **nightly é a única instalação**. Ela fica mesmo assim em
+  `~/Projects/Orcaslicer/apps/OrcaSlicer-Nightly.app`, para manter o mesmo layout do Linux e não ocupar
+  o nome `OrcaSlicer.app` em `/Applications`, reservado para uma estável futura.
