@@ -125,7 +125,7 @@ tail -f ~/.config/OrcaSlicer/log/python_*.log
 | 9 | Girar a peça + refatiar → fins acompanham | | |
 | 10 | G-code enviado à K2 Pro e impresso | ✅ | 49 min 49 s, 7,39 m |
 | 11 | 1ª camada da base (pad) ok | ✅ | com brim de 5 linhas; topo da base irregular |
-| 12 | Fins destacam limpas | | |
+| 12 | Fins destacam limpas | ⚠️ | saem com a mão; deixam cicatriz na face apoiada |
 | 13 | 2.4.2 estável continua abrindo normalmente | | |
 
 ## Como voltar atrás
@@ -303,4 +303,33 @@ Observações:
   - **Base oval + brim:** aderiu bem e não descolou. O topo da base ficou irregular, com pequenas
     bolhas e marcas de passagem, sem importância porque a base é descartável.
   - Face apoiada nas fins (vista de baixo): plana e lisa, com uma linha diagonal na junção com a cunha.
-- Resultado: **sucesso de impressão** ✅ _(pendente: remoção das fins e marcas dos tines)_
+- **Remoção:** tudo saiu **com a mão**, sem ferramenta. Fins, cunhas e base oval saíram juntos numa
+  peça só, mais uma plaquinha quadrada com marcas de tines em "Y".
+- **Cicatrizes:** a face que estava apoiada nas fins ficou áspera, com fios, linhas repuxadas e
+  trechos arrancados onde os tines e as pontas das fins encostavam. As faces livres (X, Y, Z) estão boas.
+- **Avaliação de J. Lerner:** baixar um pouco a velocidade e aumentar o tempo por camada;
+  temperatura (220 °C) pareceu alta para esta peça, então vale uma torre de temperatura; e
+  melhorar o contato entre fins e peça para reduzir as cicatrizes. Não era o objetivo deste
+  teste rápido.
+- Resultado: **plugin aprovado no Linux** ✅. Instala, roda, injeta as fins no G-code, a impressão
+  sustenta o overhang e as fins saem com a mão. O acabamento da face apoiada ainda precisa de
+  calibração.
+
+## Próximos testes (Linux), uma variável por vez
+
+1. **Torre de temperatura** do Orca (*Calibration ▸ Temperature*) para este PLA, de 190 a 230 °C.
+2. **Peças de calibração do próprio Support Fins** (`web/calibration/` no repositório; guia em
+   `docs/CALIBRATION.md`). Imprimir **sem** o plugin, porque as fins já vêm dentro do arquivo:
+   - `angle-coupon.stl`: em que ângulo a face precisa de suporte (o "Overhang");
+   - `grip-coupon.3mf`: quantos tines por fin. Rampa marcada ou arrancada nos tines significa
+     grip demais. O diagnóstico das cicatrizes deste teste começa por aqui;
+   - `gap-coupon.3mf`: a folga entre a fin e a peça (padrão 0,2 mm, ou seja 1 camada);
+   - `pad-coupon.3mf`: quão fácil a base solta.
+3. Repetir o `xyzCalibration_cube` com o resultado das calibrações e comparar a face apoiada.
+
+> **Limitação do plugin no Orca:** a aba Config só repassa ao motor `coverage`, `tines`,
+> `tine_density` e `bed_pad`. **Overhang (threshold), material (PLA/PETG), estilo da base e
+> cutouts** existem no motor (`plugins/shared/engine/options.json`), mas o plugin do Orca não os
+> lê, e **a folga (gap) é fixa em 0,2 mm** no motor (`web/prop/config.js`). O que as calibrações
+> indicarem para esses parâmetros não tem onde ser ajustado no Orca hoje; vale abrir uma issue no
+> support-fins.
