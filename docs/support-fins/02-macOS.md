@@ -234,3 +234,6 @@ tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/Library/App
   (commits do support-fins de 13/10 à tarde: campo "Nozzle size" e altura de camada máxima de 0,6 mm).
 - Para manter "banana com banana", a cópia exata do Linux foi publicada em
   `plugins/support-fins/support_fins_orca-65df17fa.py` e reinstalada com `PLUGIN_FILE=…`.
+- Menu **Plugins** encontrado; Support Fins **Activated** (numpy + mini-racer instalados pelo `uv`).
+  No Mac, o menu fica na barra de menus do sistema, não dentro da janela como no Linux. O painel de processo
+  abriu no modo simples: a seção *Slicing Pipeline Plugin* só aparece no modo **Advanced**.
