@@ -277,4 +277,8 @@ Observações:
   saindo da base, com o brim em volta, então o G-code carrega a geometria injetada pelo plugin.
 - 15:32: 14%, camada 22/268 (Z 4,42 mm), sem problemas. Bico 220 °C, mesa 50 °C, câmara 32 °C,
   velocidade 129,7 mm/s, aceleração 12 000 mm/s² (do perfil). Previsão de término às 16:12.
+- Camada 72 (14,4 mm), no Gcode Preview do Fluidd: as 3 fins aparecem como paredes finas
+  (um laço estreito cada) **fora** da seção do cubo, ainda subindo até a face inclinada, que elas
+  alcançam por volta de 17,5 mm. A seção do cubo mostra paredes, infill esparso, o entalhe da
+  letra e uma faixa de preenchimento sólido junto à borda das fins.
 - Resultado: _(pendente)_
