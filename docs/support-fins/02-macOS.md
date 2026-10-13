@@ -200,3 +200,25 @@ tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/Library/App
   Support Fins com a config padrão. A única variável é o sistema operacional (e, sem querer, o build
   da nightly).
 - Teste de temperatura (torre) fica **depois** do comparativo.
+
+### 2026-10-13 17:10–17:26: ⚠️ primeira abertura travou o Mac (reboot forçado)
+
+- A nightly foi aberta pelo `open`. O assistente foi concluído (K2 Pro 0.4; a configuração em
+  `~/Library/Application Support/OrcaSlicer` foi criada às 17:10–17:13). Por volta das 17:18 a
+  janela foi posta em **tela cheia** (botão verde) e a tela congelou, cobrindo até a barra de
+  tarefas. ⌘Tab e ⌥⌘Esc não resolveram: **reboot forçado**.
+- Depois do reboot, o macOS **reabriu o Orca sozinho** ("Restored"). Cuidado com isso.
+- **Análise do log** (`debug_Tue_Oct_13_17_10_45_90742.log.0`, 13 MB):
+  - O log termina às **17:25:36** com a tarefa periódica `process_ui_task{type:Backup}` a cada 10 s,
+    rodando na thread principal (a da interface). Ou seja, **o laço de eventos do Orca continuava
+    vivo até o reboot**: o app não estava travado. O congelamento foi na **tela/janela em tela cheia**
+    (servidor de janelas do macOS 27 ou a parte gráfica), não no processamento do Orca.
+  - As linhas mais repetidas (`set_printer_hold_alias`, `select_preset`) são o carregamento normal
+    dos perfis de todos os fabricantes: centenas de linhas, não um laço infinito.
+  - Erros que valem nota:
+    - `get_version_from_json: parse …/OrcaSlicer-Nightly.app/Contents/Resources/profiles/OrcaFilamentLibrary.json`
+      e `…/Creality.json`: *"unexpected end of input"* na linha 1, ou seja, **arquivo lido como vazio**. A investigar:
+      cópia incompleta do app ou falha de leitura.
+    - `3DconnexionClient` ausente e `Unsupported printer type: Moonraker Printer`: inofensivos.
+- Lições: **não usar tela cheia** com a nightly neste Mac; abrir pelo Terminal
+  (`…/OrcaSlicer-Nightly.app/Contents/MacOS/OrcaSlicer`) para ver as mensagens ao vivo.
