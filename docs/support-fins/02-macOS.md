@@ -217,8 +217,11 @@ tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/Library/App
     dos perfis de todos os fabricantes: centenas de linhas, não um laço infinito.
   - Erros que valem nota:
     - `get_version_from_json: parse …/OrcaSlicer-Nightly.app/Contents/Resources/profiles/OrcaFilamentLibrary.json`
-      e `…/Creality.json`: *"unexpected end of input"* na linha 1, ou seja, **arquivo lido como vazio**. A investigar:
-      cópia incompleta do app ou falha de leitura.
+      e `…/Creality.json`: *"unexpected end of input"* na linha 1. **Investigado: inofensivo.** Esses
+      `.json` não existem no app (o app tem 779 MB e está completo). A nightly 2.5 distribui os perfis
+      dos fabricantes como **cache `.opc`** (`Resources/profiles/<Fabricante>.opc`), e a função
+      `installable_cache_version` (`src/libslic3r/utils.cpp`) chama `get_version_from_json` no `.json`
+      ausente, que registra esse erro e segue em frente. É ruído de log.
     - `3DconnexionClient` ausente e `Unsupported printer type: Moonraker Printer`: inofensivos.
 - Lições: **não usar tela cheia** com a nightly neste Mac; abrir pelo Terminal
   (`…/OrcaSlicer-Nightly.app/Contents/MacOS/OrcaSlicer`) para ver as mensagens ao vivo.
