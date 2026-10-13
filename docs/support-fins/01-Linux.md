@@ -264,7 +264,7 @@ Observações:
 ### 2026-10-13: 1ª impressão de teste (em andamento)
 
 - Peça: o mesmo `xyzCalibration_cube` inclinado. Perfil 0.20mm Standard, Generic PLA.
-- Mudanças em relação ao padrão: **infill mínimo** e **brim manual de 5 linhas**, em vez do Auto
+- Mudanças em relação ao padrão: **infill de 6 %** (sparse infill density) e **brim de 5 mm** (o Orca mede o brim em mm; o consumo do brim, 1 min 12 s e 0,44 g, foi igual ao do Auto brim padrão), em vez do Auto
   brim, para garantir que não descole da mesa. Fora isso, nada mudou.
 - Avaliar: aderência da base (pad) na 1ª camada, fins inteiras até o topo, se as fins se soltam
   da peça e o acabamento das faces que ficaram apoiadas.

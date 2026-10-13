@@ -195,7 +195,7 @@ tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/Library/App
   não são afetados), **Bambu Network Plugin não instalado** (não serve para a K2 Pro), **sem login**
   na Orca Cloud.
 - **Condições iguais às do Linux ("banana com banana"):** mesma peça e mesma pose, perfil
-  `0.20mm Standard @Creality K2 Pro 0.4 nozzle`, Generic PLA a **220 °C** (no Linux também foi 220 °C;
+  `0.20mm Standard @Creality K2 Pro 0.4 nozzle`, Generic PLA a **220 °C**, **infill de 6 %**, **brim Auto de 5 mm** (no Linux também foi 220 °C;
   os 240 °C vistos no início são da purga do CFS), mesa 50 °C, infill mínimo, brim de 5 linhas,
   Support Fins com a config padrão. A única variável é o sistema operacional (e, sem querer, o build
   da nightly).
@@ -239,3 +239,8 @@ tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/Library/App
   abriu no modo simples: a seção *Slicing Pipeline Plugin* só aparece no modo **Advanced**.
 - 18:02: plugin reinstalado a partir da cópia do repositório: **sha256 `65df17fa…963f`** ✅, o mesmo
   arquivo usado no Linux.
+- 18:09: painel de processo estava no **modo simples** (sem a aba Speed; Others só com Skirt, Brim, Special
+  mode e Fuzzy skin). A seção *Slicing Pipeline Plugin* só aparece com a chave do modo avançado ligada.
+  Brim já estava Auto/5 mm, igual ao Linux. Infill a ajustar para 6 %.
+- Print de tela no Mac com teclado Bluetooth UGreen: os atalhos ⇧⌘3/⇧⌘4 não funcionaram. Alternativa
+  pelo Terminal: `screencapture -T 5 ~/Desktop/orca.png`.
