@@ -272,4 +272,7 @@ Observações:
   base está cercada pelo brim. A 4ª fin do log é o conjunto de 24,3 a 34,7 mm, que nasce na própria
   peça e não na mesa. Enable support desligado; infill esparso caiu para 4,26 g.
 - Estimativa do Orca: 49 min 19 s, 21,56 g (7,17 m). **Velocidades padrão do perfil**, de propósito; aumentar só num teste seguinte, mudando uma variável por vez.
+- 15:26: impressão iniciada pelo Fluidd (`xyzCalibration_cube_PLA_49m19s.gcode`, 1,7 MB, 268 camadas
+  na contagem do Fluidd). Bico 220 °C, mesa 50 °C, PA 0,038. O Gcode Preview do Fluidd mostra as 3 fins
+  saindo da base, com o brim em volta, então o G-code carrega a geometria injetada pelo plugin.
 - Resultado: _(pendente)_
