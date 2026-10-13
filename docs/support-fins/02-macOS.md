@@ -11,7 +11,7 @@
 | macOS / versão | macOS 27.0.1 (build 26A434), Mac mini |
 | Chip | Apple Silicon (`arm64`) |
 | OrcaSlicer estável instalado | **nenhum neste Mac mini** (nada em `/Applications/Orca*` e sem `~/Library/Application Support/OrcaSlicer`) |
-| OrcaSlicer nightly testado | (data e hash do build, em OrcaSlicer ▸ About) |
+| OrcaSlicer nightly testado | **2.5.0-dev** (`CFBundleShortVersionString`), `.dmg` de 13/10/2026 17:52 UTC, sha256 `7fcc7776…09ba` |
 | Plugin: versão / sha256 | (o script de instalação imprime os dois) |
 | Perfil de impressora | Creality K2 Pro |
 
@@ -187,3 +187,4 @@ tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/Library/App
   diskutil image attach --mountOptions nobrowse --mountPoint /tmp/orca-dmg OrcaSlicer_Mac_universal_nightly-AAAAMMDD.dmg
   diskutil eject /tmp/orca-dmg
   ```
+- Versão do app: **2.5.0-dev**, a mesma série do Linux (2.5.0).
