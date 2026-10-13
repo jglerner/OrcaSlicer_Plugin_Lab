@@ -284,4 +284,7 @@ Observações:
 - Camada 85 (17,0 mm), o ponto crítico: no Gcode Preview, as 3 fins são só pontas curtas encostadas
   na borda do cubo (a fase dos tines). Na câmera a peça está firme, com a face inclinada apoiada nas fins,
   e a base com o brim bem assentada na mesa. Sem descolamento visível.
+- 54% (camada 120/268, Z 24,02 mm), 25 min 10 s decorridos. Restante: 21 min 16 s pelo Fluidd e
+  24 min 8 s pelo fatiador, então a impressora está uns **3 min à frente** da estimativa do Orca, com
+  aceleração de 12 000 mm/s² e SCV de 4 mm/s. A essa altura começa a 4ª fin (24,3 a 34,7 mm).
 - Resultado: _(pendente)_
