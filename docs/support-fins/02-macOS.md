@@ -188,3 +188,15 @@ tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/Library/App
   diskutil eject /tmp/orca-dmg
   ```
 - Versão do app: **2.5.0-dev**, a mesma série do Linux (2.5.0).
+
+### 2026-10-13: assistente inicial e condições do comparativo
+
+- Assistente: **Stealth Mode ligado** (desliga só os recursos de nuvem; plugins locais e o `uv`
+  não são afetados), **Bambu Network Plugin não instalado** (não serve para a K2 Pro), **sem login**
+  na Orca Cloud.
+- **Condições iguais às do Linux ("banana com banana"):** mesma peça e mesma pose, perfil
+  `0.20mm Standard @Creality K2 Pro 0.4 nozzle`, Generic PLA a **220 °C** (no Linux também foi 220 °C;
+  os 240 °C vistos no início são da purga do CFS), mesa 50 °C, infill mínimo, brim de 5 linhas,
+  Support Fins com a config padrão. A única variável é o sistema operacional (e, sem querer, o build
+  da nightly).
+- Teste de temperatura (torre) fica **depois** do comparativo.
