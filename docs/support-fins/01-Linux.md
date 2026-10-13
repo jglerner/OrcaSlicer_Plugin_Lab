@@ -165,3 +165,11 @@ tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/.config
   O número de versão não identifica o build; **o sha256 identifica**. Para o macOS dar o mesmo
   resultado, ele precisa usar este mesmo arquivo. Se `plugins-latest` mudar antes, copiar o `.py`
   de `~/Projects/Orcaslicer/downloads/` do Linux para o Mac.
+
+### 2026-10-13: primeira abertura da nightly
+
+- Apareceu o aviso de migração "Bambu Cloud → Orca Cloud" (sincronização de perfis desde a 2.4.0).
+  Os perfis daqui nunca foram sincronizados pela Bambu Cloud, então o aviso foi **ignorado**.
+- Decisão: **não fazer login na Orca Cloud na nightly.** Um perfil com o plugin, se sincronizado,
+  chegaria às outras instalações (por exemplo a 2.4.2 do Mac), que não têm o plugin, e lá o Orca
+  bloqueia o fatiamento com o aviso "missing plugin".
