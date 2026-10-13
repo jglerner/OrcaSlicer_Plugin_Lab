@@ -115,7 +115,7 @@ tail -f ~/.config/OrcaSlicer/log/python_*.log
 | # | Verificação | Resultado | Observação |
 |---|---|---|---|
 | 1 | Nightly abre e mostra o menu **Plugins** | ✅ abre (2.5.0) | só com `scripts/orca-nightly.sh` (Wayland) |
-| 2 | Plugin aparece na lista com versão 0.1.0 | | |
+| 2 | Plugin aparece na lista com versão 0.1.0 | ✅ | aba Config mostra o JSON padrão |
 | 3 | Ativação instala `numpy` + `mini-racer` sem erro | | |
 | 4 | "Slicing Pipeline Plugin" aparece no perfil (Advanced ▸ Others) | | |
 | 5 | Pedidos de permissão aparecem e são aceitos | | |
@@ -190,3 +190,12 @@ tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/.config
   **Abriu, versão 2.5.0.** Ainda não foi isolado qual das três variáveis é a necessária.
 - Criado o `scripts/orca-nightly.sh` para não precisar digitar as variáveis toda vez.
 - Checklist: item 1 (nightly abre) ✅, com a ressalva do Wayland.
+
+### 2026-10-13: plugin na janela Plugins
+
+- Support Fins listado, **versão 0.1.0**, inicialmente *Inactive*.
+- A aba **Config** mostra o JSON padrão do plugin (`apply_to: no-supports`, `bed_pad: true`,
+  `coverage: 0.5`, `enabled: true`, `tine_density: 0`, `tines: true`), sinal de que o Orca carregou
+  o arquivo e leu o `get_default_config()`.
+- Confusão comum: as fins **não** aparecem em Support ▸ Type (que só tem Normal e Tree). O caminho
+  certo é o menu **Plugins** mais **Others ▸ Slicing Pipeline Plugin** no perfil de processo.
