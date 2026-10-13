@@ -6,9 +6,9 @@
 
 | Item | Valor |
 |---|---|
-| Distribuição / versão | |
+| Distribuição / versão | Debian GNU/Linux 13 (trixie) |
 | Desktop (X11/Wayland) | |
-| OrcaSlicer estável instalado | 2.4.2, AppImage (instalada pelas Releases do GitHub) |
+| OrcaSlicer estável instalado | **2.3.0**, AppImage em `~/Applications/orca/` (sem atalho no menu; a 2.4.2 não está neste Linux) |
 | OrcaSlicer nightly testado | (data e hash do build, em Help ▸ About) |
 | Plugin: versão / sha256 | (o script de instalação imprime os dois) |
 | Perfil de impressora | Creality K2 Pro |
@@ -34,7 +34,11 @@ git clone https://github.com/jglerner/OrcaSlicer_Plugin_Lab.git
    ```bash
    chmod +x ~/Projects/Orcaslicer/apps/OrcaSlicer*nightly*.AppImage
    ```
-   Se reclamar de FUSE: `sudo apt install libfuse2` (Ubuntu 22.04) ou `libfuse2t64` (Ubuntu 24.04+).
+   Se reclamar de FUSE: `sudo apt install libfuse2t64` (Debian 13 / Ubuntu 24.04+) ou `libfuse2` (Ubuntu 22.04).
+
+**Neste Linux** os AppImages ficam em `~/Applications/orca/`, a convenção que já existia.
+A nightly vai para o mesmo lugar: `~/Applications/orca/`. Os documentos, backups e
+downloads ficam em `~/Projects/Orcaslicer/`.
 
 > **Não abra a nightly ainda.** Primeiro o backup (passo 2).
 
@@ -132,4 +136,11 @@ tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/.config
 
 ## Diário
 
-_(anote aqui, por data, o que aconteceu em cada teste)_
+### 2026-10-13: levantamento da máquina Linux
+
+- Debian 13 (trixie).
+- Única versão instalada: `~/Applications/orca/OrcaSlicer_Linux_AppImage_V2.3.0.AppImage`, **não a 2.4.2**. Sem atalho em `~/.local/share/applications`.
+- `~/.config/OrcaSlicer`: 4,6 MB, último uso em 24/08. Já existe um `user_backup-v2.3.0/`,
+  criado pelo próprio Orca ao atualizar de versão. A nightly deve criar outro igual, mas o
+  backup do script é o que vale para restaurar.
+- Decisão: manter a 2.3.0 como estava e pôr a nightly ao lado, em `~/Applications/orca/`.
