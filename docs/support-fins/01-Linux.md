@@ -144,3 +144,12 @@ tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/.config
   criado pelo próprio Orca ao atualizar de versão. A nightly deve criar outro igual, mas o
   backup do script é o que vale para restaurar.
 - Decisão: manter a 2.3.0 como estava e pôr a nightly ao lado, em `~/Applications/orca/`.
+
+### 2026-10-13: escolha do arquivo da nightly
+
+- Arquivo: `OrcaSlicer_Linux_AppImage_Ubuntu2404_nightly.AppImage` (x86_64, 204 MB).
+  sha256 publicado: `b5f4b191b740a1e14cfb96748aa21b4cd68d96f32a577dd085a310fbf5d60b10`.
+- Descartados: as variantes `aarch64` (ARM), `_belt` (impressoras de esteira), o Flatpak
+  (usa outra pasta de configuração) e os utilitários `profile_validator` e `generate_system_cache`.
+- O nome do arquivo é igual todo dia. Ele é salvo **com a data no nome**
+  (`..._nightly-AAAAMMDD.AppImage`) para sabermos qual build foi testado.

@@ -35,7 +35,7 @@ git clone https://github.com/jglerner/OrcaSlicer_Plugin_Lab.git
 
 ## Passo 1: instalar a nightly SEM substituir a 2.4.2
 
-1. Em <https://github.com/OrcaSlicer/OrcaSlicer/releases/tag/nightly-builds>, baixe o **.dmg de macOS** para `~/Projects/Orcaslicer/apps/`. Se houver versões separadas, use a do seu chip (arm64 ou x86_64) ou a *universal*.
+1. Em <https://github.com/OrcaSlicer/OrcaSlicer/releases/tag/nightly-builds>, baixe **`OrcaSlicer_Mac_universal_nightly.dmg`** (universal: serve para Apple Silicon e Intel) para `~/Projects/Orcaslicer/apps/`. **Não** use o `OrcaSlicer_profile_validator_Mac_universal_nightly.dmg`, que é um utilitário. Confira o sha256 com `shasum -a 256` contra o valor da página.
 2. Abra o `.dmg`. **Não arraste direto para Aplicativos**: o app tem o mesmo nome `OrcaSlicer.app` e substituiria a 2.4.2. Arraste para `~/Projects/Orcaslicer/apps/` e renomeie:
    ```bash
    mv ~/Projects/Orcaslicer/apps/OrcaSlicer.app ~/Projects/Orcaslicer/apps/OrcaSlicer-Nightly.app
