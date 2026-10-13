@@ -244,3 +244,5 @@ tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/Library/App
   Brim já estava Auto/5 mm, igual ao Linux. Infill a ajustar para 6 %.
 - Print de tela no Mac com teclado Bluetooth UGreen: os atalhos ⇧⌘3/⇧⌘4 não funcionaram. Alternativa
   pelo Terminal: `screencapture -T 5 ~/Desktop/orca.png`.
+- Projeto do Linux salvo como `.3mf` e passado ao Mac (por WhatsApp), depois aberto na nightly do Mac. Assim
+  peça, pose e configurações vêm do mesmo arquivo. (A cópia deve ir também para `projects/` no repositório.)
