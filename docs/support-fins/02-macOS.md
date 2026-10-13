@@ -237,3 +237,5 @@ tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/Library/App
 - Menu **Plugins** encontrado; Support Fins **Activated** (numpy + mini-racer instalados pelo `uv`).
   No Mac, o menu fica na barra de menus do sistema, não dentro da janela como no Linux. O painel de processo
   abriu no modo simples: a seção *Slicing Pipeline Plugin* só aparece no modo **Advanced**.
+- 18:02: plugin reinstalado a partir da cópia do repositório: **sha256 `65df17fa…963f`** ✅, o mesmo
+  arquivo usado no Linux.
