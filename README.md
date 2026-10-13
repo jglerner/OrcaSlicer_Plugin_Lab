@@ -26,7 +26,7 @@ Comece por [Support Fins: visão geral](docs/support-fins/00-Visao_Geral.md).
 
 ```
 docs/support-fins/     visão geral + um capítulo por sistema operacional
-scripts/               scripts de instalação e coleta de logs (servem para Linux e macOS)
+scripts/               instalação, coleta de logs (Linux e macOS) e lançador da nightly (Linux)
 logs/linux/, logs/macos/   logs e resultados copiados dos testes reais
 ```
 

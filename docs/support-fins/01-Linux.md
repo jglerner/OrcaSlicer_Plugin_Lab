@@ -9,7 +9,7 @@
 | Distribuição / versão | Debian GNU/Linux 13 (trixie), kernel 6.12.111+deb13-amd64, x86_64 |
 | Desktop (X11/Wayland) | |
 | OrcaSlicer estável instalado | **2.3.0**, AppImage em `~/Applications/orca/` (sem atalho no menu; a 2.4.2 não está neste Linux) |
-| OrcaSlicer nightly testado | (data e hash do build, em Help ▸ About) |
+| OrcaSlicer nightly testado | **2.5.0** (nightly de 13/10/2026), aberta com `scripts/orca-nightly.sh` |
 | Plugin: versão / sha256 | 0.1.0 / `65df17faabfbd870918b3f0fdc95e460229241afb996e2fb8ab830871706963f` (build de `plugins-latest` após o commit `a517023` do support-fins, 13/10/2026) |
 | Perfil de impressora | Creality K2 Pro |
 
@@ -63,10 +63,14 @@ apontando para o `.py` baixado.
 
 ## Passo 3: ativar o plugin
 
-1. Abra a **nightly**:
+1. Abra a **nightly** pelo lançador:
    ```bash
-   ~/Projects/Orcaslicer/apps/OrcaSlicer*nightly*.AppImage
+   ~/Projects/Orcaslicer/OrcaSlicer_Plugin_Lab/scripts/orca-nightly.sh
    ```
+   Abrindo o AppImage direto numa sessão **Wayland**, a janela não aparece: o terminal mostra
+   só `Gtk-WARNING ... gtk_window_set_titlebar()` e volta ao prompt. O lançador força X11
+   (`GDK_BACKEND=x11`), desliga a aceleração do WebKit (`WEBKIT_DISABLE_DMABUF_RENDERER=1`,
+   `WEBKIT_DISABLE_COMPOSITING_MODE=1`) e grava a saída em `~/Projects/Orcaslicer/runs/`.
 2. Menu principal ▸ **Plugins**. O "Support Fins" aparece como *Inactive*.
 3. Marque **Activate**. Expanda a linha e confira se a capability *Support Fins* (tipo slicing pipeline) também está marcada.
 4. Na primeira ativação, o `uv` do Orca baixa `numpy` e `mini-racer`, o que pode levar um tempo. Se der erro, veja a aba **Diagnostics**.
@@ -110,7 +114,7 @@ tail -f ~/.config/OrcaSlicer/log/python_*.log
 
 | # | Verificação | Resultado | Observação |
 |---|---|---|---|
-| 1 | Nightly abre e mostra o menu **Plugins** | | |
+| 1 | Nightly abre e mostra o menu **Plugins** | ✅ abre (2.5.0) | só com `scripts/orca-nightly.sh` (Wayland) |
 | 2 | Plugin aparece na lista com versão 0.1.0 | | |
 | 3 | Ativação instala `numpy` + `mini-racer` sem erro | | |
 | 4 | "Slicing Pipeline Plugin" aparece no perfil (Advanced ▸ Others) | | |
@@ -173,3 +177,16 @@ tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/.config
 - Decisão: **não fazer login na Orca Cloud na nightly.** Um perfil com o plugin, se sincronizado,
   chegaria às outras instalações (por exemplo a 2.4.2 do Mac), que não têm o plugin, e lá o Orca
   bloqueia o fatiamento com o aviso "missing plugin".
+
+### 2026-10-13 09:52–10:00: a nightly não abria (Wayland)
+
+- Abrindo o AppImage direto, a janela não aparecia nem na 1ª nem na 2ª tentativa. O terminal mostrava só:
+  ```
+  Gtk-WARNING **: gtk_window_set_titlebar() called on a realized window
+  Gdk-WARNING **: .../gdk/wayland/gdkcursor-wayland.c:251 cursor image size (45x45) not an integer multiple of scale (2)
+  ```
+- Solução: fechar qualquer processo que tivesse sobrado (`pkill -f orca-slicer`) e abrir com
+  `GDK_BACKEND=x11 WEBKIT_DISABLE_DMABUF_RENDERER=1 WEBKIT_DISABLE_COMPOSITING_MODE=1`.
+  **Abriu, versão 2.5.0.** Ainda não foi isolado qual das três variáveis é a necessária.
+- Criado o `scripts/orca-nightly.sh` para não precisar digitar as variáveis toda vez.
+- Checklist: item 1 (nightly abre) ✅, com a ressalva do Wayland.
