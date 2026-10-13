@@ -292,3 +292,8 @@ diferença real até aqui é a de ambiente: o congelamento em tela cheia no macO
   pôr 0,038. A purga menor deve vir dos "Flushing volumes" do projeto ou da cor do filamento anterior.
   **A geometria (fins) é idêntica; o PA ligeiramente diferente pode mudar um pouco o acabamento.**
 - Resultado: _(pendente)_
+- **Pressure Advance, plano de J. Lerner:** o 0,038 do `printer.cfg` vale só para este teste. O 0,04 veio de
+  um valor calibrado antes, herdado pelo perfil/projeto. Próximo passo: **recalibrar o PA**
+  (Orca ▸ Calibration ▸ Pressure Advance) e gravar o valor encontrado no `printer.cfg`. Para não haver
+  divergência entre máquinas, manter **uma única fonte**: o `printer.cfg`, com *Enable pressure advance*
+  desligado nos perfis de filamento, ou o perfil de filamento, mas não os dois.
