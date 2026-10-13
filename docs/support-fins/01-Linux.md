@@ -281,4 +281,7 @@ Observações:
   (um laço estreito cada) **fora** da seção do cubo, ainda subindo até a face inclinada, que elas
   alcançam por volta de 17,5 mm. A seção do cubo mostra paredes, infill esparso, o entalhe da
   letra e uma faixa de preenchimento sólido junto à borda das fins.
+- Camada 85 (17,0 mm), o ponto crítico: no Gcode Preview, as 3 fins são só pontas curtas encostadas
+  na borda do cubo (a fase dos tines). Na câmera a peça está firme, com a face inclinada apoiada nas fins,
+  e a base com o brim bem assentada na mesa. Sem descolamento visível.
 - Resultado: _(pendente)_
