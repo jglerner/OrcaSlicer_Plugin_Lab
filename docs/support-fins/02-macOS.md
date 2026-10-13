@@ -8,9 +8,9 @@
 
 | Item | Valor |
 |---|---|
-| macOS / versão | |
-| Chip | Apple Silicon (arm64) / Intel (x86_64): `uname -m` |
-| OrcaSlicer estável instalado | 2.4.2 (sem login na Orca Cloud) |
+| macOS / versão | macOS 27.0.1 (build 26A434), Mac mini |
+| Chip | Apple Silicon (`arm64`) |
+| OrcaSlicer estável instalado | **nenhum neste Mac mini** (nada em `/Applications/Orca*` e sem `~/Library/Application Support/OrcaSlicer`) |
 | OrcaSlicer nightly testado | (data e hash do build, em OrcaSlicer ▸ About) |
 | Plugin: versão / sha256 | (o script de instalação imprime os dois) |
 | Perfil de impressora | Creality K2 Pro |
@@ -149,4 +149,16 @@ tar -xzf ~/Projects/Orcaslicer/backups/OrcaSlicer-<data>.tar.gz -C ~/Library/App
 
 ## Diário
 
-_(anote aqui, por data, o que aconteceu em cada teste)_
+### 2026-10-13 16:44–16:56: levantamento do Mac
+
+- Mac mini, macOS 27.0.1, Apple Silicon (`arm64`).
+- `~/Projects/Orcaslicer/{apps,backups,downloads}` criados e o repositório clonado em
+  `~/Projects/Orcaslicer/OrcaSlicer_Plugin_Lab` (branch `claude/sweet-ritchie-ogkhg8`).
+- **Nenhum OrcaSlicer instalado** e **nenhuma pasta de configuração**: o Orca nunca rodou neste
+  Mac. Consequências:
+  - não há perfis a proteger, então o backup é só formalidade;
+  - a ordem dos passos muda: **abrir a nightly uma vez** (para criar a configuração e escolher a
+    K2 Pro 0.4 no assistente), **fechar**, e só então rodar `install-support-fins.sh`, que exige
+    que a pasta de configuração exista.
+- Observação: no zsh (padrão do macOS), um `ls` com padrão sem correspondência aborta a linha
+  inteira (`zsh: no matches found`). Nos comandos deste capítulo, evitar curingas soltos.
