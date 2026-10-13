@@ -260,3 +260,12 @@ Observações:
   da base das fins. Para a próxima, testar com *Brim type = No brim*.
 - O erro "empty first layer" do cubo a 45° visto antes provavelmente aconteceu antes do plugin
   ser adicionado ao perfil. Com o plugin ativo, a base preenche a 1ª camada.
+
+### 2026-10-13: 1ª impressão de teste (em andamento)
+
+- Peça: o mesmo `xyzCalibration_cube` inclinado. Perfil 0.20mm Standard, Generic PLA.
+- Mudanças em relação ao padrão: **infill mínimo** e **brim manual de 5 linhas**, em vez do Auto
+  brim, para garantir que não descole da mesa. Fora isso, nada mudou.
+- Avaliar: aderência da base (pad) na 1ª camada, fins inteiras até o topo, se as fins se soltam
+  da peça e o acabamento das faces que ficaram apoiadas.
+- Resultado: _(pendente)_
