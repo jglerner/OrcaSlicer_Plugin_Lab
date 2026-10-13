@@ -78,6 +78,9 @@ deste repositório fazem isso). Cada capítulo tem o passo.
 
 - **Brim:** o "Auto brim" é decidido olhando a peça **sem** fins e pode colocar brim em volta da base das fins. Se não quiser, use *Brim type = No brim*.
 - **Camadas 1–3 (base das fins):** o plugin tenta compensar o elephant foot do Orca de forma aproximada. Observe a 1ª camada na primeira impressão.
+- **Pressure Advance (decisão de 13/10/2026):** o PA fica **só no `printer.cfg`** da K2 Pro, com o valor
+  calibrado. Em **todos** os perfis de filamento, no Linux e no Mac, *Enable pressure advance* fica
+  **desligado**. Assim qualquer computador que fatiar gera o mesmo resultado, porque quem manda é a impressora.
 - **Perfis de processo:** o plugin precisa ser adicionado **em cada perfil de processo** que você for usar com fins.
 
 ## Capítulos

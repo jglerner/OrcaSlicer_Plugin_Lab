@@ -297,3 +297,4 @@ diferença real até aqui é a de ambiente: o congelamento em tela cheia no macO
   (Orca ▸ Calibration ▸ Pressure Advance) e gravar o valor encontrado no `printer.cfg`. Para não haver
   divergência entre máquinas, manter **uma única fonte**: o `printer.cfg`, com *Enable pressure advance*
   desligado nos perfis de filamento, ou o perfil de filamento, mas não os dois.
+- **Decisão:** opção A, PA só no `printer.cfg`; *Enable pressure advance* desligado em todos os perfis de filamento (Linux e Mac).
