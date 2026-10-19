@@ -1,7 +1,9 @@
 # Upstream issue for gittrahan/support-fins
 
-**Status: posted** by J. Lerner on 13 Oct 2026 as [gittrahan/support-fins#24](https://github.com/gittrahan/support-fins/issues/24)
+**Status: posted** by J. Lerner on 13 Oct 2026 as [gittrahan/support-fins#253](https://github.com/gittrahan/support-fins/issues/253)
 (no existing issue covered it). The text below is what was posted.
+
+**Status: resolved upstream** in Orca plugin **0.7.759** (see the maintainer's response at the end).
 
 ---
 
@@ -48,3 +50,43 @@ The shared entry already has `optionsFromDialog()` (`fins_entry.js`), which vali
 - `plugins-latest` was rebuilt the same day (sha256 changed to `d4e90d31…`) while the plugin `version` stayed `0.1.0`. Bumping the version, or showing the engine commit in the plugin description, would make it easier to tell builds apart.
 
 Thanks again! Happy to test a build.
+
+---
+
+## Maintainer response (gittrahan, [comment](https://github.com/gittrahan/support-fins/issues/253#issuecomment-6279489002))
+
+The report drove three changes, all live on `plugins-latest` as **Orca plugin 0.7.759**:
+
+1. **Every engine setting in the Orca config** ([#340](https://github.com/gittrahan/support-fins/pull/340)).
+   The plugin config now accepts any key from `plugins/shared/engine/options.json`, in the engine's
+   units (a percent is value / 100), checked through `optionsFromDialog`, as suggested. A typo or an
+   out-of-range value **fails the slice** with the engine's message instead of quietly printing
+   default fins. `layerHeight` is refused (it always comes from Orca). Old keys (`tine_density`,
+   `bed_pad`) still work. Full coverage is available as `"mode": "full"`. The support gap is `gap`;
+   the PLA/PETG `material` setting is **gone** (the gap replaced it, e.g. 0.3 for PETG). Example:
+   ```json
+   {"threshold": 44, "gap": 0.3, "padStyle": "sure", "cutout": "lattice"}
+   ```
+2. **Real version numbers** ([#341](https://github.com/gittrahan/support-fins/pull/341)): each plugin is
+   stamped at build time with `0.7.<n>`, where `n` is the position on main of the last commit that
+   changed that plugin. A new build that changes the plugin gets a new number in Orca's plugin list.
+3. **Permission prompts** ([#342](https://github.com/gittrahan/support-fins/pull/342)): confirmed that
+   the engine starts while the plugin loads, before Orca's checks are on, so recent builds usually
+   ask nothing. The plugin README now says so.
+
+The maintainer asked for a report on **how the calibrated settings print**, and especially on
+**Full coverage in Orca** on a part with **wide overhangs** (the newest code path).
+
+### Verified on our side (19 Oct 2026)
+
+- Downloaded `plugins-latest`: header says `version = "0.7.759"`, sha256
+  `0de0f02ae34c1e46dd7f9456bae06385727b17473619fe0b52046f14ac8a5c81` (203 KB). Copy kept in
+  `plugins/support-fins/support_fins_orca-0.7.759.py`.
+- `_cfg()` now merges the whole user config over `{enabled, apply_to}` and forwards unknown keys to
+  the engine (`optionsFromDialogJson`), which refuses bad ones by name; `layerHeight` raises an error;
+  `tine_density` / `bed_pad` aliases are present.
+- `options.json` on main lists: `mode` (auto/full), `threshold` (30–70°, default 45), `tines`,
+  `tineDensity` (0–1), `tineDir` (horizontal/vertical), `pinDepth` (0.05–1, default 0.3),
+  `layerHeight`, **`gap` (0.1–0.4 mm, default 0.2)**, `padStyle` (off/auto/light/sure), `sway.*`,
+  `cutout` (none/diamond/triangle/arch/lattice), `coverage` (0–1), `plateOnly`, `longWalls`.
+  `material` is no longer there.

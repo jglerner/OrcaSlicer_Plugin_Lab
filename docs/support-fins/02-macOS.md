@@ -328,4 +328,4 @@ profiles and macOS, never from Support Fins.
 - **Decision (option A):** PA only in `printer.cfg`; *Enable pressure advance* off in every filament
   profile (Linux and Mac).
 - **Upstream:** the limitation that the Orca plugin only exposes four engine options was reported to
-  [gittrahan/support-fins#24](https://github.com/gittrahan/support-fins/issues/24) (our copy: [issue-orca-plugin-options.md](issue-orca-plugin-options.md)).
+  [gittrahan/support-fins#253](https://github.com/gittrahan/support-fins/issues/253) (our copy: [issue-orca-plugin-options.md](issue-orca-plugin-options.md)).

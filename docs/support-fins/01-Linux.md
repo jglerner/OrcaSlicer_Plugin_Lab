@@ -344,9 +344,9 @@ Notes:
    - `pad-coupon.3mf`: how easily the pad releases.
 4. Repeat the `xyzCalibration_cube` with the calibrated values and compare the supported face.
 
-> **Orca plugin limitation:** the Config tab only forwards `coverage`, `tines`, `tine_density` and
+> **Orca plugin limitation (0.1.0; fixed in 0.7.759, see the overview):** the Config tab only forwards `coverage`, `tines`, `tine_density` and
 > `bed_pad` to the engine. **Overhang threshold, material (PLA/PETG), pad style and cutouts** exist in
 > the engine (`plugins/shared/engine/options.json`) but the Orca plugin does not read them, and **the
 > gap is fixed at 0.2 mm** in the engine (`web/prop/config.js`). Whatever the calibrations show for
 > those parameters cannot be set in Orca today. Reported upstream as
-> [gittrahan/support-fins#24](https://github.com/gittrahan/support-fins/issues/24) ([our copy](issue-orca-plugin-options.md)).
+> [gittrahan/support-fins#253](https://github.com/gittrahan/support-fins/issues/253) ([our copy](issue-orca-plugin-options.md)).
