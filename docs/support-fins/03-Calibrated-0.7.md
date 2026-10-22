@@ -122,3 +122,27 @@ Practical rule for this printer until `angle-coupon` is printed: for parts with 
   *"floating regions"* warning.
 - This **matches the engine CLI prediction**: at exactly 45° the faces sit on the threshold and get no
   fins with the defaults. Pending: the plugin log line, to confirm `0 walls`.
+
+### 2026-10-22 14:47–15:10: same result at 44.98°, 45.00° and with `threshold` 46
+
+Plugin log, last three slices (time, `part_size_mm`, result):
+
+| Time | Pose | Config | Result |
+|---|---|---|---|
+| 14:47:37 | 44.98° (56.2735 mm) | defaults | 5 walls, 24 tines; 2 overhangs too shallow |
+| 14:53:16 | 45.00° (56.277 mm) | defaults | 5 walls, 24 tines; 2 overhangs too shallow |
+| 15:07:17 | 45.00° (56.277 mm) | `"threshold": 46` (+ gyroid infill) | 5 walls, 24 tines; 2 overhangs too shallow |
+
+- Orca stores the plugin Config **in the process preset** and re-sorts the keys alphabetically. After
+  editing it shows *"Configuration updated. Save the preset to persist it."*
+- The log (0.7.759) does **not** record the config the slice used, so a deliberate invalid value was
+  used to check that edits reach the plugin: `"threshold": 99` (allowed range 30–70).
+  - Result: the slice failed with **Orca's** *"One object has an empty first layer and can't be printed"*.
+    That means the plugin ran, refused the config and added nothing (no pad), so the cube's edge alone
+    left the first layer empty. **The edit does reach the plugin.**
+  - The plugin's own message about `threshold` was **masked** by Orca's empty-first-layer error. Worth
+    reporting upstream: with a bad config on a part that relies on the pad, the user never sees why.
+- Open question: why `threshold` 46 changes nothing on this cube when the engine CLI (sharp cube, no
+  letters) goes from 0 to 4 walls. Hypotheses: (a) the 5 regions are mostly the recessed **X/Y/Z
+  letters** (their ceilings are small overhangs), not the big faces; (b) Orca's "45.00°" is rounded
+  for display, so the faces were already just past 45° and got walls at the default.
