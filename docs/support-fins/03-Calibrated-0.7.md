@@ -262,5 +262,21 @@ engine-only comparison would print the Chapter 1 pose with 0.7.759.
   - **Supported face:** flat, regular layer lines, the same neat **grid of small dots** (3 rows × 6)
     as the defaults print, plus a couple of short strings at the edges. **No visible difference** in
     surface quality from the defaults print: the extra walls did not change the finish of this face.
-  - Pending from J. Lerner: ease of removal compared with the defaults print, and the state of the
-    second (50.82°) face.
+  - **Removal: very easy** (J. Lerner), like the defaults print.
+  - Conclusion: on this part and pose the extra walls of `threshold` 52 cost +0.25 g and +48 s with no
+    visible gain; the defaults were already enough.
+
+## Status at end of 22 Oct 2026 (summary)
+
+| # | Test (plugin 0.7.759, project `projects/xyzCalibration_cube-orca45.3mf`, real pose 39.18°) | Result |
+|---|---|---|
+| 1 | Defaults (threshold 45), printed | 5 walls, 24 tines; fins with flared "T" feet; **fell off practically by hand**; supported face **flat** with a neat 3 × 6 dot grid (much better than 0.1.0, with the pose caveat) |
+| 2 | `threshold` 46 / 50 / 52 sliced; 52 printed | 46 and 50 identical to defaults (second face at 50.82° not reached); **52 → 7 walls, 32 tines**, exactly the engine CLI prediction; printed finish same as defaults, removal very easy |
+| 3 | `threshold` 99 (invalid) | engine refuses it (`threshold must be 30..70, got 99`) but Orca only shows *"empty first layer"*: the plugin's message is masked |
+| 4 | `"mode": "full"` | **to do (23 Oct)**: engine CLI predicts 13 walls, 59 tines at 39.18° |
+
+Side finding (Orca, not the plugin): the rotation panel showed *Absolute X 45.00°* while the saved
+transform is 39.18°.
+
+Next session: slice and print `"mode": "full"`, then post the follow-up on
+[#253](https://github.com/gittrahan/support-fins/issues/253) (draft: [issue-253-followup-draft.md](issue-253-followup-draft.md)).
