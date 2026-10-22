@@ -241,3 +241,11 @@ Print of `xyzCalibration_cube_PLA_51m33s.gcode` (started 14:30). Six photos:
 tines) **and** the pose: the supported face now sits at **39.18°** from horizontal, a milder overhang
 than the **~26°** face in Chapters 1–2. Part of the improvement may come from the pose. A fair
 engine-only comparison would print the Chapter 1 pose with 0.7.759.
+
+### 2026-10-22 16:03: same project (39.18°), `"threshold": 52`
+
+- Orca estimate changed for the first time in this series: **50 min 42 s, 22.47 g, 7.47 m**
+  (vs 49 min 54 s, 22.22 g with 45/46/50), so the fins changed.
+- Preview, layer 25 (5.00 mm), top and side views: **4 walls** on the same side of the bottom edge
+  (3 before); still nothing visible on the other side at this height.
+- Engine CLI prediction for this case: 7 walls, 32 tines, 6 regions. Pending: plugin log line.
