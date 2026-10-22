@@ -140,6 +140,7 @@ Plugin log, last three slices (time, `part_size_mm`, result):
   - Result: the slice failed with **Orca's** *"One object has an empty first layer and can't be printed"*.
     That means the plugin ran, refused the config and added nothing (no pad), so the cube's edge alone
     left the first layer empty. **The edit does reach the plugin.**
+  - Confirmed in the plugin log: `"error": "ValueError: threshold must be 30..70, got 99"`.
   - The plugin's own message about `threshold` was **masked** by Orca's empty-first-layer error. Worth
     reporting upstream: with a bad config on a part that relies on the pad, the user never sees why.
 - Open question: why `threshold` 46 changes nothing on this cube when the engine CLI (sharp cube, no
