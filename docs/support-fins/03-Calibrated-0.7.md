@@ -1,6 +1,6 @@
 # Chapter 3: calibrated settings with plugin 0.7.759 (planned)
 
-> Status: **planned**. Read the [overview](00-Overview.md) (section *Plugin 0.7.759 and later*) first.
+> Status: **in progress** (Linux). Read the [overview](00-Overview.md) (section *Plugin 0.7.759 and later*) first.
 
 ## Why
 
@@ -34,4 +34,9 @@ config used, and photos of the undersides.
 
 ## Log
 
-_(empty)_
+### 2026-10-22: step 0, plugin 0.7.759 installed on Linux
+
+- `PLUGIN_FILE=plugins/support-fins/support_fins_orca-0.7.759.py scripts/install-support-fins.sh`
+- Installed in `/home/jglerner/.config/OrcaSlicer/orca_plugins/SupportFins/support_fins_orca.py`,
+  **version 0.7.759**, sha256 `0de0f02ae34c1e46dd7f9456bae06385727b17473619fe0b52046f14ac8a5c81` ✅
+  (matches the pinned copy).
