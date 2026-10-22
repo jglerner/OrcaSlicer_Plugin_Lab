@@ -51,4 +51,13 @@ config used, and photos of the undersides.
 - So with 0.7.759 the 45° cube **gets fins** (with 0.1.0 the engine returned 0 fins at exactly 45°).
 - Printer state at start: PA 0.04 / smooth time 0.04; acceleration 2000 mm/s², SCV 8 mm/s
   (first-layer limits).
-- Pending: plugin Config used, `support_fins_log.jsonl` line, Orca Preview.
+- **Config used:** the old 0.1.0 config, saved with the process profile
+  `0.20mm Standard @Creality K2 Pro 0.4 nozzle` and carried over unchanged:
+  `{"apply_to": "no-supports", "bed_pad": true, "coverage": 0.5, "enabled": true, "tine_density": 0, "tines": true}`.
+  In 0.7.759 these are accepted (`tine_density` and `bed_pad` are aliases) and equal the engine
+  defaults, so this run is **case A: defaults (`mode` auto, `threshold` 45)**. Note: the Config is
+  stored **per process profile**; *Restore defaults* would reset it to 0.7.759's
+  `{"enabled": true, "apply_to": "no-supports"}`.
+- With the **same** defaults, 0.1.0 gave 0 fins at 45° and 0.7.759 gives fins: the change is in the
+  engine, not in the config. The log will tell how many regions it now supports.
+- Pending: `support_fins_log.jsonl` line, Orca Preview.
