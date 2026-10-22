@@ -253,4 +253,14 @@ engine-only comparison would print the Chapter 1 pose with 0.7.759.
   standalone engine agree on the real part.
 - **Printing** this slice (`threshold` 52, 7 walls, 32 tines; estimate 50 min 42 s, 22.47 g) on 22 Oct
   after 16:03. Same pose (39.18°), so it isolates the effect of the extra walls compared with the
-  defaults print above. Result: _(pending)_
+  defaults print above. Result (5 photos):
+  - **4 parallel walls** with flared "T" feet under the lower face (3 in the defaults print), on the
+    oval pad. The cube stands on its edge with the wedge on the other side.
+  - Free faces **X** and **Z** clean, letters sharp; again a small tangle of strings in the **X** recess.
+  - During removal the walls came away together with the pad, which opened into a loop; the walls
+    taper to a thin edge at the part (tine side).
+  - **Supported face:** flat, regular layer lines, the same neat **grid of small dots** (3 rows × 6)
+    as the defaults print, plus a couple of short strings at the edges. **No visible difference** in
+    surface quality from the defaults print: the extra walls did not change the finish of this face.
+  - Pending from J. Lerner: ease of removal compared with the defaults print, and the state of the
+    second (50.82°) face.
