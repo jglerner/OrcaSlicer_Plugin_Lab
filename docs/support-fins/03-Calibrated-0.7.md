@@ -219,7 +219,7 @@ Conclusions so far:
 
 ### 2026-10-22: printed result, plugin 0.7.759, cube at 39.18° (Orca showed "45.06°"), defaults
 
-Print of `xyzCalibration_cube_PLA_51m33s.gcode` (started 14:30). Photos (5 of 6 received):
+Print of `xyzCalibration_cube_PLA_51m33s.gcode` (started 14:30). Six photos:
 
 - **Fins:** 3 parallel walls under the lower big face, each with a **flared "T" foot** on the bed
   (0.1.0 had plain walls). A triangular wedge joins the cube's bottom edge to the oval pad. Inside the
@@ -232,6 +232,10 @@ Print of `xyzCalibration_cube_PLA_51m33s.gcode` (started 14:30). Photos (5 of 6 
 - **Free faces (X, Y, Z):** clean, sharp letters. A tangle of strings in the centre of the **X**
   recess (stringing / the letter-recess support), cosmetic.
 - **Pad:** the oval pad's top surface is rough (dimpled), as before; irrelevant, it is sacrificial.
+- **Removed support (6th photo):** it came off in **a few pieces** rather than one: the pad split
+  open into a "J"-shaped strip, the walls with their feet and the wedge stayed together, and one
+  wall/wedge section with its foot came away separately. With 0.1.0 fins, wedges and pad came off as
+  a single piece. Easier removal, at the cost of more loose pieces to collect from the bed.
 
 **Caveat for the comparison:** two things changed at once. The engine (0.1.0 → 0.7.759, flared feet,
 tines) **and** the pose: the supported face now sits at **39.18°** from horizontal, a milder overhang
