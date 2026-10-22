@@ -40,3 +40,15 @@ config used, and photos of the undersides.
 - Installed in `/home/jglerner/.config/OrcaSlicer/orca_plugins/SupportFins/support_fins_orca.py`,
   **version 0.7.759**, sha256 `0de0f02ae34c1e46dd7f9456bae06385727b17473619fe0b52046f14ac8a5c81` ✅
   (matches the pinned copy).
+
+### 2026-10-22 14:30: first print with 0.7.759, cube at 45°
+
+- Fluidd: `xyzCalibration_cube_PLA_51m33s.gcode`, **280 layers** (×0.2 mm = 56 mm, consistent with the
+  40 mm cube tilted **45°**: 40 × √2 ≈ 56.6 mm; the Chapter 1–2 pose was ~26° and 267 layers).
+  Slicer estimate 50 min 7 s. Nozzle 220 °C, bed 50 °C.
+- First layer (Fluidd G-code preview): pad with brim and **3 fins with flared, tapered feet** (wider
+  at the base), a different fin foot shape from 0.1.0's straight walls. First layers printing normally.
+- So with 0.7.759 the 45° cube **gets fins** (with 0.1.0 the engine returned 0 fins at exactly 45°).
+- Printer state at start: PA 0.04 / smooth time 0.04; acceleration 2000 mm/s², SCV 8 mm/s
+  (first-layer limits).
+- Pending: plugin Config used, `support_fins_log.jsonl` line, Orca Preview.
