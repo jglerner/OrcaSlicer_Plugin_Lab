@@ -251,3 +251,6 @@ engine-only comparison would print the Chapter 1 pose with 0.7.759.
 - Plugin log 16:02:34, `part_size_mm` [40.0, 56.277, 56.277]: **7 walls, 32 tines; 2 overhangs are too
   shallow** ✅, **exactly the engine CLI prediction** (7 walls, 32 tines). The Orca plugin and the
   standalone engine agree on the real part.
+- **Printing** this slice (`threshold` 52, 7 walls, 32 tines; estimate 50 min 42 s, 22.47 g) on 22 Oct
+  after 16:03. Same pose (39.18°), so it isolates the effect of the extra walls compared with the
+  defaults print above. Result: _(pending)_
