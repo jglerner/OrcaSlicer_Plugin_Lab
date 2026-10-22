@@ -159,3 +159,20 @@ Plugin log, last three slices (time, `part_size_mm`, result):
 - The second big face is not supported even with `threshold` 46, and the counts did not change
   (5 walls, 2 "too shallow"). Possibly that face is detected but reported as *too shallow for a fin
   this way up* (one of the 2 unserved). Next checks: `threshold` 50 and `"mode": "full"` at the same pose.
+
+### 2026-10-22 15:17: `threshold` 50 changes nothing either
+
+| Time | Pose | Config | Plugin log |
+|---|---|---|---|
+| 14:53:16 | 45.00° | defaults (threshold 45) | 5 walls, 24 tines; 2 too shallow |
+| 15:10:58 | 45.00° | `threshold` 99 | `ValueError: threshold must be 30..70, got 99` |
+| 15:14:25 | 45.00° | `threshold` 46 | 5 walls, 24 tines; 2 too shallow |
+| 15:17:28 | 45.00° | `threshold` 50 | 5 walls, 24 tines; 2 too shallow |
+
+- Every run is a fresh plugin execution (new log line), and the plugin code (`engine_options` →
+  `host_options`) passes `threshold` to the engine unchanged. So the engine **receives** 46 and 50
+  and still returns the same walls: on this cube (bevelled edges, recessed X/Y/Z letters) raising
+  the threshold does not reach the second big face, unlike the sharp test cube in the CLI.
+- Preview at layer 25 (top view) is identical in all three: 3 walls on one side of the bottom edge only.
+- Next: run the exact part through the engine CLI (project `.3mf` to be added to `projects/`) to see
+  which 5 regions the engine finds and why the 2 are "too shallow", then report upstream with the file.
