@@ -70,9 +70,14 @@ config used, and photos of the undersides.
   | `engine.padTriangles` | 35,904 | 30,566 |
   | `engine.pins` | — | `false` (new field) |
 
-- ⚠️ **The pose is not exactly 45°.** A 40 mm cube tilted exactly 45° about X has a 56.569 mm bounding
-  box; 56.282 mm corresponds to **~39.2°** (or its complement ~50.8°). So one bottom face is below the
-  45° threshold (gets fins) and the other above it. This run therefore does **not** reproduce the
-  Chapter 1 "exactly 45° → 0 fins" case, and the extra wall cannot yet be credited to the new engine:
-  the pose changed too. To be confirmed: the rotation shown in Orca's object panel.
+- **Pose (Orca rotation panel): X = 45.06° absolute**, Y = 0, Z = 0. Typing 45 did not stick exactly.
+  - The bounding box (56.282 mm instead of 56.569 mm for a sharp 40 mm cube at 45°) is **not** a
+    sign of a different angle: the cube's edges are bevelled, which shortens the diagonal. (An
+    earlier estimate in this log of "~39°" from the bounding box was wrong for that reason; the
+    Chapter 1–2 "~26°" estimate has the same caveat.)
+  - At 45.06° the two bottom faces sit at **44.94°** and **45.06°** from horizontal. The 44.94° face is
+    just past the default 45° threshold, so it **is** an overhang and gets fins. This run therefore
+    does not prove the new engine changed the exact-45° behavior: the 0.06° offset alone explains it.
+  - Test still to do: exactly **45.00°** with defaults (expect bare faces, as in Chapter 1), then
+    `"threshold": 44` and `"mode": "full"`.
 - Pending: the rest of the log line (`result`, `layers_touched`), Orca Preview.
