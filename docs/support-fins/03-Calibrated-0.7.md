@@ -23,7 +23,8 @@ Config tab now accepts every engine option. The maintainer asked for two reports
 | 4 | Re-slice the tilted `xyzCalibration_cube` (same `.3mf` as Chapters 1–2) with the calibrated config, e.g. `{"threshold": …, "gap": …, "tineDensity": …, "padStyle": "…"}` | compare the supported face with Chapters 1–2 |
 | 5 | A part with **wide overhangs**, sliced with `"mode": "auto"` and then `"mode": "full"` | report for upstream |
 
-Note the cube's 3 bare overhang regions at 45°: with a calibrated `threshold` (e.g. 44) or
+Note the cube's bare overhang regions at 45°: they need a `threshold` **above** 45 (e.g. 46; see the
+log of 22 Oct: a *lower* threshold supports *less*) or
 `"mode": "full"` they should now get walls.
 
 ## Report back upstream
@@ -78,6 +79,36 @@ config used, and photos of the undersides.
   - At 45.06° the two bottom faces sit at **44.94°** and **45.06°** from horizontal. The 44.94° face is
     just past the default 45° threshold, so it **is** an overhang and gets fins. This run therefore
     does not prove the new engine changed the exact-45° behavior: the 0.06° offset alone explains it.
-  - Test still to do: exactly **45.00°** with defaults (expect bare faces, as in Chapter 1), then
-    `"threshold": 44` and `"mode": "full"`.
+  - Orca's rotation field could not be set to 45.00°: the closest values were **44.96°/44.98°** and
+    **45.06°** (it jumps over 45.00 with both typing and the step arrows). Both sides of 45 leave one
+    bottom face just under 45° from horizontal, so both get fins.
 - Pending: the rest of the log line (`result`, `layers_touched`), Orca Preview.
+
+### 2026-10-22: exact 45° tested outside Orca (engine CLI)
+
+Orca could not hold 45.00°, so the engine was run directly with the support-fins command-line
+tool (same engine as the plugin), on a sharp 20 mm cube, at the angles Orca allowed and at
+exactly 45°. Two builds: 0.7.771 (20 Oct, the first build after the 0.7.759 plugin release) and
+0.7.814 (current `main`, 22 Oct). **Both gave identical results:**
+
+| Rotation about X | defaults | `threshold` 44 | `threshold` 46 | `mode` full |
+|---|---|---|---|---|
+| 44.96° | 2 walls, 8 tines | **0** | 4 walls, 16 tines | 2 walls, 8 tines |
+| **45.00°** | **0 walls** | 0 | **4 walls, 16 tines** | **0 walls** |
+| 45.06° | 2 walls, 8 tines | **0** | 4 walls, 16 tines | 2 walls, 8 tines |
+
+Findings:
+
+1. **Exactly 45° still gets no fins with the defaults**, same as with 0.1.0: a face exactly on the
+   threshold is not an overhang. The engine change did not alter that; the Orca run got fins only
+   because Orca's rotation could not reach 45.00°.
+2. **`threshold` is measured up from the plate and lower is stricter.** Faces *shallower* than the
+   threshold get support, so **lowering it to 44 supports less** (0 walls here) and **raising it to 46
+   supports the 45° faces** (4 walls). This is how `docs/CALIBRATION.md` defines it ("lower is
+   harder"); the earlier suggestion in this chapter to use 44 was backwards and has been corrected.
+3. **`"mode": "full"` does not help at exactly 45°.** Full coverage adds walls under overhangs that
+   Auto leaves bare, but a face on the threshold is not an overhang in the first place, so there is
+   nothing to cover.
+
+Practical rule for this printer until `angle-coupon` is printed: for parts with 45° faces, use
+`"threshold": 46` (or the calibrated value).

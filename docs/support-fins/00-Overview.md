@@ -52,7 +52,7 @@ value / 100). Invalid keys or values **fail the slice** with the engine's messag
 |---|---|---|
 | `enabled` / `apply_to` | `true` / `"no-supports"` or `"all"` | plugin's own switches |
 | `mode` | `"auto"` or `"full"` (auto) | `"full"` puts walls under every overhang Auto leaves bare |
-| `threshold` | 30–70 ° (45) | `angle-coupon` |
+| `threshold` | 30–70 ° (45); measured **up from the plate**: faces *shallower* than it get support, so **higher = more support** (46 supports 45° faces, 44 does not) | `angle-coupon` |
 | `gap` | 0.1–0.4 mm (0.2) | `gap-coupon` (replaces the old PLA/PETG `material`; e.g. 0.3 for PETG) |
 | `padStyle` | `off` / `auto` / `light` / `sure` (auto) | `pad-coupon` |
 | `tines`, `tineDensity` | bool (true), 0–1 (0) | `grip-coupon` |
