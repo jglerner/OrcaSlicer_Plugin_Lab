@@ -43,12 +43,12 @@ config used, and photos of the undersides.
 
 ### 2026-10-22 14:30: first print with 0.7.759, cube at 45°
 
-- Fluidd: `xyzCalibration_cube_PLA_51m33s.gcode`, **280 layers** (×0.2 mm = 56 mm, consistent with the
-  40 mm cube tilted **45°**: 40 × √2 ≈ 56.6 mm; the Chapter 1–2 pose was ~26° and 267 layers).
+- Fluidd: `xyzCalibration_cube_PLA_51m33s.gcode`, **280 layers** (×0.2 mm = 56 mm). Intended as the
+  cube at 45°; the plugin log shows the actual pose (below).
   Slicer estimate 50 min 7 s. Nozzle 220 °C, bed 50 °C.
 - First layer (Fluidd G-code preview): pad with brim and **3 fins with flared, tapered feet** (wider
   at the base), a different fin foot shape from 0.1.0's straight walls. First layers printing normally.
-- So with 0.7.759 the 45° cube **gets fins** (with 0.1.0 the engine returned 0 fins at exactly 45°).
+
 - Printer state at start: PA 0.04 / smooth time 0.04; acceleration 2000 mm/s², SCV 8 mm/s
   (first-layer limits).
 - **Config used:** the old 0.1.0 config, saved with the process profile
@@ -58,6 +58,21 @@ config used, and photos of the undersides.
   defaults, so this run is **case A: defaults (`mode` auto, `threshold` 45)**. Note: the Config is
   stored **per process profile**; *Restore defaults* would reset it to 0.7.759's
   `{"enabled": true, "apply_to": "no-supports"}`.
-- With the **same** defaults, 0.1.0 gave 0 fins at 45° and 0.7.759 gives fins: the change is in the
-  engine, not in the config. The log will tell how many regions it now supports.
-- Pending: `support_fins_log.jsonl` line, Orca Preview.
+- **Plugin log (0.7.759 now writes `"version": "0.7.759"` in each entry):**
+
+  | Field | Chapter 1–2 (0.1.0, ~26.4° pose) | This run (0.7.759) |
+  |---|---|---|
+  | `part_size_mm` | [40.0, 53.626, 53.626] | **[40.0, 56.282, 56.282]** |
+  | `engine.overhangRegions` | 5 | 5 |
+  | `engine.braces` (walls) | 4 | **5** |
+  | `engine.tines` | 24 | 24 |
+  | `engine.unserved` (too shallow, left bare) | 3 | **2** |
+  | `engine.padTriangles` | 35,904 | 30,566 |
+  | `engine.pins` | — | `false` (new field) |
+
+- ⚠️ **The pose is not exactly 45°.** A 40 mm cube tilted exactly 45° about X has a 56.569 mm bounding
+  box; 56.282 mm corresponds to **~39.2°** (or its complement ~50.8°). So one bottom face is below the
+  45° threshold (gets fins) and the other above it. This run therefore does **not** reproduce the
+  Chapter 1 "exactly 45° → 0 fins" case, and the extra wall cannot yet be credited to the new engine:
+  the pose changed too. To be confirmed: the rotation shown in Orca's object panel.
+- Pending: the rest of the log line (`result`, `layers_touched`), Orca Preview.
