@@ -72,10 +72,8 @@ config used, and photos of the undersides.
   | `engine.pins` | — | `false` (new field) |
 
 - **Pose (Orca rotation panel): X = 45.06° absolute**, Y = 0, Z = 0. Typing 45 did not stick exactly.
-  - The bounding box (56.282 mm instead of 56.569 mm for a sharp 40 mm cube at 45°) is **not** a
-    sign of a different angle: the cube's edges are bevelled, which shortens the diagonal. (An
-    earlier estimate in this log of "~39°" from the bounding box was wrong for that reason; the
-    Chapter 1–2 "~26°" estimate has the same caveat.)
+  - ~~The bounding box is shorter because the cube's edges are bevelled~~ **Wrong, see the 3MF
+    analysis below:** the mesh has sharp corners, and the bounding box means what it says (~39°).
   - At 45.06° the two bottom faces sit at **44.94°** and **45.06°** from horizontal. The 44.94° face is
     just past the default 45° threshold, so it **is** an overhang and gets fins. This run therefore
     does not prove the new engine changed the exact-45° behavior: the 0.06° offset alone explains it.
@@ -176,3 +174,45 @@ Plugin log, last three slices (time, `part_size_mm`, result):
 - Preview at layer 25 (top view) is identical in all three: 3 walls on one side of the bottom edge only.
 - Next: run the exact part through the engine CLI (project `.3mf` to be added to `projects/`) to see
   which 5 regions the engine finds and why the 2 are "too shallow", then report upstream with the file.
+
+### 2026-10-22: the saved project shows the real angle is 39.18°, not 45°
+
+The project was saved from Orca with the rotation panel showing **Absolute X = 45.00°** and sent as
+`projects/xyzCalibration_cube-orca45.3mf`. Inside the 3MF:
+
+- Mesh: the 20 mm `xyzCalibration_cube.STL` (344 triangles, bounding box exactly ±10 mm, so sharp
+  corners), scaled ×2 → 40 mm. Saved settings: `sparse_infill_density` 6 %, `brim_width` 5,
+  `enable_support` 0.
+- Build transform: `2 0 0 0 1.55032176 1.26352778 0 -1.26352778 1.55032176 …` → uniform scale 2.000 and
+  a rotation about X of **atan2(1.2635, 1.5503) = 39.18°**.
+- A 40 mm cube at 39.18° has a 40·(cos + sin) = **56.277 mm** bounding box, exactly what Orca's object
+  info showed. A true 45° would be 56.569 mm.
+
+**So Orca's rotation panel said 45.00° while the object was actually at 39.18°.** The earlier
+"bevelled edges" explanation was wrong; the first bounding-box estimate (~39°) was right. Why Orca's
+*Absolute* field disagrees with the stored transform is not known yet (to check: set Absolute X to 0
+and see whether the object info reads 40 × 40 × 40).
+
+#### The exact part through the engine CLI (0.7.771, same engine as 0.7.759)
+
+Mesh extracted from the 3MF, scaled ×2, rotated about X:
+
+| Rotation | defaults | `threshold` 46 | `threshold` 50 | `threshold` 52 | `mode` full |
+|---|---|---|---|---|---|
+| **39.18°** (what Orca really used) | **5 walls, 24 tines; 2 too shallow** | 5 / 24 | 5 / 24 | **7 walls, 32 tines** | **13 walls, 59 tines** |
+| 45.00° (true) | 1 wall, 3 tines | 11 walls, 49 tines; 3 too shallow | 11 / 49 | 11 / 49 | 2 walls, 5 tines |
+
+- The 39.18° defaults row **reproduces Orca's plugin log exactly** (5 walls, 24 tines, 5 regions, 2 too shallow).
+- At 39.18° the two big bottom faces are at **39.18°** (an overhang, gets the 3 visible walls) and
+  **50.82°** from horizontal. `threshold` 46 and 50 are both below 50.82, so nothing changes; **52**
+  is the first value tested that reaches the second face (7 walls). This explains the identical
+  results of 15:14 and 15:17.
+- **Full coverage** at 39.18° adds the most walls (13), the newest code path the maintainer asked about.
+- At a **true** 45° the engine behaves as expected: defaults give 1 small wall (letter recesses),
+  `threshold` 46 gives 11 walls under both faces.
+
+Conclusions so far:
+1. The plugin and the engine behave correctly and consistently; the confusion came from Orca's
+   rotation display.
+2. `threshold` direction confirmed on the real part: higher = more support.
+3. Next in Orca: same pose with `"threshold": 52`, then `"mode": "full"`; and investigate the rotation display.
