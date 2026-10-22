@@ -112,3 +112,13 @@ Findings:
 
 Practical rule for this printer until `angle-coupon` is printed: for parts with 45° faces, use
 `"threshold": 46` (or the calibrated value).
+
+### 2026-10-22: exactly 45.00° reached in Orca, default config
+
+- Rotation panel: **Absolute X = 45.00°**, Y = 0, Z = 0 (reached after several attempts). Object size
+  40 × 56.277 × 56.277 mm, 344 triangles.
+- Sliced (280 layers, 50 min 0 s model time, 22.45 g, 7.47 m). Preview: **no fins under the cube**;
+  only the bottom edge on the bed with brim (`Brim` 1 min 11 s, 0.44 g). Orca shows its usual
+  *"floating regions"* warning.
+- This **matches the engine CLI prediction**: at exactly 45° the faces sit on the threshold and get no
+  fins with the defaults. Pending: the plugin log line, to confirm `0 walls`.
