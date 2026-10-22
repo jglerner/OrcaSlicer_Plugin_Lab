@@ -147,3 +147,15 @@ Plugin log, last three slices (time, `part_size_mm`, result):
   letters) goes from 0 to 4 walls. Hypotheses: (a) the 5 regions are mostly the recessed **X/Y/Z
   letters** (their ceilings are small overhangs), not the big faces; (b) Orca's "45.00°" is rounded
   for display, so the faces were already just past 45° and got walls at the default.
+
+### 2026-10-22 15:14: Preview at layer 25 (5.00 mm), 45.00°, `threshold` 46
+
+- Top/side view at layer 25: the cube's cross-section near its bottom edge, the pad with brim, and
+  **3 parallel walls extending from one side only**, i.e. under **one** of the two big 45° faces.
+  No walls under the other big face at this height.
+- So hypothesis (a) (only letter recesses) is ruled out: one big face **is** supported. That face was
+  already supported with the defaults (same counts), which fits hypothesis (b): Orca's "45.00°" leaves
+  that face a hair past 45°.
+- The second big face is not supported even with `threshold` 46, and the counts did not change
+  (5 walls, 2 "too shallow"). Possibly that face is detected but reported as *too shallow for a fin
+  this way up* (one of the 2 unserved). Next checks: `threshold` 50 and `"mode": "full"` at the same pose.
