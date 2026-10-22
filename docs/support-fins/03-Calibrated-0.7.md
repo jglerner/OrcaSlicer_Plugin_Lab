@@ -248,4 +248,6 @@ engine-only comparison would print the Chapter 1 pose with 0.7.759.
   (vs 49 min 54 s, 22.22 g with 45/46/50), so the fins changed.
 - Preview, layer 25 (5.00 mm), top and side views: **4 walls** on the same side of the bottom edge
   (3 before); still nothing visible on the other side at this height.
-- Engine CLI prediction for this case: 7 walls, 32 tines, 6 regions. Pending: plugin log line.
+- Plugin log 16:02:34, `part_size_mm` [40.0, 56.277, 56.277]: **7 walls, 32 tines; 2 overhangs are too
+  shallow** ✅, **exactly the engine CLI prediction** (7 walls, 32 tines). The Orca plugin and the
+  standalone engine agree on the real part.
