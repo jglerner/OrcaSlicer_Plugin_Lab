@@ -216,3 +216,24 @@ Conclusions so far:
    rotation display.
 2. `threshold` direction confirmed on the real part: higher = more support.
 3. Next in Orca: same pose with `"threshold": 52`, then `"mode": "full"`; and investigate the rotation display.
+
+### 2026-10-22: printed result, plugin 0.7.759, cube at 39.18° (Orca showed "45.06°"), defaults
+
+Print of `xyzCalibration_cube_PLA_51m33s.gcode` (started 14:30). Photos (5 of 6 received):
+
+- **Fins:** 3 parallel walls under the lower big face, each with a **flared "T" foot** on the bed
+  (0.1.0 had plain walls). A triangular wedge joins the cube's bottom edge to the oval pad. Inside the
+  **Y** recess a small wall is visible: the letter-ceiling support (one of the 5 walls in the log).
+- **Removal:** the fins "fell off practically into the hand" (J. Lerner), easier than with 0.1.0.
+- **Supported face (after removal):** **flat, regular layer lines**, no drooping or torn patches. What is
+  left: a neat grid of **small dots** (3 rows × 6, the tine contact points) and faint straight lines
+  where each wall touched, plus one small burr. With 0.1.0 the same face was wavy, drooping between
+  the walls and torn in places.
+- **Free faces (X, Y, Z):** clean, sharp letters. A tangle of strings in the centre of the **X**
+  recess (stringing / the letter-recess support), cosmetic.
+- **Pad:** the oval pad's top surface is rough (dimpled), as before; irrelevant, it is sacrificial.
+
+**Caveat for the comparison:** two things changed at once. The engine (0.1.0 → 0.7.759, flared feet,
+tines) **and** the pose: the supported face now sits at **39.18°** from horizontal, a milder overhang
+than the **~26°** face in Chapters 1–2. Part of the improvement may come from the pose. A fair
+engine-only comparison would print the Chapter 1 pose with 0.7.759.
