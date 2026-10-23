@@ -281,6 +281,14 @@ Photos (defaults print):
   *`threshold` 52: the support left on the bed after the part was lifted off. It stayed in one
   piece, with the pad opened into a "J"-shaped loop and the walls still standing on it.*
 
+  | | |
+  |---|---|
+  | ![Lower face](img/ch3/t52-02-lower-face-tine-grid.webp) | Lower (supported) face after removal: flat, 3 rows × 6–7 tine dots, a few short strings at the edges: same as the defaults |
+  | ![Removal](img/ch3/t52-03-removal-pad-loop.webp) | During removal: 4 walls under the lower face, tapering to a thin edge at the part; the pad opens into a loop |
+  | ![X and Z faces](img/ch3/t52-04-on-bed-X-Z-faces.webp) | On the bed: X and Z faces clean, stringing in the X recess |
+  | ![Top view](img/ch3/t52-05-on-bed-top-view.webp) | On the bed, from above: pad on both sides |
+  | ![4 walls](img/ch3/t52-06-on-bed-4-walls.webp) | On the bed: the 4 walls with flared feet (3 with the defaults) |
+
 ### 2026-10-22 21:06: same project (39.18°), `"mode": "full"` (sliced)
 
 - Config: `"mode": "full"` (no `threshold`, so 45). 280 layers.
