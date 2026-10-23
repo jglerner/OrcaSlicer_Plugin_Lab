@@ -242,6 +242,16 @@ tines) **and** the pose: the supported face now sits at **39.18°** from horizon
 than the **~26°** face in Chapters 1–2. Part of the improvement may come from the pose. A fair
 engine-only comparison would print the Chapter 1 pose with 0.7.759.
 
+Photos (defaults print):
+
+| | |
+|---|---|
+| ![On the bed, Y side](img/ch3/defaults-01-on-bed-Y-side.webp) | On the bed, Y side: walls under the lower face, pad on the bed, a small wall visible in the Y recess |
+| ![Three walls](img/ch3/defaults-02-on-bed-3-walls.webp) | The 3 walls with flared "T" feet |
+| ![X face](img/ch3/defaults-03-X-face-recess.webp) | X face: clean, a tangle of stringing in the letter recess |
+| ![Lower face](img/ch3/defaults-04-lower-face-tine-grid.webp) | Lower (supported) face after removal: flat, 3 rows × 6–7 tine dots, faint lines where the walls touched, one burr |
+| ![X and Z faces](img/ch3/defaults-05-X-and-Z-faces.webp) | X and Z faces: clean |
+
 ### 2026-10-22 16:03: same project (39.18°), `"threshold": 52`
 
 - Orca estimate changed for the first time in this series: **50 min 42 s, 22.47 g, 7.47 m**
