@@ -117,7 +117,7 @@ scripts in this repository do that). Each chapter includes the step.
 
 - [Chapter 1: Linux](01-Linux.md)
 - [Chapter 2: macOS](02-macOS.md)
-- [Chapter 3: calibrated settings with plugin 0.7.759](03-Calibrated-0.7.md) (planned)
+- [Chapter 3: calibrated settings with plugin 0.7.759](03-Calibrated-0.7.md)
 - Upstream issue [gittrahan/support-fins#253](https://github.com/gittrahan/support-fins/issues/253): expose more engine options in the Orca plugin ([our copy](issue-orca-plugin-options.md))
 
 The expectation was **no behavioral difference** between the two systems. Both chapters use the

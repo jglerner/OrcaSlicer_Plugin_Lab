@@ -275,7 +275,10 @@ engine-only comparison would print the Chapter 1 pose with 0.7.759.
   **ten**, vs 3 with the defaults) plus a separate group of walls on the opposite side, under the
   second face that Auto left bare. Full view (layer 280): fins hidden under the cube, brim on both sides.
   Orca still shows its usual *"floating regions"* warning.
-- Pending: plugin log line (CLI predicts **13 walls, 59 tines**).
+- Plugin log 21:04:29 (object 85), `part_size_mm` [40.0, 56.277, 56.277]: **13 walls, 59 tines; 2
+  overhangs are too shallow for a fin this way up**. Engine: 5 overhang regions, 13 braces,
+  6640 fin triangles (vs 2704 with defaults), `unserved` 2, 213 layers touched, 3.37 s.
+  **Exactly the engine CLI prediction.** First-layer fin area 1473.6 mm² (vs 696.0 with defaults).
 - **Printed** (photos sent 23 Oct, before removal and during removal):
   - Under the lower big face: **6 parallel walls** with flared feet on the pad (vs 3 with the defaults).
   - Under the **second big face** (50.82°, never supported by Auto): a solid triangular wall that
@@ -292,19 +295,19 @@ engine-only comparison would print the Chapter 1 pose with 0.7.759.
   - The **X** face: clean, except **one row of 5 small burrs** across the middle and a few in the
     letter recess.
   - Tester: the plain face is the **lower** bottom face (the one Auto already supported with 3 walls);
-    removal **easy, same as the defaults**. Pending: plugin log line.
+    removal **easy, same as the defaults**.
 
-## Status at end of 22 Oct 2026 (summary)
+## Status on 23 Oct 2026 (summary)
 
 | # | Test (plugin 0.7.759, project `projects/xyzCalibration_cube-orca45.3mf`, real pose 39.18°) | Result |
 |---|---|---|
 | 1 | Defaults (threshold 45), printed | 5 walls, 24 tines; fins with flared "T" feet; **fell off practically by hand**; supported face **flat** with a neat 3 × 6 dot grid (much better than 0.1.0, with the pose caveat) |
 | 2 | `threshold` 46 / 50 / 52 sliced; 52 printed | 46 and 50 identical to defaults (second face at 50.82° not reached); **52 → 7 walls, 32 tines**, exactly the engine CLI prediction; printed finish same as defaults, removal very easy |
 | 3 | `threshold` 99 (invalid) | engine refuses it (`threshold must be 30..70, got 99`) but Orca only shows *"empty first layer"*: the plugin's message is masked |
-| 4 | `"mode": "full"` | sliced 22 Oct 21:06: 25.36 g, 59 min 39 s (+3.14 g, ~+10 min); walls under **both** big faces; printed, removal came off with the pad. Log and finish pending (CLI predicts 13 walls, 59 tines) |
+| 4 | `"mode": "full"`, printed | **13 walls, 59 tines**, exactly the CLI prediction; 25.36 g, 59 min 39 s (+3.14 g, ~+10 min); walls under **both** big faces; removal easy, same as defaults; lower face flat but with a denser grid of tine burrs (~7 rows) |
 
 Side finding (Orca, not the plugin): the rotation panel showed *Absolute X 45.00°* while the saved
 transform is 39.18°.
 
-Next session: slice and print `"mode": "full"`, then post the follow-up on
+All four tests done. Next: post the follow-up on
 [#253](https://github.com/gittrahan/support-fins/issues/253) (draft: [issue-253-followup-draft.md](issue-253-followup-draft.md)).

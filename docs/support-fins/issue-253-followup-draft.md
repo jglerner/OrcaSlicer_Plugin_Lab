@@ -1,7 +1,6 @@
 # Draft: follow-up comment for gittrahan/support-fins#253
 
-**Status: draft**, to be completed after the Full coverage test (23 Oct 2026) and posted by J. Lerner.
-Sections marked `TODO` need the `mode full` results.
+**Status: ready for review** (23 Oct 2026), to be posted by J. Lerner.
 
 ---
 
@@ -18,7 +17,7 @@ Same project, same pose, only the plugin config changed:
 | defaults (`threshold` 45) | 5 walls, 24 tines; 2 too shallow | 5 walls, 24 tines |
 | `threshold` 46 / 50 | 5 walls, 24 tines | 5 walls, 24 tines |
 | `threshold` 52 | **7 walls, 32 tines** | **7 walls, 32 tines** |
-| `mode` full | TODO (sliced: walls under both bottom faces, 25.36 g vs 22.22 g) | 13 walls, 59 tines |
+| `mode` full | **13 walls, 59 tines** | **13 walls, 59 tines** |
 
 The second bottom face sits at 50.82°, so 52 is the first threshold that reaches it; Orca and the
 CLI agree on every row.
@@ -30,9 +29,14 @@ CLI agree on every row.
   drooping and torn patches. (Caveat: the pose also changed, so the 0.1.0 face was a steeper overhang.)
 - **`threshold` 52:** one more wall under that face; removal just as easy and the finish
   indistinguishable from the defaults on this part.
-- **Full coverage:** both bottom faces supported (6 walls under the first, a solid wall following the
-  second face that Auto leaves bare); the whole support came off in one piece. Removal as easy as with the defaults. The lower face is flat but
-  carries a denser grid of tine marks (about 7 rows of small burrs vs 3 × 6 dots with Auto).
+- **Full coverage:** both bottom faces supported (6 walls under the lower face, plus a solid wall
+  following the second face, which Auto leaves bare). The whole support came off in one piece,
+  as easily as with the defaults. The lower face is flat, but carries a denser grid of tine marks
+  (about 7 rows of small burrs vs 3 × 6 dots with Auto). Cost on this part: 25.36 g / 59 min 39 s
+  vs 22.22 g / 49 min 54 s with Auto.
+- Small question: in Full mode the log still says *"2 overhangs are too shallow for a fin this way
+  up"* (`unserved: 2`), although the second face did get a wall. Is that message expected in Full
+  mode, or is it left over from the Auto analysis?
 
 ### 3. One thing we hit: a refused config can be invisible
 

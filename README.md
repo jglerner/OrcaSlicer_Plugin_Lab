@@ -20,7 +20,7 @@ every test uses a **nightly** build installed **alongside** any stable install.
 | # | Plugin | Source | Linux | macOS |
 |---|--------|--------|-------|-------|
 | 1 | Support Fins (printfins.com breakaway support fins) | [gittrahan/support-fins](https://github.com/gittrahan/support-fins/tree/main/plugins/orca) | [Chapter 1](docs/support-fins/01-Linux.md) ✅ | [Chapter 2](docs/support-fins/02-macOS.md) ✅ fins identical to Linux |
-| 1b | Support Fins 0.7.759: calibrated settings, Full coverage | upstream fix for [#253](https://github.com/gittrahan/support-fins/issues/253) | [Chapter 3](docs/support-fins/03-Calibrated-0.7.md) (in progress) | — |
+| 1b | Support Fins 0.7.759: calibrated settings, Full coverage | upstream fix for [#253](https://github.com/gittrahan/support-fins/issues/253) | [Chapter 3](docs/support-fins/03-Calibrated-0.7.md) ✅ | — |
 
 Start with the [Support Fins overview](docs/support-fins/00-Overview.md).
 
