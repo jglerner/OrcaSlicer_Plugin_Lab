@@ -333,6 +333,14 @@ layer with the 3 fins and the brim.*
   Orca (only +30 s), and 7.39 m of filament vs 7.17 m estimated. The ~3 min lead seen mid-print did
   not hold: the end (top, small layers, minimum layer time) evened it out.
   **Orca's estimate is reliable for the K2 Pro.**
+
+| | |
+|---|---|
+| ![15:32](img/linux/06-fluidd-1532-layer22.webp) | 15:32: 14 %, layer 22/268 (Z 4.42 mm), 129.7 mm/s, acceleration 12,000 mm/s² |
+| ![Layer 72](img/linux/07-gcode-layer72.png) | Fluidd G-code preview, layer 72 (14.4 mm): the 3 fins as thin walls ahead of the cube section |
+| ![Layer 85](img/linux/08-camera-gcode-layer85.webp) | Camera and G-code preview around layer 85 (17 mm), the top of the lower fins |
+| ![54 %](img/linux/09-fluidd-54pct-layer120.png) | 54 %, layer 120/268 (Z 24.02 mm), 25 min 10 s elapsed |
+| ![16:15](img/linux/10-fluidd-1615-99pct.webp) | 16:15: 99 %, layer 265/268, total 49 min 49 s |
 - **Finished part (photos, fins still attached):**
   - **3 thin parallel fins** hold the tilted face down to the bed, all intact, straight, with no
     failure or lifting. A wedge (triangular) structure joins the cube's bottom edge to the oval pad.
