@@ -1,6 +1,6 @@
 # Draft: follow-up comment for gittrahan/support-fins#253
 
-**Status: ready for review** (23 Oct 2026), to be posted by J. Lerner.
+**Status: posted** on [gittrahan/support-fins#253](https://github.com/gittrahan/support-fins/issues/253) by J. Lerner on 23 Oct 2026.
 
 ---
 

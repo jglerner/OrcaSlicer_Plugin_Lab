@@ -309,5 +309,5 @@ engine-only comparison would print the Chapter 1 pose with 0.7.759.
 Side finding (Orca, not the plugin): the rotation panel showed *Absolute X 45.00°* while the saved
 transform is 39.18°.
 
-All four tests done. Next: post the follow-up on
+All four tests done. Follow-up posted (23 Oct) on
 [#253](https://github.com/gittrahan/support-fins/issues/253) (draft: [issue-253-followup-draft.md](issue-253-followup-draft.md)).
