@@ -28,7 +28,7 @@ Start with the [Support Fins overview](docs/support-fins/00-Overview.md).
 
 ```
 docs/support-fins/       overview + one chapter per operating system + upstream issue
-docs/support-fins/img/   print photos (linux/, macos/)
+docs/support-fins/img/   print photos and screenshots (linux/, macos/, ch3/)
 scripts/                 install, log collection (Linux and macOS) and nightly launcher (Linux)
 logs/                    logs from real runs (linux/, macos/, compare-YYYYMMDD/)
 plugins/support-fins/    exact copy of the plugin build that was tested (same sha256 on both OSes)

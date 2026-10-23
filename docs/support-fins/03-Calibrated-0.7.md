@@ -1,4 +1,4 @@
-# Chapter 3: calibrated settings with plugin 0.7.759 (planned)
+# Chapter 3: calibrated settings with plugin 0.7.759
 
 > Status: **in progress** (Linux). Read the [overview](00-Overview.md) (section *Plugin 0.7.759 and later*) first.
 
@@ -325,6 +325,10 @@ Photos (defaults print):
   | ![Y side](img/ch3/full-01-on-bed-Y-side.webp) | On the bed, Y side: the solid triangular wall under the second face (right), walls under the lower face (left) |
   | ![Z side](img/ch3/full-02-on-bed-Z-side.webp) | On the bed, Z side: the block-shaped wall under the edge, pad on both sides |
   | ![6 walls](img/ch3/full-03-on-bed-6-walls.webp) | On the bed: the 6 parallel walls under the lower face (3 with the defaults, 4 with `threshold` 52) |
+  | ![Removal](img/ch3/full-04-removal.webp) | Removal: walls and pad come off together; the pad bends and tears at the edges |
+  | ![Lower face](img/ch3/full-05-lower-face-tine-rows.webp) | Lower face after removal: flat, ~7 rows of small hooked burrs, a slight ridge along each row |
+  | ![X face](img/ch3/full-06-X-face.webp) | X face: one row of 5 small burrs across the middle, a few in the letter recess |
+  | ![Support in one piece](img/ch3/full-07-support-in-one-piece.webp) | The whole support removed in one piece (walls, triangular wall, pad) |
 
 ## Screenshots (Linux, 22 Oct 2026)
 
