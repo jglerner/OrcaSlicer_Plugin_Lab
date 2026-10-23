@@ -1,6 +1,6 @@
-# Draft: follow-up comment for gittrahan/support-fins#253
+# Follow-up comment on gittrahan/support-fins#253
 
-**Status:** the photos comment was posted on [gittrahan/support-fins#253](https://github.com/gittrahan/support-fins/issues/253) on 23 Oct 2026, but the text below was not visible in the thread, so it is being added by editing that comment (text first, photos after).
+**Status: posted** on [gittrahan/support-fins#253](https://github.com/gittrahan/support-fins/issues/253) by J. Lerner on 23 Oct 2026, as one comment (text, then 5 photos). The text below is what was posted.
 
 ---
 
