@@ -228,6 +228,10 @@ The 2.3.0 release still opens from its own AppImage in `~/Applications/orca/`. B
 is `0.20mm Standard @Creality K2 Pro 0.4 nozzle`. The following slice used 0.20 mm layers, so the
 issue did not reappear. Not investigated further.
 
+![Printer settings, Extruder tab](img/linux/01-printer-extruder-0.4-layer-limits.png)
+
+*Printer settings ▸ Extruder: 0.4 mm nozzle, layer height limits 0.08–0.32 mm.*
+
 **2. Cube with 45° faces → "little contact area" + "first layer empty".**
 Reproduced outside Orca with the same engine (support-fins CLI, 20 mm cube):
 
@@ -277,6 +281,11 @@ Notes:
 - The earlier "empty first layer" error on the 45° cube most likely happened before the plugin
   was added to the profile. With the plugin active, the pad fills the first layer.
 
+![First slice with fins](img/linux/02-first-slice-1505.webp)
+
+*15:05, first slice with the plugin active (Support Fins in Slicing Pipeline Plugin): 267 layers,
+22.15 g, 48 min 22 s, still with the default infill (sparse infill 9.95 g).*
+
 ### 2026-10-13: first test print
 
 - Part: the same tilted `xyzCalibration_cube`. Profile 0.20mm Standard, Generic PLA.
@@ -288,6 +297,11 @@ Notes:
 - Preview at layer 40 (8.00 mm): **3 fins** rise from the pad up to the tilted face; the pad is
   surrounded by the brim. The 4th fin in the log is the 24.3–34.7 mm set, which starts on the part
   itself, not on the bed. Enable support off; sparse infill down to 4.26 g.
+
+| | |
+|---|---|
+| ![Layer 40, side](img/linux/03-preview-layer40-side.webp) | 15:14, layer 40 (8.00 mm), side view: 3 fins from the pad to the tilted face |
+| ![Layer 40, top](img/linux/04-preview-layer40-top.webp) | 15:16, layer 40, from above: pad with brim; *Enable support* off |
 - Orca estimate: 49 min 19 s, 21.56 g (7.17 m). **Profile default speeds**, on purpose; speed up
   only in a later test, changing one variable at a time.
 - 15:26: print started from Fluidd (`xyzCalibration_cube_PLA_49m19s.gcode`, 1.7 MB, 268 layers in
@@ -295,6 +309,11 @@ Notes:
   **240 °C only for the CFS purge**, `flush_max_temp: 240`, then back to 220 °C for the whole part.)
   Fluidd's G-code preview shows the 3 fins rising from the pad with the brim around them, so the
   G-code carries the geometry injected by the plugin.
+
+![Fluidd at print start](img/linux/05-fluidd-print-start-1526.webp)
+
+*15:26, Fluidd: print started, layer 28/268 in the screenshot, PA 0.038, G-code preview of the first
+layer with the 3 fins and the brim.*
 - 15:32: 14 %, layer 22/268 (Z 4.42 mm), no issues. Nozzle 220 °C, bed 50 °C, chamber 32 °C,
   speed 129.7 mm/s, acceleration 12,000 mm/s² (from the profile). ETA 16:12.
 - Layer 72 (14.4 mm), Fluidd G-code preview: the 3 fins are thin walls (one narrow loop each)
