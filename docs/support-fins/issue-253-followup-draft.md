@@ -30,7 +30,8 @@ CLI agree on every row.
   drooping and torn patches. (Caveat: the pose also changed, so the 0.1.0 face was a steeper overhang.)
 - **`threshold` 52:** one more wall under that face; removal just as easy and the finish
   indistinguishable from the defaults on this part.
-- **Full coverage:** TODO (photos, removal, finish).
+- **Full coverage:** both bottom faces supported (6 walls under the first, a solid wall following the
+  second face that Auto leaves bare); walls and pad came off together. TODO: removal effort, finish.
 
 ### 3. One thing we hit: a refused config can be invisible
 

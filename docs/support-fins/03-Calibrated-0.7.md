@@ -275,7 +275,16 @@ engine-only comparison would print the Chapter 1 pose with 0.7.759.
   **ten**, vs 3 with the defaults) plus a separate group of walls on the opposite side, under the
   second face that Auto left bare. Full view (layer 280): fins hidden under the cube, brim on both sides.
   Orca still shows its usual *"floating regions"* warning.
-- Pending: plugin log line (CLI predicts **13 walls, 59 tines**), then print and photos.
+- Pending: plugin log line (CLI predicts **13 walls, 59 tines**).
+- **Printed** (photos sent 23 Oct, before removal and during removal):
+  - Under the lower big face: **6 parallel walls** with flared feet on the pad (vs 3 with the defaults).
+  - Under the **second big face** (50.82°, never supported by Auto): a solid triangular wall that
+    follows the face, plus a block-shaped wall under the edge on the Z side. Full coverage does what
+    it says: both big faces are now supported.
+  - Pad on the bed on both sides; small whiskers of stringing along one cube edge.
+  - Removal: the walls came away **together with the pad**, which bent and tore around the edges
+    (same behaviour as with `threshold` 52). Pending from the tester: how easy it was, and a photo of
+    both supported faces after cleanup.
 
 ## Status at end of 22 Oct 2026 (summary)
 
@@ -284,7 +293,7 @@ engine-only comparison would print the Chapter 1 pose with 0.7.759.
 | 1 | Defaults (threshold 45), printed | 5 walls, 24 tines; fins with flared "T" feet; **fell off practically by hand**; supported face **flat** with a neat 3 × 6 dot grid (much better than 0.1.0, with the pose caveat) |
 | 2 | `threshold` 46 / 50 / 52 sliced; 52 printed | 46 and 50 identical to defaults (second face at 50.82° not reached); **52 → 7 walls, 32 tines**, exactly the engine CLI prediction; printed finish same as defaults, removal very easy |
 | 3 | `threshold` 99 (invalid) | engine refuses it (`threshold must be 30..70, got 99`) but Orca only shows *"empty first layer"*: the plugin's message is masked |
-| 4 | `"mode": "full"` | sliced 22 Oct 21:06: 25.36 g, 59 min 39 s (+3.14 g, ~+10 min); walls under **both** big faces in Preview. Log and print pending (CLI predicts 13 walls, 59 tines) |
+| 4 | `"mode": "full"` | sliced 22 Oct 21:06: 25.36 g, 59 min 39 s (+3.14 g, ~+10 min); walls under **both** big faces; printed, removal came off with the pad. Log and finish pending (CLI predicts 13 walls, 59 tines) |
 
 Side finding (Orca, not the plugin): the rotation panel showed *Absolute X 45.00°* while the saved
 transform is 39.18°.
