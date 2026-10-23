@@ -359,11 +359,18 @@ layer with the 3 fins and the brim.*
 | ![Finished, Y side](img/linux/13-finished-Y-side-fins.webp) | Finished, Y side: the parallel fins under the tilted face, pad behind |
 | ![Finished, wedge](img/linux/14-finished-wedge.webp) | Finished: fins and the triangular wedge joining the cube's bottom edge to the pad |
 | ![Finished, Z face](img/linux/15-finished-Z-face-pad.webp) | Finished, Z face: clean layers; oval pad with rough top surface; string in the X recess |
+| ![Supported face from below](img/linux/16-finished-supported-face-from-below.webp) | Finished, supported face seen from below: flat, with a diagonal line at the wedge joint |
 
 - **Removal:** everything came off **by hand**, no tools. Fins, wedges and oval pad came off
   together in one piece, plus a small square plate with "Y"-shaped tine marks.
 - **Scars:** the face that rested on the fins is rough, with strings, pulled lines and torn patches
   where the tines and fin tips touched. The free faces (X, Y, Z) are fine.
+
+| | |
+|---|---|
+| ![Support and tine plate](img/linux/17-removal-support-and-tine-plate.webp) | Removal: fins, wedge and pad in one piece, next to the small square plate with the "Y"-shaped tine marks |
+| ![Fins peeling](img/linux/18-removal-fins-peeling.webp) | Removal in progress: fins peeling off the supported face; the scarred layers are already visible |
+| ![Scars](img/linux/19-scars-and-removed-support.webp) | After removal: the supported face with torn, drooping patches (compare Chapter 3), and the broken-up support |
 - **J. Lerner's assessment:** lower the speed a bit and increase the layer time; the temperature
   (220 °C) seemed high for this part, so a temperature tower is worthwhile; and improve the contact
   between fins and part to reduce scarring. That was not the goal of this quick test.
