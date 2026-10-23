@@ -18,7 +18,7 @@ Same project, same pose, only the plugin config changed:
 | defaults (`threshold` 45) | 5 walls, 24 tines; 2 too shallow | 5 walls, 24 tines |
 | `threshold` 46 / 50 | 5 walls, 24 tines | 5 walls, 24 tines |
 | `threshold` 52 | **7 walls, 32 tines** | **7 walls, 32 tines** |
-| `mode` full | TODO | 13 walls, 59 tines |
+| `mode` full | TODO (sliced: walls under both bottom faces, 25.36 g vs 22.22 g) | 13 walls, 59 tines |
 
 The second bottom face sits at 50.82°, so 52 is the first threshold that reaches it; Orca and the
 CLI agree on every row.

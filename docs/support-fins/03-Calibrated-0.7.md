@@ -266,6 +266,17 @@ engine-only comparison would print the Chapter 1 pose with 0.7.759.
   - Conclusion: on this part and pose the extra walls of `threshold` 52 cost +0.25 g and +48 s with no
     visible gain; the defaults were already enough.
 
+### 2026-10-22 21:06: same project (39.18°), `"mode": "full"` (sliced)
+
+- Config: `"mode": "full"` (no `threshold`, so 45). 280 layers.
+- Orca estimate: **59 min 39 s total (58 min 7 s model), 25.36 g, 8.44 m**, vs 49 min 54 s / 22.22 g
+  with the defaults: **+3.14 g, about +9 min 45 s**, the largest change in the series.
+- Preview, layer 25 (5.00 mm): a dense row of parallel walls under the lower big face (about
+  **ten**, vs 3 with the defaults) plus a separate group of walls on the opposite side, under the
+  second face that Auto left bare. Full view (layer 280): fins hidden under the cube, brim on both sides.
+  Orca still shows its usual *"floating regions"* warning.
+- Pending: plugin log line (CLI predicts **13 walls, 59 tines**), then print and photos.
+
 ## Status at end of 22 Oct 2026 (summary)
 
 | # | Test (plugin 0.7.759, project `projects/xyzCalibration_cube-orca45.3mf`, real pose 39.18°) | Result |
@@ -273,7 +284,7 @@ engine-only comparison would print the Chapter 1 pose with 0.7.759.
 | 1 | Defaults (threshold 45), printed | 5 walls, 24 tines; fins with flared "T" feet; **fell off practically by hand**; supported face **flat** with a neat 3 × 6 dot grid (much better than 0.1.0, with the pose caveat) |
 | 2 | `threshold` 46 / 50 / 52 sliced; 52 printed | 46 and 50 identical to defaults (second face at 50.82° not reached); **52 → 7 walls, 32 tines**, exactly the engine CLI prediction; printed finish same as defaults, removal very easy |
 | 3 | `threshold` 99 (invalid) | engine refuses it (`threshold must be 30..70, got 99`) but Orca only shows *"empty first layer"*: the plugin's message is masked |
-| 4 | `"mode": "full"` | **to do (23 Oct)**: engine CLI predicts 13 walls, 59 tines at 39.18° |
+| 4 | `"mode": "full"` | sliced 22 Oct 21:06: 25.36 g, 59 min 39 s (+3.14 g, ~+10 min); walls under **both** big faces in Preview. Log and print pending (CLI predicts 13 walls, 59 tines) |
 
 Side finding (Orca, not the plugin): the rotation panel showed *Absolute X 45.00°* while the saved
 transform is 39.18°.
