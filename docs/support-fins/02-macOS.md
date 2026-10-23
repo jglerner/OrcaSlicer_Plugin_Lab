@@ -309,6 +309,13 @@ nightly builds differ (the `.dmg` was republished the same day).
 - Result: **same as Linux** ✅: same geometry, same removal, same kind of scar. The PA difference
   (0.04 vs 0.038) produced no visible difference in the photos.
 
+| | |
+|---|---|
+| ![Z face](img/macos/01-finished-Z-face-pad.webp) | Finished, Z face: clean layers, oval pad |
+| ![Y side](img/macos/02-finished-Y-side-fins.webp) | Finished, Y side: the 3 fins and the wedge, as on Linux |
+| ![Removed support](img/macos/03-removed-support-trapped-layers.webp) | Removed support (fins, wedge, pad in one piece) with the thin layers trapped between the fins |
+| ![Supported face](img/macos/04-supported-face-scar.webp) | Supported face: wavy, drooping layers between the fins and a row of small tine dots, the same scar as on Linux |
+
 ## Conclusion of the Linux × macOS comparison
 
 | Aspect | Result |
