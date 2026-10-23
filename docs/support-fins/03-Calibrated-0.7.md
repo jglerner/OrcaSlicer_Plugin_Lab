@@ -320,6 +320,12 @@ Photos (defaults print):
   - Tester: the plain face is the **lower** bottom face (the one Auto already supported with 3 walls);
     removal **easy, same as the defaults**.
 
+  | | |
+  |---|---|
+  | ![Y side](img/ch3/full-01-on-bed-Y-side.webp) | On the bed, Y side: the solid triangular wall under the second face (right), walls under the lower face (left) |
+  | ![Z side](img/ch3/full-02-on-bed-Z-side.webp) | On the bed, Z side: the block-shaped wall under the edge, pad on both sides |
+  | ![6 walls](img/ch3/full-03-on-bed-6-walls.webp) | On the bed: the 6 parallel walls under the lower face (3 with the defaults, 4 with `threshold` 52) |
+
 ## Screenshots (Linux, 22 Oct 2026)
 
 | | |
