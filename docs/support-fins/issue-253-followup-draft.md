@@ -31,8 +31,8 @@ CLI agree on every row.
 - **`threshold` 52:** one more wall under that face; removal just as easy and the finish
   indistinguishable from the defaults on this part.
 - **Full coverage:** both bottom faces supported (6 walls under the first, a solid wall following the
-  second face that Auto leaves bare); the whole support came off in one piece. The supported face is flat but carries a denser grid of
-  tine marks (about 7 rows of small burrs vs 3 × 6 dots with Auto). TODO: removal effort, which face.
+  second face that Auto leaves bare); the whole support came off in one piece. Removal as easy as with the defaults. The lower face is flat but
+  carries a denser grid of tine marks (about 7 rows of small burrs vs 3 × 6 dots with Auto).
 
 ### 3. One thing we hit: a refused config can be invisible
 
