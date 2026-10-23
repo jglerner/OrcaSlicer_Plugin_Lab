@@ -1,6 +1,6 @@
 # Draft: follow-up comment for gittrahan/support-fins#253
 
-**Status: posted** on [gittrahan/support-fins#253](https://github.com/gittrahan/support-fins/issues/253) by J. Lerner on 23 Oct 2026.
+**Status:** the photos comment was posted on [gittrahan/support-fins#253](https://github.com/gittrahan/support-fins/issues/253) on 23 Oct 2026, but the text below was not visible in the thread, so it is being added by editing that comment (text first, photos after).
 
 ---
 
@@ -50,5 +50,27 @@ warning/notification, or the pad kept even when the config is refused.
 
 Orca's rotation panel showed *Absolute X = 45.00°* while the saved 3MF transform is a 39.18° rotation,
 which cost us a while to understand why "45°" behaved like 39°. We'll report that to OrcaSlicer separately.
+
+### Photos (same part, same pose, plugin 0.7.759, Linux)
+
+1. Auto (defaults), lower face after removal: flat, a neat 3 × 6 grid of tine dots.
+
+<img width="400" alt="Auto, lower face after removal" src="https://github.com/user-attachments/assets/fb061360-887b-4cd0-9c54-67e539c471d6" />
+
+2. Full coverage, before removal: 6 walls under the lower face (3 with Auto).
+
+<img width="300" alt="Full coverage, 6 walls" src="https://github.com/user-attachments/assets/419f4a3d-39c7-4521-a524-50221ab94b87" />
+
+3. Full coverage: the whole support came off in one piece, as easily as with Auto.
+
+<img width="300" alt="Full coverage, support in one piece" src="https://github.com/user-attachments/assets/1957f637-17c8-41a1-8cd3-0b7ae8c7f907" />
+
+4. Full coverage, lower face after removal: still flat, but ~7 rows of small tine burrs.
+
+<img width="300" alt="Full coverage, lower face after removal" src="https://github.com/user-attachments/assets/3e006b6e-a451-413c-9b98-8a40072b94e0" />
+
+5. Full coverage, Y side: the solid wall under the second face (50.82°), which Auto leaves bare.
+
+<img width="300" alt="Full coverage, wall under the second face" src="https://github.com/user-attachments/assets/ea19ab04-87cc-4108-a81c-837524243c7f" />
 
 Thanks again!
