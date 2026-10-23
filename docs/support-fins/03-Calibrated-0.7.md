@@ -276,6 +276,11 @@ Photos (defaults print):
   - Conclusion: on this part and pose the extra walls of `threshold` 52 cost +0.25 g and +48 s with no
     visible gain; the defaults were already enough.
 
+  ![threshold 52: support left on the bed](img/ch3/t52-01-support-left-on-bed.webp)
+
+  *`threshold` 52: the support left on the bed after the part was lifted off. It stayed in one
+  piece, with the pad opened into a "J"-shaped loop and the walls still standing on it.*
+
 ### 2026-10-22 21:06: same project (39.18°), `"mode": "full"` (sliced)
 
 - Config: `"mode": "full"` (no `threshold`, so 45). 280 layers.
