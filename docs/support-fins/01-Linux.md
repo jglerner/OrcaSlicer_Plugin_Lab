@@ -329,6 +329,11 @@ layer with the 3 fins and the brim.*
 - Layer 185 (about 37 mm, above all fins), photo: the "X" face came out clean; the oval pad with
   brim still stuck to the bed; inside, the minimal infill with a few fine strings (normal at low
   infill). The fins are on the far side and not visible from this angle.
+
+| | |
+|---|---|
+| ![Printing, X side](img/linux/11-printing-X-side-infill.webp) | During the print, X side: oval pad and brim on the bed, minimal infill visible inside the open cube |
+| ![Printing, low angle](img/linux/12-printing-low-angle.webp) | During the print, low angle: the cube rising on its edge from the pad |
 - 16:15: 99 %, layer 265/268, Z 53.01 mm. **Total time 49 min 49 s** vs 49 min 19 s estimated by
   Orca (only +30 s), and 7.39 m of filament vs 7.17 m estimated. The ~3 min lead seen mid-print did
   not hold: the end (top, small layers, minimum layer time) evened it out.
@@ -348,6 +353,13 @@ layer with the 3 fins and the brim.*
   - **Oval pad + brim:** adhered well and did not lift. The pad's top surface is rough, with small
     blobs and travel marks; irrelevant, since the pad is sacrificial.
   - Supported face (seen from below): flat and smooth, with a diagonal line at the wedge joint.
+
+| | |
+|---|---|
+| ![Finished, Y side](img/linux/13-finished-Y-side-fins.webp) | Finished, Y side: the parallel fins under the tilted face, pad behind |
+| ![Finished, wedge](img/linux/14-finished-wedge.webp) | Finished: fins and the triangular wedge joining the cube's bottom edge to the pad |
+| ![Finished, Z face](img/linux/15-finished-Z-face-pad.webp) | Finished, Z face: clean layers; oval pad with rough top surface; string in the X recess |
+
 - **Removal:** everything came off **by hand**, no tools. Fins, wedges and oval pad came off
   together in one piece, plus a small square plate with "Y"-shaped tine marks.
 - **Scars:** the face that rested on the fins is rough, with strings, pulled lines and torn patches
