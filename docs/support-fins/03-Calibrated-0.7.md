@@ -283,8 +283,16 @@ engine-only comparison would print the Chapter 1 pose with 0.7.759.
     it says: both big faces are now supported.
   - Pad on the bed on both sides; small whiskers of stringing along one cube edge.
   - Removal: the walls came away **together with the pad**, which bent and tore around the edges
-    (same behaviour as with `threshold` 52). Pending from the tester: how easy it was, and a photo of
-    both supported faces after cleanup.
+    (same behaviour as with `threshold` 52).
+  - After removal (photos 23 Oct): the whole support (walls, triangular wall, pad) came off as
+    **one piece**.
+  - A plain face: **flat**, but with a dense grid of tine marks, about **7 rows of 4–5 small hooked
+    burrs** (vs the 3 × 6 dot grid with the defaults), plus a slight ridge along each row. Noticeably
+    more marks than the defaults, no drooping.
+  - The **X** face: clean, except **one row of 5 small burrs** across the middle and a few in the
+    letter recess.
+  - Pending from the tester: which face is which (first or second bottom face), removal effort,
+    and the plugin log line.
 
 ## Status at end of 22 Oct 2026 (summary)
 
