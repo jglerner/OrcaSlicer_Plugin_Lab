@@ -115,7 +115,7 @@ Practical rule for this printer until `angle-coupon` is printed: for parts with 
 
 - Rotation panel: **Absolute X = 45.00°**, Y = 0, Z = 0 (reached after several attempts). Object size
   40 × 56.277 × 56.277 mm, 344 triangles.
-- Sliced (280 layers, 50 min 0 s model time, 22.45 g, 7.47 m). Preview: **no fins under the cube**;
+- Sliced (280 layers, 50 min 0 s model time, 22.45 g, 7.47 m). Preview at full height (screenshot 5): **no fins visible** (they are hidden under the cube; the log later showed 5 walls);
   only the bottom edge on the bed with brim (`Brim` 1 min 11 s, 0.44 g). Orca shows its usual
   *"floating regions"* warning.
 - This **matches the engine CLI prediction**: at exactly 45° the faces sit on the threshold and get no
@@ -296,6 +296,16 @@ engine-only comparison would print the Chapter 1 pose with 0.7.759.
     letter recess.
   - Tester: the plain face is the **lower** bottom face (the one Auto already supported with 3 walls);
     removal **easy, same as the defaults**.
+
+## Screenshots (Linux, 22 Oct 2026)
+
+| | |
+|---|---|
+| ![Rotation panel 45.06°](img/ch3/01-rotation-panel-45.06.png) | 1. Rotation panel at *Absolute X 45.06°*: Orca would not hold 45.00 at first |
+| ![Config with 0.1.0 keys](img/ch3/02-config-0.7.759-old-keys.png) | 2. Plugin Config in 0.7.759, still showing the 0.1.0 keys (`bed_pad`, `tine_density`), which 0.7.759 accepts as aliases |
+| ![Fluidd first print](img/ch3/03-fluidd-first-print-layer1.webp) | 3. Fluidd, 14:30: first 0.7.759 print starting (`xyzCalibration_cube_PLA_51m33s.gcode`, 280 layers); G-code preview of layer 1 shows the pad and the flared fin feet |
+| ![Rotation panel 45.00°](img/ch3/04-rotation-panel-45.00-size-56.277.webp) | 4. *Absolute X 45.00°* finally reached, yet the object size is 40 × 56.277 × 56.277 mm, i.e. a **39.18°** rotation (see the 3MF analysis) |
+| ![Preview at 45.00°](img/ch3/05-preview-45.00-defaults.webp) | 5. Preview, full height (layer 280), defaults: 22.45 g, 50 min 0 s. The fins sit under the cube and cannot be seen at full height; the plugin log for this pose shows 5 walls (14:53:16), so the earlier note "no fins under the cube" came from this view, not from the slice |
 
 ## Status on 23 Oct 2026 (summary)
 
