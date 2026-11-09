@@ -81,6 +81,13 @@ chapter checks that Support Fins runs the same on the stable release, with the n
 
   ![Fluidd G-code preview, layer 27](img/ch4/01-fluidd-gcode-layer27.png)
 
+- About half height, layer 143/282 (28.6 mm): the cube at its widest section (the 45° edges are at
+  this height), sparse diamond infill, and a letter recess on one side with small support walls inside
+  it (the "2 walls" of the default run). No fins outside the part any more: the two supported faces end
+  here. Camera: print standing, no issues.
+
+  ![Fluidd at about half height, layer 143](img/ch4/02-fluidd-layer143-midheight.webp)
+
 ## Plan
 
 1. Save the plugin Config and the process preset.
