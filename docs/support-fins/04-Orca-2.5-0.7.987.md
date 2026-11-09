@@ -113,6 +113,8 @@ Close-ups of the two supported faces (both at 45°):
 | ![Supported face with the Y](img/ch4/08-supported-face-Y.jpg) | **Y face:** flat, regular layer lines; small tine burrs in rows along the edges and beside the letter. The only flaw is **inside the Y recess**: a few drooping layers in the air under the letter's ceiling (a small overhang the 2 letter walls did not fully hold) |
 | ![Plain supported face](img/ch4/09-supported-face-plain.jpg) | **Plain face:** flat, regular layer lines, a grid of small tine burrs (4 columns × 7 rows), nothing else |
 
+- **Removal:** no difficulty at all; apart from the visible tine dots, the support layer did not
+  fuse to the part.
 - **Burrs:** "do not even need a fingernail: just bend them and they break off" (J. Lerner).
 - **J. Lerner's assessment:** **significant improvement on the supported faces**, apart from the few
   layers hanging in the air inside the Y.
@@ -124,6 +126,9 @@ only catch was installing into the Flatpak's own configuration folder. On a cube
 exactly 45°, `"threshold": 46` supports **both** 45° faces (10 walls, 44 tines vs 2 walls, 0 tines with
 the defaults); the print costs about +3.3 g and +10 min and both faces come out flat, with tine burrs
 that snap off by hand.
+
+No upstream comment for this chapter (J. Lerner's decision): the test was better in every respect, so
+the project is moving in the right direction and needs no report from us.
 
 ## Plan
 
