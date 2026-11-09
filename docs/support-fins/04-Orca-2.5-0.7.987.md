@@ -70,6 +70,17 @@ chapter checks that Support Fins runs the same on the stable release, with the n
   44 tines; 2 overhangs are too shallow for a fin this way up (tilt the part steeper)"**, vs "2 walls,
   0 tines" with the defaults at the same pose. `threshold` 46 brings both 45° faces in.
 
+### 2026-11-09: printing (`threshold` 46)
+
+- Fluidd: `cube_PLA_47m59s.gcode`, **282 layers**.
+- G-code preview at layer 27 (5.4 mm), seen from above: the cube's section is the narrow strip in the
+  middle (the bottom edge, with diamond infill). The fins are **thin single walls perpendicular to
+  that edge, on both sides** (both 45° faces now supported), 4 per side at this height, in pairs of
+  different lengths. Each wall **tapers to a point where it meets the part**: the narrow tip is the
+  contact that makes the fin break away cleanly.
+
+  ![Fluidd G-code preview, layer 27](img/ch4/01-fluidd-gcode-layer27.png)
+
 ## Plan
 
 1. Save the plugin Config and the process preset.
