@@ -55,6 +55,18 @@ chapter checks that Support Fins runs the same on the stable release, with the n
   overhangs and get no fins (same as Chapter 3's CLI result). The 2 small walls without tines are most
   likely under the letter recesses. To support the 45° faces use `"threshold": 46`.
 
+### 2026-11-09: same pose, `"threshold": 46`
+
+- Config `{"apply_to": "no-supports", "enabled": true, "threshold": 46}`. Object name in Orca's
+  warning: `cube.stl`.
+- Preview at layer 28 (5.60 mm): **walls under both big bottom faces**, with flared feet on the pad
+  and brim around it.
+- Orca estimate: **24.71 g, 8.29 m, 46 min 32 s model time (47 min 59 s total)**, vs 21.45 g /
+  36 min 13 s with the defaults (+3.26 g, about +10 min).
+- Orca shows only the yellow *"floating regions"* **warning** (its own support checker, which cannot see
+  the fins; harmless, present in every print of Chapters 1–3). No error.
+- Pending: plugin log line (walls, tines).
+
 ## Plan
 
 1. Save the plugin Config and the process preset.
