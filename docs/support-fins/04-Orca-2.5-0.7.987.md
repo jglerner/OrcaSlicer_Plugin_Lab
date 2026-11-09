@@ -66,7 +66,9 @@ chapter checks that Support Fins runs the same on the stable release, with the n
   36 min 13 s with the defaults (+3.26 g, about +10 min).
 - Orca shows only the yellow *"floating regions"* **warning** (its own support checker, which cannot see
   the fins; harmless, present in every print of Chapters 1–3). No error.
-- Pending: plugin log line (walls, tines).
+- Plugin log: `"version": "0.7.987"`, `part_size_mm` [56.5685, 40.0, 56.5685], result **"10 walls,
+  44 tines; 2 overhangs are too shallow for a fin this way up (tilt the part steeper)"**, vs "2 walls,
+  0 tines" with the defaults at the same pose. `threshold` 46 brings both 45° faces in.
 
 ## Plan
 
