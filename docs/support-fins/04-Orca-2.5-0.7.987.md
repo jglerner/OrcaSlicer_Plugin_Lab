@@ -42,7 +42,8 @@ chapter checks that Support Fins runs the same on the stable release, with the n
 
 ### 2026-11-09: first slice, new cube at exactly 45°, defaults
 
-- The tester rotated a fresh `xyzCalibration_cube` (not the Chapter 3 project). Orca's rotation panel
+- The tester rotated a fresh copy of the XYZ calibration cube, saved as `cube.stl` (the same 20 mm
+  XYZ cube with recessed X/Y/Z letters, scaled to 40 mm; not the Chapter 3 project file). Orca's rotation panel
   showed **World, Absolute Y = 51.77°**, but the plugin log gives `part_size_mm` **[56.5685, 40.0,
   56.5685]**, i.e. 40·√2: the cube rests on an edge at **exactly 45°** about Y. The rotation panel
   again does not show the real pose (see Chapter 3, 45.00° vs 39.18°).
@@ -57,8 +58,8 @@ chapter checks that Support Fins runs the same on the stable release, with the n
 
 ### 2026-11-09: same pose, `"threshold": 46`
 
-- Config `{"apply_to": "no-supports", "enabled": true, "threshold": 46}`. Object name in Orca's
-  warning: `cube.stl`.
+- Config `{"apply_to": "no-supports", "enabled": true, "threshold": 46}`. Same part as above
+  (`cube.stl`, the 20 mm XYZ cube scaled to 40 mm).
 - Preview at layer 28 (5.60 mm): **walls under both big bottom faces**, with flared feet on the pad
   and brim around it.
 - Orca estimate: **24.71 g, 8.29 m, 46 min 32 s model time (47 min 59 s total)**, vs 21.45 g /
