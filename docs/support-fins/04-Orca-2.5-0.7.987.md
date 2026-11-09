@@ -88,6 +88,26 @@ chapter checks that Support Fins runs the same on the stable release, with the n
 
   ![Fluidd at about half height, layer 143](img/ch4/02-fluidd-layer143-midheight.webp)
 
+### 2026-11-09 17:5x: print finished
+
+| | Orca estimate | Fluidd | Reading |
+|---|---|---|---|
+| Time | 47 min 59 s | **Actual 49 min 20 s**, Total 50 min 31 s | +1 min 21 s printing; Total adds heating and purge |
+| Filament | 8.29 m, 24.71 g | **8.43 m**, about 25 g (J. Lerner) | +0.14 m, the CFS purge |
+
+Mid-print (74 %, layer 159/283) Fluidd projected ~2.5 min less than Orca; as in Chapter 1, the small
+top layers (minimum layer time) took the lead back.
+
+| | |
+|---|---|
+| ![Fluidd finished](img/ch4/03-fluidd-finished.png) | Fluidd at the end: 100 %, Actual 49 min 20 s, 8.43 m |
+| ![On the bed, Z side](img/ch4/04-on-bed-Z-side.jpg) | On the bed, Z side: walls under one 45° face, pad below; some stringing in the cavity |
+| ![On the bed, other side](img/ch4/05-on-bed-other-side.jpg) | On the bed, other side: walls under the second 45° face (both faces supported) |
+| ![Removal in progress](img/ch4/06-removal-in-progress.jpg) | Removal in progress: walls and pad coming away in pieces; one supported face shows a row of tine marks |
+| ![After removal](img/ch4/07-after-removal-supported-faces.jpg) | After removal: both supported faces flat, with scattered small tine burrs; stringing/support in the Y and X letter recesses |
+
+- Pending from the tester: how easy the removal was, and a close-up of each supported face.
+
 ## Plan
 
 1. Save the plugin Config and the process preset.
