@@ -106,7 +106,24 @@ top layers (minimum layer time) took the lead back.
 | ![Removal in progress](img/ch4/06-removal-in-progress.jpg) | Removal in progress: walls and pad coming away in pieces; one supported face shows a row of tine marks |
 | ![After removal](img/ch4/07-after-removal-supported-faces.jpg) | After removal: both supported faces flat, with scattered small tine burrs; stringing/support in the Y and X letter recesses |
 
-- Pending from the tester: how easy the removal was, and a close-up of each supported face.
+Close-ups of the two supported faces (both at 45°):
+
+| | |
+|---|---|
+| ![Supported face with the Y](img/ch4/08-supported-face-Y.jpg) | **Y face:** flat, regular layer lines; small tine burrs in rows along the edges and beside the letter. The only flaw is **inside the Y recess**: a few drooping layers in the air under the letter's ceiling (a small overhang the 2 letter walls did not fully hold) |
+| ![Plain supported face](img/ch4/09-supported-face-plain.jpg) | **Plain face:** flat, regular layer lines, a grid of small tine burrs (4 columns × 7 rows), nothing else |
+
+- **Burrs:** "do not even need a fingernail: just bend them and they break off" (J. Lerner).
+- **J. Lerner's assessment:** **significant improvement on the supported faces**, apart from the few
+  layers hanging in the air inside the Y.
+
+## Result
+
+OrcaSlicer **2.5 stable (Flatpak)** runs Support Fins **0.7.987** without changes to the plugin; the
+only catch was installing into the Flatpak's own configuration folder. On a cube resting on an edge at
+exactly 45°, `"threshold": 46` supports **both** 45° faces (10 walls, 44 tines vs 2 walls, 0 tines with
+the defaults); the print costs about +3.3 g and +10 min and both faces come out flat, with tine burrs
+that snap off by hand.
 
 ## Plan
 
