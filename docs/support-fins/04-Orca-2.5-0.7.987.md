@@ -40,6 +40,21 @@ chapter checks that Support Fins runs the same on the stable release, with the n
 - Process profile `0.20mm Standard @Creality K2 Pro 0.4 nozzle`: Support Fins already listed under
   *Slicing Pipeline Plugin*; Config `{"apply_to": "no-supports", "enabled": true}` (defaults).
 
+### 2026-11-09: first slice, new cube at exactly 45°, defaults
+
+- The tester rotated a fresh `xyzCalibration_cube` (not the Chapter 3 project). Orca's rotation panel
+  showed **World, Absolute Y = 51.77°**, but the plugin log gives `part_size_mm` **[56.5685, 40.0,
+  56.5685]**, i.e. 40·√2: the cube rests on an edge at **exactly 45°** about Y. The rotation panel
+  again does not show the real pose (see Chapter 3, 45.00° vs 39.18°).
+- Preview at full height looked fin-less: the fins (if any) sit under the cube. At layer 28 (5.60 mm)
+  only the pad, the brim and the cube's lowest section are visible.
+- Orca estimate: 21.45 g, 7.19 m, 36 min 13 s model time (37 min 39 s total).
+- Plugin log: `"version": "0.7.987"`, result **"2 walls, 0 tines"**. Orca showed no
+  *floating regions* warning.
+- Reading: at exactly 45° both big bottom faces sit **on** the default 45° threshold, so they are not
+  overhangs and get no fins (same as Chapter 3's CLI result). The 2 small walls without tines are most
+  likely under the letter recesses. To support the 45° faces use `"threshold": 46`.
+
 ## Plan
 
 1. Save the plugin Config and the process preset.
