@@ -3,6 +3,7 @@
 #
 #   scripts/install-support-fins.sh            # backup + download + install
 #   ORCA_DATA_DIR=/other/folder scripts/install-support-fins.sh
+#   ORCA_DATA_DIR=~/.var/app/com.orcaslicer.OrcaSlicer/config/OrcaSlicer scripts/install-support-fins.sh   # Flatpak Orca
 #   SKIP_BACKUP=1 scripts/install-support-fins.sh
 #   PLUGIN_FILE=plugins/support-fins/support_fins_orca-<sha8>.py scripts/install-support-fins.sh
 #                                 # use a local file instead of downloading (same build as the other OS)
@@ -19,6 +20,14 @@ case "$(uname -s)" in
   *) echo "Unsupported OS: $(uname -s)" >&2; exit 1 ;;
 esac
 DATA="${ORCA_DATA_DIR:-$DEFAULT_DATA}"
+
+# OrcaSlicer from Flathub keeps its configuration inside the sandbox, not in ~/.config
+FLATPAK_DATA="$HOME/.var/app/com.orcaslicer.OrcaSlicer/config/OrcaSlicer"
+if [ -z "${ORCA_DATA_DIR:-}" ] && [ -d "$FLATPAK_DATA" ]; then
+  echo "Note: a Flatpak OrcaSlicer configuration exists: $FLATPAK_DATA" >&2
+  echo "      This run installs into $DATA. For the Flatpak Orca, run again with" >&2
+  echo "      ORCA_DATA_DIR=\"$FLATPAK_DATA\"" >&2
+fi
 
 sha256() {
   if command -v sha256sum >/dev/null; then sha256sum "$1" | cut -d' ' -f1
@@ -70,4 +79,4 @@ echo "Installed: $DEST/support_fins_orca.py"
 echo "  plugin version: $VERSION"
 echo "  sha256:         $HASH"
 echo
-echo "Next: open the OrcaSlicer NIGHTLY > Plugins > tick 'Support Fins'."
+echo "Next: open OrcaSlicer > Plugins > Refresh > tick 'Support Fins'."
